@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">PickACar</string>
+    <string name="invalid_model_name">Enter a valid model name</string>
+    <string name="invalid_brand_name">Enter a valid brand name</string>
+    <string name="invalid_color_name">Enter a valid color name</string>
+    <string name="invalid_passangers">Enter valid passanger amount</string>
+    <string name="invalid_released_year">Enter valid released year</string>
+    <string name="invalid_description">Enter a valid description</string>
 </resources>
