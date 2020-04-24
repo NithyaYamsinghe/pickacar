@@ -6,10 +6,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+
 import com.orioton.pickacar.admin.AdminHomeActivity;
 import com.orioton.pickacar.admin.CarListActivity;
 import com.orioton.pickacar.client.ActivityLogIn;
 import com.orioton.pickacar.client.ActivitySignUp;
+import com.orioton.pickacar.driver.DriverLogin;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,6 +33,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void changeLogIn(View view) {
         Intent intent = new Intent(this, ActivityLogIn.class);
+        startActivity(intent);
+    }
+
+    public void changeDriver(View view) {
+        Intent intent = new Intent(this, DriverLogin.class);
         startActivity(intent);
     }
 }
