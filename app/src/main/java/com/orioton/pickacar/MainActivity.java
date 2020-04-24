@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.orioton.pickacar.admin.ActivityAddCar;
+import com.orioton.pickacar.client.ActivitySignUp;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,6 +19,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void changeAddCar(View view) {
         Intent intent = new Intent(this, ActivityAddCar.class);
+        startActivity(intent);
+    }
+
+    public void changeSignUp(View view) {
+        Intent intent = new Intent(this, ActivitySignUp.class);
         startActivity(intent);
     }
 }

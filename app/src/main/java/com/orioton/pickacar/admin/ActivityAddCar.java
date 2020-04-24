@@ -11,7 +11,10 @@ import android.widget.Toast;
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.basgeekball.awesomevalidation.utility.RegexTemplate;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.orioton.pickacar.R;
+import com.orioton.pickacar.model.Car;
 
 public class ActivityAddCar extends AppCompatActivity {
 
@@ -20,6 +23,8 @@ public class ActivityAddCar extends AppCompatActivity {
     Button buttonAddCar;
 
     AwesomeValidation awesomeValidation;
+
+    DatabaseReference databasePickACar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +43,9 @@ public class ActivityAddCar extends AppCompatActivity {
 
         // initializing validation style
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
+
+        // initializing database reference
+        databasePickACar = FirebaseDatabase.getInstance().getReference("cars");
 
         // applying the validations
         awesomeValidation.addValidation(this, R.id.et_car_brand,
@@ -59,13 +67,27 @@ public class ActivityAddCar extends AppCompatActivity {
                 RegexTemplate.NOT_EMPTY, R.string.invalid_description);
 
 
+
+
+
         buttonAddCar.setOnClickListener(new View.OnClickListener() {
-            @Override
             public void onClick(View v) {
                 // checking for the validations
                 if (awesomeValidation.validate()) {
+
                     // validation passed
-                    Toast.makeText(getApplicationContext(), "Validation passed!", Toast.LENGTH_SHORT).show();
+                    String carBrandVal = carBrand.getText().toString().trim();
+                    String carModelVal = carModel.getText().toString().trim();
+                    String carColorVal = carColor.getText().toString().trim();
+                    String carDescriptionVal = carDescription.getText().toString().trim();
+                    String carReleasedYearVal = carReleasedYear.getText().toString().trim();
+                    String carPassengersVal = carPassangers.getText().toString().trim();
+
+                    String id = databasePickACar.push().getKey();
+                    Car car = new Car(carBrandVal, carModelVal, carColorVal, Integer.parseInt(carReleasedYearVal), Integer.parseInt(carPassengersVal), carDescriptionVal);
+                    databasePickACar.child(id).setValue(car);
+                    Toast.makeText(getApplicationContext(), "Car added!", Toast.LENGTH_SHORT).show();
+
                 } else {
                     // validation failed
                     Toast.makeText(getApplicationContext(), "Validation failed!", Toast.LENGTH_SHORT).show();

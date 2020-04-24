@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "770587485770",
+    "firebase_url": "https://pickacar-b3bf4.firebaseio.com",
+    "project_id": "pickacar-b3bf4",
+    "storage_bucket": "pickacar-b3bf4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:770587485770:android:6ec9b60e6d7a5bfefae8b3",
+        "android_client_info": {
+          "package_name": "com.orioton.pickacar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "770587485770-vvd0mj9rb48mo41tsa8k24t931vhf9ff.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.orioton.pickacar",
+            "certificate_hash": "ee08f2fae8c734378e3f8f649395c05cd4f5a528"
+          }
+        },
+        {
+          "client_id": "770587485770-pktf297e3kjbco12k8n7mn60ll8la8p8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9nw-ZzGrykz2T2AwX5ygXGKUdw65ASeQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "770587485770-pktf297e3kjbco12k8n7mn60ll8la8p8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
