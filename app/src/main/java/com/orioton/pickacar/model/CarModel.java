@@ -1,24 +1,37 @@
 package com.orioton.pickacar.model;
 
-public class Car {
+public class CarModel {
+
+    // variables
+
     private String brand;
     private String model;
     private String color;
-    private Number releasedYear;
-    private Number passengers;
+    private int releasedYear;
+    private int passengers;
     private String description;
+    private String image;
 
-    public Car() {
+
+    // constructor
+    public CarModel() {
 
     }
 
-    public Car(String brand, String model, String color, Number releasedYear, Number passengers, String description) {
+    public CarModel(String brand, String model, String image) {
+        this.brand = brand;
+        this.model = model;
+        this.image = image;
+    }
+
+    public CarModel(String brand, String model, String color, int releasedYear, int passengers, String description, String image) {
         this.brand = brand;
         this.model = model;
         this.color = color;
         this.releasedYear = releasedYear;
         this.passengers = passengers;
         this.description = description;
+        this.image = image;
     }
 
     public String getBrand() {
@@ -45,19 +58,19 @@ public class Car {
         this.color = color;
     }
 
-    public Number getReleasedYear() {
+    public int getReleasedYear() {
         return releasedYear;
     }
 
-    public void setReleasedYear(Number releasedYear) {
+    public void setReleasedYear(int releasedYear) {
         this.releasedYear = releasedYear;
     }
 
-    public Number getPassengers() {
+    public int getPassengers() {
         return passengers;
     }
 
-    public void setPassengers(Number passengers) {
+    public void setPassengers(int passengers) {
         this.passengers = passengers;
     }
 
@@ -67,5 +80,13 @@ public class Car {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }
