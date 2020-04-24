@@ -8,7 +8,7 @@
     android:gravity="center"
     android:background="@color/colorPrimary"
     android:padding="16dp"
-    tools:context="com.orioton.pickacar.client.ActivitySignUp">
+    tools:context="com.orioton.pickacar.client.ActivityLogIn">
 
     <TextView
         android:id="@+id/textView"
@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/colorTint"
-        android:text="@string/sign_up_activity_text" />
+        android:text="@string/log_in_activity_text" />
 
     <Space
         android:layout_width="match_parent"
@@ -63,7 +63,7 @@
         android:id="@+id/btn_sign_up"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sign Up"
+        android:text="Sign In"
         android:layout_gravity="center"
         android:background="@color/colorAccent"
         />
@@ -84,8 +84,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/colorTint"
-        android:text="@string/sign_up_activity_login"
-         />
+        android:text="@string/login_activity_signup"
+        />
 
 
 </LinearLayout>

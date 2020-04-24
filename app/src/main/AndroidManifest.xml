@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".client.ActivitySignUp"></activity>
+        <activity android:name=".client.ActivityLogIn"></activity>
+        <activity
+            android:name=".client.ActivitySignUp"
+            android:label="Sign Up" />
         <activity android:name=".admin.ActivityAddCar" />
         <activity android:name=".MainActivity">
             <intent-filter>

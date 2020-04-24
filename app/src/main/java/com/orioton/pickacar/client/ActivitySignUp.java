@@ -3,12 +3,19 @@ package com.orioton.pickacar.client;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
+import android.text.style.ForegroundColorSpan;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
@@ -26,6 +33,8 @@ public class ActivitySignUp extends AppCompatActivity implements View.OnClickLis
     EditText etEmail;
     EditText etPassword;
     EditText etConfirmPassword;
+
+    TextView tvLoginText;
 
     Button btnSignUp;
     ProgressBar progressBar;
@@ -63,6 +72,9 @@ public class ActivitySignUp extends AppCompatActivity implements View.OnClickLis
 
         mAuth = FirebaseAuth.getInstance();
 
+        // setting up the login text
+        setLoginText();
+
         btnSignUp.setOnClickListener(this);
 
     }
@@ -74,6 +86,7 @@ public class ActivitySignUp extends AppCompatActivity implements View.OnClickLis
             case (R.id.btn_sign_up):
                 if (awesomeValidation.validate()) {
                     progressBar.setVisibility(View.VISIBLE);
+                    btnSignUp.setVisibility(View.GONE);
                     // sign the user up if the validation passed
                     String userEmail = etEmail.getText().toString().trim();
                     String userPass = etPassword.getText().toString().trim();
@@ -83,10 +96,12 @@ public class ActivitySignUp extends AppCompatActivity implements View.OnClickLis
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 progressBar.setVisibility(View.GONE);
+                                btnSignUp.setVisibility(View.VISIBLE);
                                 Toast.makeText(getApplicationContext(), "User has been registered!", Toast.LENGTH_SHORT).show();
                             } else {
                                 progressBar.setVisibility(View.GONE);
-                                Toast.makeText(getApplicationContext(), "Unable to register. Please try again later", Toast.LENGTH_SHORT).show();
+                                btnSignUp.setVisibility(View.VISIBLE);
+                                Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
@@ -97,6 +112,27 @@ public class ActivitySignUp extends AppCompatActivity implements View.OnClickLis
                 }
 
         }
+
+    }
+
+    private void setLoginText() {
+        tvLoginText = findViewById(R.id.user_login_text);
+
+        String loginText = "Already have an account? Login here";
+
+        SpannableString spannableString = new SpannableString(loginText);
+
+        ClickableSpan clickableSpan = new ClickableSpan() {
+            @Override
+            public void onClick(@NonNull View widget) {
+                Toast.makeText(getApplicationContext(), "Go to the login activity", Toast.LENGTH_SHORT).show();
+            }
+        };
+
+        spannableString.setSpan(clickableSpan, 25, 35, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        tvLoginText.setText(spannableString);
+        tvLoginText.setMovementMethod(LinkMovementMethod.getInstance());
 
     }
 }
