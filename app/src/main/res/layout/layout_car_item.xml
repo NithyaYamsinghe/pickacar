@@ -36,9 +36,46 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Brand"
-            android:textColor="@color/colorPrimary"
-            android:textSize="20sp" />
+            android:textColor="@color/colorPrimary"/>
 
+
+        <TextView
+            android:id="@+id/car_list_color_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Model"
+            android:textColor="@color/colorPrimary"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/car_list_released_year_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:text="brand"/>
+
+        <TextView
+            android:id="@+id/car_list_passengers_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Brand"
+            android:textColor="@color/colorPrimary"/>
+
+        <TextView
+            android:id="@+id/car_list_description_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Brand"
+            android:textColor="@color/colorPrimary"/>
+
+        <TextView
+            android:id="@+id/car_list_condition_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Brand"
+            android:textColor="@color/colorPrimary"/>
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>
