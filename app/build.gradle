@@ -37,4 +37,5 @@ dependencies {
 
     // dependencies for input validations
     implementation 'com.basgeekball:awesome-validation:4.2'
+
 }
