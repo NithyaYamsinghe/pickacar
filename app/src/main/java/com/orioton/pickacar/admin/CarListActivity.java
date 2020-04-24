@@ -65,7 +65,11 @@ public class CarListActivity extends AppCompatActivity {
 
     // search data
     private void firebaseSearch(String searchText) {
-        Query firebaseSearchQuery = adminRef.orderByChild("model").startAt(searchText).endAt(searchText + "\uf8ff");
+
+        // convert string entered to search view in to lowercase
+        String query = searchText.toLowerCase();
+
+        Query firebaseSearchQuery = adminRef.orderByChild("search").startAt(query).endAt(query + "\uf8ff");
         FirebaseRecyclerAdapter<CarModel, CarListViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<CarModel, CarListViewHolder>(
 
                 CarModel.class,
@@ -124,7 +128,6 @@ public class CarListActivity extends AppCompatActivity {
                         intent.putExtra("condition", conditionText);
                         intent.putExtra("image", bytes);
                         startActivity(intent);
-
 
 
                     }
@@ -211,7 +214,6 @@ public class CarListActivity extends AppCompatActivity {
                         startActivity(intent);
 
 
-
                     }
 
                     @Override
@@ -258,10 +260,19 @@ public class CarListActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         // handle other action bar items
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_sort) {
+
+            // alert dialog
+            showSortDialog();
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void showSortDialog() {
+
+        // options to display in dialog
+        
     }
 }
 
