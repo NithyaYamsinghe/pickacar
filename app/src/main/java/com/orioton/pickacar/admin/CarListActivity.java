@@ -3,13 +3,16 @@ package com.orioton.pickacar.admin;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.core.view.MenuItemCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -33,6 +36,8 @@ import java.io.ByteArrayOutputStream;
 
 public class CarListActivity extends AppCompatActivity {
 
+    LinearLayoutManager linearLayoutManager; // for sorting
+    SharedPreferences sharedPreferences; // for saving sort settings
     RecyclerView recyclerViewCarList;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference adminRef;
@@ -49,12 +54,29 @@ public class CarListActivity extends AppCompatActivity {
         // set title
         actionBar.setTitle("Cars");
 
+        sharedPreferences = getSharedPreferences("SortSettings", MODE_PRIVATE);
+        String sorting = sharedPreferences.getString("Sort", "newest"); // default will be newest
+
+        if (sorting == "newest") {
+            linearLayoutManager = new LinearLayoutManager(this);
+            // bring items from bottom means newest
+            linearLayoutManager.setReverseLayout(true);
+            linearLayoutManager.setStackFromEnd(true);
+        } else if (sorting == "oldest") {
+            linearLayoutManager = new LinearLayoutManager(this);
+            // bring items from bottom means oldest
+            linearLayoutManager.setReverseLayout(false);
+            linearLayoutManager.setStackFromEnd(false);
+        }
+
+
         // recycler view
         recyclerViewCarList = findViewById(R.id.recycler_view_car_list);
         recyclerViewCarList.setHasFixedSize(true);
 
         // set layout as linear layout
-        recyclerViewCarList.setLayoutManager(new LinearLayoutManager(this));
+//        recyclerViewCarList.setLayoutManager(new LinearLayoutManager(this));
+        recyclerViewCarList.setLayoutManager(linearLayoutManager);
 
         // firebase
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -272,7 +294,37 @@ public class CarListActivity extends AppCompatActivity {
     private void showSortDialog() {
 
         // options to display in dialog
-        
+        String[] sortOptions = {"Newest", "Oldest"};
+
+        // create alert dialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Sort by").setIcon(R.drawable.ic_action_sort) // set icon
+                .setItems(sortOptions, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if (which == 0) {
+                            // sort by newest
+                            // edit shared preferences
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putString("Sort", "newest");
+                            editor.apply(); // apply save the value
+                            recreate(); // restart activity to take effect
+
+
+                        } else if (which == 1) {
+                            // sort by oldest
+                            // edit shared preferences
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putString("Sort", "oldest");
+                            editor.apply(); // apply save the value
+                            recreate(); // restart activity to take effect
+
+                        }
+
+                    }
+                });
+
+        builder.show();
     }
 }
 
