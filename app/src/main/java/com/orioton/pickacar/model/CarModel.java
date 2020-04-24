@@ -7,10 +7,11 @@ public class CarModel {
     private String brand;
     private String model;
     private String color;
-    private int releasedYear;
-    private int passengers;
+    private String releasedYear;
+    private String passengers;
     private String description;
     private String image;
+    private String condition;
 
 
     // constructor
@@ -18,13 +19,7 @@ public class CarModel {
 
     }
 
-    public CarModel(String brand, String model, String image) {
-        this.brand = brand;
-        this.model = model;
-        this.image = image;
-    }
-
-    public CarModel(String brand, String model, String color, int releasedYear, int passengers, String description, String image) {
+    public CarModel(String brand, String model, String color, String releasedYear, String passengers, String description, String image, String condition) {
         this.brand = brand;
         this.model = model;
         this.color = color;
@@ -32,6 +27,7 @@ public class CarModel {
         this.passengers = passengers;
         this.description = description;
         this.image = image;
+        this.condition = condition;
     }
 
     public String getBrand() {
@@ -58,19 +54,19 @@ public class CarModel {
         this.color = color;
     }
 
-    public int getReleasedYear() {
+    public String getReleasedYear() {
         return releasedYear;
     }
 
-    public void setReleasedYear(int releasedYear) {
+    public void setReleasedYear(String releasedYear) {
         this.releasedYear = releasedYear;
     }
 
-    public int getPassengers() {
+    public String getPassengers() {
         return passengers;
     }
 
-    public void setPassengers(int passengers) {
+    public void setPassengers(String passengers) {
         this.passengers = passengers;
     }
 
@@ -88,5 +84,13 @@ public class CarModel {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getCondition() {
+        return condition;
+    }
+
+    public void setCondition(String condition) {
+        this.condition = condition;
     }
 }
