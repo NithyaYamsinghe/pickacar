@@ -3,6 +3,7 @@ package com.orioton.pickacar.client;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.SpannableString;
@@ -98,6 +99,8 @@ public class ActivitySignUp extends AppCompatActivity implements View.OnClickLis
                                 progressBar.setVisibility(View.GONE);
                                 btnSignUp.setVisibility(View.VISIBLE);
                                 Toast.makeText(getApplicationContext(), "User has been registered!", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(getApplicationContext(), ActivityLogIn.class);
+                                startActivity(intent);
                             } else {
                                 progressBar.setVisibility(View.GONE);
                                 btnSignUp.setVisibility(View.VISIBLE);
@@ -125,7 +128,8 @@ public class ActivitySignUp extends AppCompatActivity implements View.OnClickLis
         ClickableSpan clickableSpan = new ClickableSpan() {
             @Override
             public void onClick(@NonNull View widget) {
-                Toast.makeText(getApplicationContext(), "Go to the login activity", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), ActivityLogIn.class);
+                startActivity(intent);
             }
         };
 
