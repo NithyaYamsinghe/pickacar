@@ -1,5 +1,6 @@
 package com.orioton.pickacar.client;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -7,24 +8,31 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.basgeekball.awesomevalidation.utility.RegexTemplate;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.orioton.pickacar.R;
 
 public class ActivitySignUp extends AppCompatActivity implements View.OnClickListener {
 
     // declaring the variables
-    EditText etUsername;
     EditText etEmail;
     EditText etPassword;
     EditText etConfirmPassword;
 
     Button btnSignUp;
+    ProgressBar progressBar;
 
     AwesomeValidation awesomeValidation;
+
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,20 +40,18 @@ public class ActivitySignUp extends AppCompatActivity implements View.OnClickLis
         setContentView(R.layout.activity_sign_up);
 
         // initializing the variables
-        etUsername = findViewById(R.id.et_user_username);
         etEmail = findViewById(R.id.et_user_email);
         etPassword = findViewById(R.id.et_user_password);
         etConfirmPassword = findViewById(R.id.et_user_ps_confirm);
 
         btnSignUp = findViewById(R.id.btn_sign_up);
+        progressBar = findViewById(R.id.progressbar);
 
         // initializing validation style
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
 
-        // applying the validations
-        awesomeValidation.addValidation(this, R.id.et_user_username,
-                RegexTemplate.NOT_EMPTY, R.string.invalid_username);
 
+        // applying the validations
         awesomeValidation.addValidation(this, R.id.et_user_email,
                 Patterns.EMAIL_ADDRESS, R.string.invalid_email);
 
@@ -55,6 +61,7 @@ public class ActivitySignUp extends AppCompatActivity implements View.OnClickLis
         awesomeValidation.addValidation(this, R.id.et_user_ps_confirm,
                 R.id.et_user_password, R.string.invalid_password_confirm);
 
+        mAuth = FirebaseAuth.getInstance();
 
         btnSignUp.setOnClickListener(this);
 
@@ -66,7 +73,23 @@ public class ActivitySignUp extends AppCompatActivity implements View.OnClickLis
         switch (v.getId()) {
             case (R.id.btn_sign_up):
                 if (awesomeValidation.validate()) {
+                    progressBar.setVisibility(View.VISIBLE);
                     // sign the user up if the validation passed
+                    String userEmail = etEmail.getText().toString().trim();
+                    String userPass = etPassword.getText().toString().trim();
+
+                    mAuth.createUserWithEmailAndPassword(userEmail, userPass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                progressBar.setVisibility(View.GONE);
+                                Toast.makeText(getApplicationContext(), "User has been registered!", Toast.LENGTH_SHORT).show();
+                            } else {
+                                progressBar.setVisibility(View.GONE);
+                                Toast.makeText(getApplicationContext(), "Unable to register. Please try again later", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
 
                 } else {
                     // validation failed
