@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.orioton.pickacar">
-
     <!-- add internet permission -->
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -12,11 +11,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".admin.CarListActivity"></activity>
+        <activity android:name=".admin.CarDetailsActivity"></activity>
+        <activity android:name=".admin.CarListActivity" />
         <activity
             android:name=".admin.AdminHomeActivity"
             android:label="@string/title_activity_admin_home"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".client.ActivityDashboard" />
         <activity
             android:name=".client.ActivityLogIn"
