@@ -8,7 +8,7 @@
     android:gravity="center"
     android:background="@color/colorPrimary"
     android:padding="16dp"
-    tools:context="com.orioton.pickacar.admin.ActivityAddCar">
+    tools:context="com.orioton.pickacar.admin.AddCarActivity">
 
     <EditText
         android:id="@+id/et_car_brand"
