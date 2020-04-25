@@ -288,6 +288,13 @@ public class CarListActivity extends AppCompatActivity {
             showSortDialog();
             return true;
         }
+
+        if (id == R.id.action_add) {
+
+            // start activity
+            startActivity(new Intent(CarListActivity.this, AddNewCarActivity.class));
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 
