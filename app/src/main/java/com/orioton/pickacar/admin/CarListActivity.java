@@ -13,11 +13,13 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
@@ -33,6 +35,8 @@ public class CarListActivity extends AppCompatActivity {
     RecyclerView recyclerViewCarList;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference adminRef;
+    FirebaseRecyclerAdapter<CarModel, CarListViewHolder> firebaseRecyclerAdapter;
+    FirebaseRecyclerOptions<CarModel> options;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,13 +70,89 @@ public class CarListActivity extends AppCompatActivity {
         recyclerViewCarList = findViewById(R.id.recycler_view_car_list);
         recyclerViewCarList.setHasFixedSize(true);
 
-        // set layout as linear layout
-//        recyclerViewCarList.setLayoutManager(new LinearLayoutManager(this));
-        recyclerViewCarList.setLayoutManager(linearLayoutManager);
 
         // firebase
         firebaseDatabase = FirebaseDatabase.getInstance();
         adminRef = firebaseDatabase.getReference("cars");
+
+        showData();
+
+    }
+
+
+    // show data
+    private void showData(){
+
+        options = new FirebaseRecyclerOptions.Builder<CarModel>().setQuery(adminRef, CarModel.class).build();
+        firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<CarModel, CarListViewHolder>(options) {
+            @Override
+            protected void onBindViewHolder(@NonNull CarListViewHolder carListViewHolder, int i, @NonNull CarModel carModel) {
+
+                carListViewHolder.setDetails(getApplicationContext(), carModel.getModel(), carModel.getBrand(), carModel.getColor(), carModel.getReleasedYear(),
+                        carModel.getPassengers(), carModel.getDescription(), carModel.getImage(), carModel.getCondition());
+
+            }
+
+            @NonNull
+            @Override
+            public CarListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
+                // inflating layout car item
+                View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_car_item, parent, false);
+                CarListViewHolder carListViewHolder = new CarListViewHolder(itemView);
+
+                // item click listener
+                carListViewHolder.setOnClickListener(new CarListViewHolder.ClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+
+                        // get data from firebase at the position clicked
+                        String brandText = getItem(position).getBrand();
+                        String modelText = getItem(position).getModel();
+                        String colorText = getItem(position).getColor();
+                        String releasedYearText = getItem(position).getReleasedYear();
+                        String passengersText = getItem(position).getPassengers();
+                        String descriptionText = getItem(position).getDescription();
+                        String conditionText = getItem(position).getCondition();
+                        String imageText = getItem(position).getImage();
+
+
+
+                        // pass this data to the new activity
+                        Intent intent = new Intent(view.getContext(), CarDetailsActivity.class);
+                        intent.putExtra("brand", brandText);
+                        intent.putExtra("model", modelText);
+                        intent.putExtra("color", colorText);
+                        intent.putExtra("releasedYear", releasedYearText);
+                        intent.putExtra("passengers", passengersText);
+                        intent.putExtra("description", descriptionText);
+                        intent.putExtra("condition", conditionText);
+                        intent.putExtra("image", imageText);
+                        startActivity(intent);
+
+
+                    }
+
+                    @Override
+                    public void onItemLongClick(View view, int position) {
+
+                    }
+                });
+
+                return carListViewHolder;
+            }
+        };
+
+
+        // set layout as linear layout
+        //recyclerViewCarList.setLayoutManager(new LinearLayoutManager(this));
+        recyclerViewCarList.setLayoutManager(linearLayoutManager);
+        firebaseRecyclerAdapter.startListening();
+
+        // set adapter to firebase recycler view
+        recyclerViewCarList.setAdapter(firebaseRecyclerAdapter);
+
+
 
     }
 
@@ -84,28 +164,29 @@ public class CarListActivity extends AppCompatActivity {
         String query = searchText.toLowerCase();
 
         Query firebaseSearchQuery = adminRef.orderByChild("search").startAt(query).endAt(query + "\uf8ff");
-        FirebaseRecyclerAdapter<CarModel, CarListViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<CarModel, CarListViewHolder>(
 
-                CarModel.class,
-                R.layout.layout_car_item,
-                CarListViewHolder.class,
-                firebaseSearchQuery
-        ) {
+        options = new FirebaseRecyclerOptions.Builder<CarModel>().setQuery(firebaseSearchQuery, CarModel.class).build();
+        firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<CarModel, CarListViewHolder>(options) {
             @Override
-            protected void populateViewHolder(CarListViewHolder carListViewHolder, CarModel carModel, int i) {
-                carListViewHolder.setDetails(getApplicationContext(), carModel.getModel(), carModel.getBrand(), carModel.getColor(), carModel.getReleasedYear(),
+            protected void onBindViewHolder(@NonNull CarListViewHolder carListViewHolder, int i, @NonNull CarModel carModel) {
 
+                carListViewHolder.setDetails(getApplicationContext(), carModel.getModel(), carModel.getBrand(), carModel.getColor(), carModel.getReleasedYear(),
                         carModel.getPassengers(), carModel.getDescription(), carModel.getImage(), carModel.getCondition());
 
             }
 
+            @NonNull
             @Override
-            public CarListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-                CarListViewHolder carListViewHolder = super.onCreateViewHolder(parent, viewType);
+            public CarListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
+                // inflating layout car item
+                View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_car_item, parent, false);
+                CarListViewHolder carListViewHolder = new CarListViewHolder(itemView);
+
+                // item click listener
                 carListViewHolder.setOnClickListener(new CarListViewHolder.ClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
-
 
                         // get data from firebase at the position clicked
                         String brandText = getItem(position).getBrand();
@@ -139,82 +220,31 @@ public class CarListActivity extends AppCompatActivity {
 
                     }
                 });
+
                 return carListViewHolder;
             }
-
-
         };
-        // set adapter to recycler view
+
+
+        // set layout as linear layout
+        //recyclerViewCarList.setLayoutManager(new LinearLayoutManager(this));
+        recyclerViewCarList.setLayoutManager(linearLayoutManager);
+        firebaseRecyclerAdapter.startListening();
+
+        // set adapter to firebase recycler view
         recyclerViewCarList.setAdapter(firebaseRecyclerAdapter);
+
     }
 
     // load data in to recycler view
-
     @Override
     protected void onStart() {
+
+        if (firebaseRecyclerAdapter != null){
+            firebaseRecyclerAdapter.startListening();
+        }
         super.onStart();
 
-        FirebaseRecyclerAdapter<CarModel, CarListViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<CarModel, CarListViewHolder>(
-                CarModel.class,
-                R.layout.layout_car_item,
-                CarListViewHolder.class,
-                adminRef
-        ) {
-            @Override
-            protected void populateViewHolder(CarListViewHolder carListViewHolder, CarModel carModel, int i) {
-
-                carListViewHolder.setDetails(getApplicationContext(), carModel.getModel(), carModel.getBrand(), carModel.getColor(),
-                        carModel.getReleasedYear(), carModel.getPassengers(), carModel.getDescription(),
-
-
-                        carModel.getImage(), carModel.getCondition());
-
-            }
-
-            @Override
-            public CarListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-                CarListViewHolder carListViewHolder = super.onCreateViewHolder(parent, viewType);
-                carListViewHolder.setOnClickListener(new CarListViewHolder.ClickListener() {
-                    @Override
-                    public void onItemClick(View view, int position) {
-
-
-                        // get data from firebase at the position clicked
-                        String brandText = getItem(position).getBrand();
-                        String modelText = getItem(position).getModel();
-                        String colorText = getItem(position).getColor();
-                        String releasedYearText = getItem(position).getReleasedYear();
-                        String passengersText = getItem(position).getPassengers();
-                        String descriptionText = getItem(position).getDescription();
-                        String conditionText = getItem(position).getCondition();
-                        String imageText = getItem(position).getImage();
-
-
-
-                        // pass this data to the new activity
-                        Intent intent = new Intent(view.getContext(), CarDetailsActivity.class);
-                        intent.putExtra("brand", brandText);
-                        intent.putExtra("model", modelText);
-                        intent.putExtra("color", colorText);
-                        intent.putExtra("releasedYear", releasedYearText);
-                        intent.putExtra("passengers", passengersText);
-                        intent.putExtra("description", descriptionText);
-                        intent.putExtra("condition", conditionText);
-                        intent.putExtra("image", imageText);
-                        startActivity(intent);
-                    }
-
-                    @Override
-                    public void onItemLongClick(View view, int position) {
-
-                    }
-                });
-                return carListViewHolder;
-            }
-        };
-
-        // set adapter to recycler view
-        recyclerViewCarList.setAdapter(firebaseRecyclerAdapter);
     }
 
 
