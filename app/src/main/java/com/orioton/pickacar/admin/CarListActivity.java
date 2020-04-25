@@ -9,22 +9,14 @@ import androidx.appcompat.widget.SearchView;
 import androidx.core.view.MenuItemCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
-
-
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -32,7 +24,7 @@ import com.google.firebase.database.Query;
 import com.orioton.pickacar.R;
 import com.orioton.pickacar.model.CarModel;
 
-import java.io.ByteArrayOutputStream;
+
 
 public class CarListActivity extends AppCompatActivity {
 
@@ -113,34 +105,22 @@ public class CarListActivity extends AppCompatActivity {
                 carListViewHolder.setOnClickListener(new CarListViewHolder.ClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
-                        // views
-                        TextView brand = view.findViewById(R.id.car_list_brand_txt);
-                        TextView model = view.findViewById(R.id.car_list_model_txt);
-                        TextView color = view.findViewById(R.id.car_list_color_txt);
-                        TextView releasedYear = view.findViewById(R.id.car_list_released_year_txt);
-                        TextView passengers = view.findViewById(R.id.car_list_passengers_txt);
-                        TextView description = view.findViewById(R.id.car_list_description_txt);
-                        TextView condition = view.findViewById(R.id.car_list_condition_txt);
-                        ImageView image = view.findViewById(R.id.car_list_image);
 
-                        // get data from views
 
-                        String brandText = brand.getText().toString();
-                        String modelText = model.getText().toString();
-                        String colorText = color.getText().toString();
-                        String releasedYearText = releasedYear.getText().toString();
-                        String passengersText = passengers.getText().toString();
-                        String descriptionText = description.getText().toString();
-                        String conditionText = condition.getText().toString();
-                        Drawable drawable = image.getDrawable();
-                        Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
+                        // get data from firebase at the position clicked
+                        String brandText = getItem(position).getBrand();
+                        String modelText = getItem(position).getModel();
+                        String colorText = getItem(position).getColor();
+                        String releasedYearText = getItem(position).getReleasedYear();
+                        String passengersText = getItem(position).getPassengers();
+                        String descriptionText = getItem(position).getDescription();
+                        String conditionText = getItem(position).getCondition();
+                        String imageText = getItem(position).getImage();
+
 
 
                         // pass this data to the new activity
                         Intent intent = new Intent(view.getContext(), CarDetailsActivity.class);
-                        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
-                        byte[] bytes = stream.toByteArray();
                         intent.putExtra("brand", brandText);
                         intent.putExtra("model", modelText);
                         intent.putExtra("color", colorText);
@@ -148,7 +128,7 @@ public class CarListActivity extends AppCompatActivity {
                         intent.putExtra("passengers", passengersText);
                         intent.putExtra("description", descriptionText);
                         intent.putExtra("condition", conditionText);
-                        intent.putExtra("image", bytes);
+                        intent.putExtra("image", imageText);
                         startActivity(intent);
 
 
@@ -197,34 +177,22 @@ public class CarListActivity extends AppCompatActivity {
                 carListViewHolder.setOnClickListener(new CarListViewHolder.ClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
-                        // views
-                        TextView brand = view.findViewById(R.id.car_list_brand_txt);
-                        TextView model = view.findViewById(R.id.car_list_model_txt);
-                        TextView color = view.findViewById(R.id.car_list_color_txt);
-                        TextView releasedYear = view.findViewById(R.id.car_list_released_year_txt);
-                        TextView passengers = view.findViewById(R.id.car_list_passengers_txt);
-                        TextView description = view.findViewById(R.id.car_list_description_txt);
-                        TextView condition = view.findViewById(R.id.car_list_condition_txt);
-                        ImageView image = view.findViewById(R.id.car_list_image);
 
-                        // get data from views
 
-                        String brandText = brand.getText().toString();
-                        String modelText = model.getText().toString();
-                        String colorText = color.getText().toString();
-                        String releasedYearText = releasedYear.getText().toString();
-                        String passengersText = passengers.getText().toString();
-                        String descriptionText = description.getText().toString();
-                        String conditionText = condition.getText().toString();
-                        Drawable drawable = image.getDrawable();
-                        Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
+                        // get data from firebase at the position clicked
+                        String brandText = getItem(position).getBrand();
+                        String modelText = getItem(position).getModel();
+                        String colorText = getItem(position).getColor();
+                        String releasedYearText = getItem(position).getReleasedYear();
+                        String passengersText = getItem(position).getPassengers();
+                        String descriptionText = getItem(position).getDescription();
+                        String conditionText = getItem(position).getCondition();
+                        String imageText = getItem(position).getImage();
+
 
 
                         // pass this data to the new activity
                         Intent intent = new Intent(view.getContext(), CarDetailsActivity.class);
-                        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
-                        byte[] bytes = stream.toByteArray();
                         intent.putExtra("brand", brandText);
                         intent.putExtra("model", modelText);
                         intent.putExtra("color", colorText);
@@ -232,10 +200,8 @@ public class CarListActivity extends AppCompatActivity {
                         intent.putExtra("passengers", passengersText);
                         intent.putExtra("description", descriptionText);
                         intent.putExtra("condition", conditionText);
-                        intent.putExtra("image", bytes);
+                        intent.putExtra("image", imageText);
                         startActivity(intent);
-
-
                     }
 
                     @Override

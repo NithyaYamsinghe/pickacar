@@ -60,9 +60,6 @@ public class AddNewCarActivity extends AppCompatActivity {
     int IMAGE_REQUEST_CODE = 5;
 
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -130,7 +127,7 @@ public class AddNewCarActivity extends AppCompatActivity {
     private void uploadDataToFirebase() {
 
         // check whether file path uri empty or not
-        if (filePathUri != null){
+        if (filePathUri != null) {
 
             // setting progress bar title
             progressDialog.setTitle("uploading...");
@@ -146,7 +143,7 @@ public class AddNewCarActivity extends AppCompatActivity {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     Task<Uri> urlTask = taskSnapshot.getStorage().getDownloadUrl();
-                    while (!urlTask.isSuccessful());
+                    while (!urlTask.isSuccessful()) ;
                     Uri downloadUrl = urlTask.getResult();
 
                     String addBrand = brand.getText().toString().trim();
@@ -159,17 +156,17 @@ public class AddNewCarActivity extends AppCompatActivity {
 
                     // hide progress
                     progressDialog.dismiss();
-                    
+
                     // show the toast that image is uploaded 
                     Toast.makeText(AddNewCarActivity.this, "uploaded successfully", Toast.LENGTH_SHORT).show();
-                    CarUploadInfo carUploadInfo = new CarUploadInfo(addBrand, addColor, addCondition,addDescription, downloadUrl.toString(),
+                    CarUploadInfo carUploadInfo = new CarUploadInfo(addBrand, addColor, addCondition, addDescription, downloadUrl.toString(),
                             addModel, addPassengers, addReleasedYear, addModel.toLowerCase());
 
                     // getting image upload id
                     String uploadId = databaseReference.push().getKey();
                     databaseReference.child(uploadId).setValue(carUploadInfo);
-
-
+                    Intent intent = new Intent(AddNewCarActivity.this, CarListActivity.class);
+                    startActivity(intent);
 
 
                 }
@@ -181,10 +178,10 @@ public class AddNewCarActivity extends AppCompatActivity {
                         public void onFailure(@NonNull Exception e) {
                             // hide progress dialog 
                             progressDialog.dismiss();
-                            
+
                             // show error toast
                             Toast.makeText(AddNewCarActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                            
+
 
                         }
                     })
@@ -196,8 +193,7 @@ public class AddNewCarActivity extends AppCompatActivity {
 
                         }
                     });
-        }
-        else {
+        } else {
             Toast.makeText(this, "Please select an image", Toast.LENGTH_SHORT).show();
         }
     }
@@ -216,7 +212,7 @@ public class AddNewCarActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == IMAGE_REQUEST_CODE && resultCode == RESULT_OK  && data != null && data.getData() != null){
+        if (requestCode == IMAGE_REQUEST_CODE && resultCode == RESULT_OK && data != null && data.getData() != null) {
             filePathUri = data.getData();
             try {
                 // getting selected image in to bitmap
@@ -224,8 +220,7 @@ public class AddNewCarActivity extends AppCompatActivity {
 
                 // setting bitmap in to image view
                 image.setImageBitmap(bitmap);
-            }
-            catch (Exception e){
+            } catch (Exception e) {
 
                 Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
             }
