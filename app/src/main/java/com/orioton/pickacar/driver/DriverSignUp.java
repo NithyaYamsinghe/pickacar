@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.firebase.client.Firebase;
+import com.google.firebase.auth.FirebaseAuth;
 import com.orioton.pickacar.R;
 import com.orioton.pickacar.driver.model.DriverModel;
 
@@ -81,7 +82,7 @@ public class DriverSignUp extends AppCompatActivity {
 
                     root.push().setValue(driver);
 
-                    Toast.makeText(getApplicationContext(), "Register Sucessfully", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Registered Sucessfully..!", Toast.LENGTH_SHORT).show();
 
                     Intent intent = new Intent(getApplicationContext(), DriverLogin.class);
                     startActivity(intent);
