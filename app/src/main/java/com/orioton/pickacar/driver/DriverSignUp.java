@@ -13,7 +13,7 @@ import com.orioton.pickacar.driver.model.DriverModel;
 
 public class DriverSignUp extends AppCompatActivity {
 
-    private EditText email,password;
+    private EditText email,phone,password;
     private Button signup;
 
     private Firebase root;
@@ -26,6 +26,7 @@ public class DriverSignUp extends AppCompatActivity {
         root = new Firebase("https://pickacar-b3bf4.firebaseio.com/drivers");
 
         email = (EditText) findViewById(R.id.dr_et_driver_email);
+        phone = (EditText) findViewById(R.id.dr_et_driver_phone);
         password = (EditText) findViewById(R.id.dr_et_driver_password);
 
         signup = (Button) findViewById(R.id.dr_btn_driver_sign_up);
@@ -33,10 +34,11 @@ public class DriverSignUp extends AppCompatActivity {
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String value1 = email.getText().toString();
-                String value2 = password.getText().toString();
+                String value1 = email.getText().toString().trim();
+                String value2 = phone.getText().toString().trim();
+                String value3 = password.getText().toString().trim();
 
-                DriverModel driver = new DriverModel(value1,value2);
+                DriverModel driver = new DriverModel(value1,value2,value3);
 
                 root.push().setValue(driver);
 

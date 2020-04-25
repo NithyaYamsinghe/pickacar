@@ -10,117 +10,134 @@
     android:padding="16dp"
     tools:context=".driver.DriverSignUp">
 
-    <TextView
-        android:id="@+id/dr_txt1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/sign_up_driver_activity_text"
-        android:textAlignment="center"
-        android:textColor="@color/colorTint"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.232" />
+<LinearLayout
+android:id="@+id/payment_header_layout"
+android:layout_width="407dp"
+android:layout_height="wrap_content"
+android:layout_marginStart="16dp"
+android:layout_marginLeft="16dp"
+android:layout_marginTop="16dp"
+android:layout_marginEnd="16dp"
+android:layout_marginRight="16dp"
+android:layout_marginBottom="16dp"
+android:orientation="vertical"
+android:padding="30dp"
+app:layout_constraintBottom_toBottomOf="parent"
+app:layout_constraintEnd_toEndOf="parent"
+app:layout_constraintStart_toStartOf="parent"
+app:layout_constraintTop_toTopOf="parent"
+app:layout_constraintVertical_bias="0.0">
 
-    <Space
-        android:id="@+id/dr_space1"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dr_txt1" />
+<TextView
+    android:id="@+id/dr_txt1"
+    android:layout_width="350dp"
+    android:layout_height="wrap_content"
+    android:text="@string/sign_up_driver_activity_text"
+    android:textSize="20sp"
+    android:textAlignment="center"
+    android:textColor="@color/colorTint" />
+</LinearLayout>
 
-    <EditText
-        android:id="@+id/dr_et_driver_email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="288dp"
-        android:hint="@string/driver_email"
-        android:inputType="textEmailAddress"
-        android:padding="10dp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/colorTint"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dr_space1"
-        app:layout_constraintVertical_bias="0.0" />
+<LinearLayout
+android:id="@+id/payment_details"
+android:layout_width="350dp"
+android:layout_height="wrap_content"
+android:layout_marginStart="16dp"
+android:layout_marginLeft="16dp"
+android:layout_marginTop="16dp"
+android:layout_marginEnd="16dp"
+android:layout_marginRight="16dp"
+android:layout_marginBottom="16dp"
+android:background="@drawable/custom_border"
+android:orientation="vertical"
+android:padding="30dp"
+app:layout_constraintBottom_toBottomOf="parent"
+app:layout_constraintEnd_toEndOf="parent"
+app:layout_constraintHorizontal_bias="0.482"
+app:layout_constraintStart_toStartOf="parent"
+app:layout_constraintTop_toTopOf="parent"
+app:layout_constraintVertical_bias="0.24">
 
-    <EditText
-        android:id="@+id/dr_et_driver_password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/driver_password"
-        android:inputType="textPassword"
-        android:padding="10dp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/colorTint"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dr_et_driver_email" />
 
-    <EditText
-        android:id="@+id/dr_et_driver_ps_confirm"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/driver_confirm_password"
-        android:inputType="textPassword"
-        android:padding="10dp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/colorTint"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dr_et_driver_password" />
+<EditText
+    android:id="@+id/dr_et_driver_email"
+    android:layout_width="310dp"
+    android:layout_height="wrap_content"
+    android:backgroundTint="@color/colorTint"
+    android:ems="10"
+    android:fontFamily="@font/whitney_regular"
+    android:hint="@string/driver_email"
+    android:inputType="textEmailAddress"
+    android:textColor="@color/white"
+    android:textColorHint="@color/colorTint" />
 
-    <Space
-        android:id="@+id/dr_space3"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dr_btn_driver_sign_up" />
+
+<EditText
+    android:id="@+id/dr_et_driver_phone"
+    android:layout_width="310dp"
+    android:layout_height="wrap_content"
+    android:backgroundTint="@color/colorTint"
+    android:ems="10"
+    android:fontFamily="@font/whitney_regular"
+    android:hint="@string/driver_phone"
+    android:inputType="phone"
+    android:textColor="@color/white"
+    android:textColorHint="@color/colorTint" />
+
+
+<EditText
+    android:id="@+id/dr_et_driver_password"
+    android:layout_width="310dp"
+    android:layout_height="wrap_content"
+    android:backgroundTint="@color/colorTint"
+    android:ems="10"
+    android:fontFamily="@font/whitney_regular"
+    android:hint="@string/driver_password"
+    android:inputType="textPassword"
+    android:textColor="@color/white"
+    android:textColorHint="@color/colorTint" />
+
+<EditText
+    android:id="@+id/dr_et_driver_ps_confirm"
+    android:layout_width="310dp"
+    android:layout_height="wrap_content"
+    android:backgroundTint="@color/colorTint"
+    android:ems="10"
+    android:fontFamily="@font/whitney_regular"
+    android:hint="@string/driver_confirm_password"
+    android:inputType="textPassword"
+    android:textColor="@color/white"
+    android:textColorHint="@color/colorTint" />
+
+</LinearLayout>
 
     <Button
         android:id="@+id/dr_btn_driver_sign_up"
-        android:layout_width="wrap_content"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:background="@color/colorAccent"
         android:text="@string/driver_sign_in"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.467"
+        app:layout_constraintHorizontal_bias="0.737"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dr_space2" />
-
-    <ProgressBar
-        android:id="@+id/dr_progressbar"
-        android:visibility="gone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:ignore="MissingConstraints" />
-
-    <Space
-        android:id="@+id/dr_space2"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dr_et_driver_ps_confirm" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.74" />
 
     <TextView
         android:id="@+id/dr_driver_signup_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         android:text="@string/sign_up_activity_login"
         android:textAlignment="center"
         android:textColor="@color/colorTint"
         android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dr_space3" />
+        app:layout_constraintTop_toBottomOf="@+id/dr_btn_driver_sign_up"
+        app:layout_constraintVertical_bias="0.262" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
