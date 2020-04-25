@@ -9,6 +9,7 @@ import androidx.appcompat.widget.SearchView;
 import androidx.core.view.MenuItemCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -34,7 +35,6 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.orioton.pickacar.R;
 import com.orioton.pickacar.model.CarModel;
-
 
 
 public class CarListActivity extends AppCompatActivity {
@@ -89,7 +89,6 @@ public class CarListActivity extends AppCompatActivity {
     }
 
 
-
     // delete data
     private void showDeleteDataDialog(final String currentModel, final String currentImage) {
 
@@ -103,11 +102,11 @@ public class CarListActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
-                Query query = adminRef.orderByChild("model").equalTo(currentModel);
+                Query query = adminRef.orderByChild("image").equalTo(currentImage);
                 query.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        for (DataSnapshot ds: dataSnapshot.getChildren()){
+                        for (DataSnapshot ds : dataSnapshot.getChildren()) {
                             ds.getRef().removeValue(); // delete details from firebase
                         }
 
@@ -141,7 +140,7 @@ public class CarListActivity extends AppCompatActivity {
                     public void onFailure(@NonNull Exception e) {
 
                         // something went wrong
-                        Toast.makeText(CarListActivity.this, e.getMessage() , Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CarListActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
 
                     }
                 });
@@ -162,11 +161,10 @@ public class CarListActivity extends AppCompatActivity {
         builder.create().show();
 
 
-
     }
 
     // show data
-    private void showData(){
+    private void showData() {
 
         options = new FirebaseRecyclerOptions.Builder<CarModel>().setQuery(adminRef, CarModel.class).build();
         firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<CarModel, CarListViewHolder>(options) {
@@ -202,7 +200,6 @@ public class CarListActivity extends AppCompatActivity {
                         String imageText = getItem(position).getImage();
 
 
-
                         // pass this data to the new activity
                         Intent intent = new Intent(view.getContext(), CarDetailsActivity.class);
                         intent.putExtra("brand", brandText);
@@ -221,7 +218,6 @@ public class CarListActivity extends AppCompatActivity {
                     @Override
                     public void onItemLongClick(View view, int position) {
 
-                        Toast.makeText(CarListActivity.this, "Hello", Toast.LENGTH_SHORT).show();
 
                         // get current title to delete data
                         String currentModel = getItem(position).getModel();
@@ -229,7 +225,6 @@ public class CarListActivity extends AppCompatActivity {
 
                         // method call
                         showDeleteDataDialog(currentModel, currentImage);
-
 
 
                     }
@@ -247,7 +242,6 @@ public class CarListActivity extends AppCompatActivity {
 
         // set adapter to firebase recycler view
         recyclerViewCarList.setAdapter(firebaseRecyclerAdapter);
-
 
 
     }
@@ -295,7 +289,6 @@ public class CarListActivity extends AppCompatActivity {
                         String imageText = getItem(position).getImage();
 
 
-
                         // pass this data to the new activity
                         Intent intent = new Intent(view.getContext(), CarDetailsActivity.class);
                         intent.putExtra("brand", brandText);
@@ -313,8 +306,6 @@ public class CarListActivity extends AppCompatActivity {
 
                     @Override
                     public void onItemLongClick(View view, int position) {
-
-                        Toast.makeText(CarListActivity.this, "Hello", Toast.LENGTH_SHORT).show();
 
 
                         // get current title to delete data
@@ -346,7 +337,7 @@ public class CarListActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
 
-        if (firebaseRecyclerAdapter != null){
+        if (firebaseRecyclerAdapter != null) {
             firebaseRecyclerAdapter.startListening();
         }
         super.onStart();
