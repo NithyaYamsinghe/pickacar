@@ -144,6 +144,7 @@ public class CarDetailsActivity extends AppCompatActivity {
 
     }
 
+    // set wallpaper method
     private void setImageWallpaper() {
 
 
