@@ -57,12 +57,12 @@ public class CarListActivity extends AppCompatActivity {
         sharedPreferences = getSharedPreferences("SortSettings", MODE_PRIVATE);
         String sorting = sharedPreferences.getString("Sort", "newest"); // default will be newest
 
-        if (sorting == "newest") {
+        if (sorting.equals("newest")) {
             linearLayoutManager = new LinearLayoutManager(this);
             // bring items from bottom means newest
             linearLayoutManager.setReverseLayout(true);
             linearLayoutManager.setStackFromEnd(true);
-        } else if (sorting == "oldest") {
+        } else if (sorting.equals("oldest")) {
             linearLayoutManager = new LinearLayoutManager(this);
             // bring items from bottom means oldest
             linearLayoutManager.setReverseLayout(false);

@@ -1,21 +1,41 @@
 package com.orioton.pickacar.admin;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.Manifest;
+import android.app.WallpaperManager;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.orioton.pickacar.R;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 public class CarDetailsActivity extends AppCompatActivity {
 
     TextView brand, model, color, releasedYear, passenger, description, condition;
     ImageView image;
-
+    Button  saveButton, shareButton, setButton;
+    Bitmap bitmap;
+    private  static  final int WRITE_EXTERNAL_STORAGE_CODE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +61,62 @@ public class CarDetailsActivity extends AppCompatActivity {
         description = findViewById(R.id.car_detail_description_txt);
         condition = findViewById(R.id.car_detail_condition_txt);
         image = findViewById(R.id.car_detail_image);
+        saveButton = findViewById(R.id.car_detail_save_button);
+        shareButton = findViewById(R.id.car_detail_share_button);
+        setButton = findViewById(R.id.car_detail_set_button);
+
+
+        // get image from image view as bitmap
+        bitmap = ((BitmapDrawable)image.getDrawable()).getBitmap();
+
+
+        // save button click handler
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                // if os >= marshmallow grant run time permission
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+                    if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED){
+                        String[] permission = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
+                        // show popup to grant permission
+                        requestPermissions(permission, WRITE_EXTERNAL_STORAGE_CODE);
+
+                    }
+                    else {
+                        // permission already granted
+                        saveImage();
+                    }
+                }
+                else {
+                    // system os < marshmallow
+                    saveImage();
+
+                }
+
+            }
+        });
+
+        // share button click handler
+        shareButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                shareImage();
+
+            }
+        });
+
+        // set button click handler
+        setButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                setImageWallpaper();
+
+            }
+        });
+
 
 
         // get data from intent
@@ -68,6 +144,106 @@ public class CarDetailsActivity extends AppCompatActivity {
 
     }
 
+    // set wallpaper method
+    private void setImageWallpaper() {
+
+
+        WallpaperManager wallpaperManager = WallpaperManager.getInstance(getApplicationContext());
+        try{
+
+            wallpaperManager.setBitmap(bitmap);
+            Toast.makeText(this, "wallpaper changed", Toast.LENGTH_SHORT).show();
+        }
+        catch (Exception e){
+
+            Toast.makeText(this,e.getMessage(), Toast.LENGTH_SHORT).show();
+
+        }
+    }
+
+    private void shareImage() {
+
+        try {
+            String s = brand.getText().toString() + "\n" + description.getText().toString();
+            File file = new File(getExternalCacheDir(),"sample.png");
+            FileOutputStream fileOutputStream = new FileOutputStream(file);
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, fileOutputStream);
+            fileOutputStream.flush();
+            fileOutputStream.close();
+            file.setReadable(true, false);
+
+            // intent to share image and text
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.putExtra(Intent.EXTRA_TEXT, s);
+            intent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file));
+            intent.setType("image/png");
+            startActivity(Intent.createChooser(intent, "Share via"));
+
+
+        }
+        catch (Exception e){
+
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+
+        }
+    }
+
+    private void saveImage() {
+
+        // time stamp for image name
+        String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(System.currentTimeMillis());
+
+        // path to external storage
+        File path = Environment.getExternalStorageDirectory();
+
+        // create folder name firebase
+        File dir = new File(path + "/Firebase/");
+        dir.mkdirs();
+
+
+        // image name
+        String imageName = timestamp + ".PNG";
+        File file = new File(dir, imageName);
+
+        OutputStream outputStream;
+
+        try {
+
+            outputStream = new FileOutputStream(file);
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
+            outputStream.flush();
+            outputStream.close();
+            Toast.makeText(this, imageName + " saved to " + dir, Toast.LENGTH_SHORT).show();
+
+
+        } catch (Exception e) {
+
+            // failed saving image
+
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+
+        }
+
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+
+            case WRITE_EXTERNAL_STORAGE_CODE:
+                // if request code cancelled result array will be empty
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    // permission granted save image
+                    saveImage();
+                }
+                else {
+                    Toast.makeText(this, "enable permission to save image", Toast.LENGTH_SHORT).show();
+                }
+        }
+    }
 
     // handle on back pressed
     @Override

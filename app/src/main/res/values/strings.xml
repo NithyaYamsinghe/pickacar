@@ -39,4 +39,8 @@
     <string name="driver_password">Password</string>
     <string name="driver_confirm_password">Confirm Password</string>
     <string name="driver_sign_in">Sign In</string>
+    <string name="share_button">Share</string>
+    <string name="save_button">Save</string>
+    <string name="send_button">Send</string>
+    <string name="set_button">Set</string>
 </resources>

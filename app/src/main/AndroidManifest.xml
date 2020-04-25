@@ -3,6 +3,10 @@
     package="com.orioton.pickacar">
     <!-- add internet permission -->
     <uses-permission android:name="android.permission.INTERNET" />
+    <!-- external storage permission -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- set wall paper permission-->
+    <uses-permission android:name="android.permission.SET_WALLPAPER" />
 
     <application
         android:allowBackup="true"
