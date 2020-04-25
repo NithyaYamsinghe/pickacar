@@ -136,6 +136,15 @@ public class CarListActivity extends AppCompatActivity {
                     @Override
                     public void onItemLongClick(View view, int position) {
 
+                        // get current title to delete data
+                        String currentModel = getItem(position).getModel();
+                        String currentImage = getItem(position).getImage();
+
+                        // method call
+                        showDeleteDataDialog(currentModel, currentImage);
+
+
+
                     }
                 });
 
@@ -151,6 +160,21 @@ public class CarListActivity extends AppCompatActivity {
 
         // set adapter to firebase recycler view
         recyclerViewCarList.setAdapter(firebaseRecyclerAdapter);
+
+
+
+    }
+
+    private void showDeleteDataDialog(String currentModel, String currentImage) {
+
+        // alert dialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(CarListActivity.this);
+        builder.setTitle("Delete");
+        builder.setMessage("Are you sure ?");
+
+        // set positive
+
+
 
 
 
@@ -217,6 +241,13 @@ public class CarListActivity extends AppCompatActivity {
 
                     @Override
                     public void onItemLongClick(View view, int position) {
+
+                        // get current title to delete data
+                        String currentModel = getItem(position).getModel();
+                        String currentImage = getItem(position).getImage();
+
+                        // method call
+                        showDeleteDataDialog(currentModel, currentImage);
 
                     }
                 });
