@@ -82,6 +82,9 @@ public class DriverSignUp extends AppCompatActivity {
                     root.push().setValue(driver);
 
                     Toast.makeText(getApplicationContext(), "Register Sucessfully", Toast.LENGTH_SHORT).show();
+
+                    Intent intent = new Intent(getApplicationContext(), DriverLogin.class);
+                    startActivity(intent);
                 }
                 else{
                     Toast.makeText(getApplicationContext(), "Please check your details", Toast.LENGTH_SHORT).show();
@@ -91,9 +94,6 @@ public class DriverSignUp extends AppCompatActivity {
     }
 
     private void setLoginText() {
-
-
-
 
         link = findViewById(R.id.dr_driver_signup_text);
 

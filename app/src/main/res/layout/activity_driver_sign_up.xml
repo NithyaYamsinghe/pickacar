@@ -11,7 +11,7 @@
     tools:context=".driver.DriverSignUp">
 
 <LinearLayout
-android:id="@+id/payment_header_layout"
+android:id="@+id/driver_signIn_header"
 android:layout_width="407dp"
 android:layout_height="wrap_content"
 android:layout_marginStart="16dp"
@@ -39,7 +39,7 @@ app:layout_constraintVertical_bias="0.0">
 </LinearLayout>
 
 <LinearLayout
-android:id="@+id/payment_details"
+android:id="@+id/driver_signIn"
 android:layout_width="350dp"
 android:layout_height="wrap_content"
 android:layout_marginStart="16dp"
@@ -120,10 +120,10 @@ app:layout_constraintVertical_bias="0.24">
         android:textColor="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.737"
+        app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.74" />
+        app:layout_constraintVertical_bias="0.762" />
 
     <TextView
         android:id="@+id/dr_driver_signup_text"

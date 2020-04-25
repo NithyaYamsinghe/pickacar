@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void changeDriver(View view) {
-        Intent intent = new Intent(this, DriverSignUp.class);
+        Intent intent = new Intent(this, DriverLogin.class);
         startActivity(intent);
     }
 }
