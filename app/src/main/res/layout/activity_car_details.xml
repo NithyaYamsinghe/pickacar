@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context=".admin.AddCarActivity">
+
+    <LinearLayout
+        android:id="@+id/content_holder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="1dp">
+
+
+        <ImageView
+            android:id="@+id/car_detail_image"
+            android:layout_width="match_parent"
+            android:layout_height="232dp"
+            app:srcCompat="@drawable/loading"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="-1dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/car_name_border"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="1dp"
+            tools:layout_editor_absoluteY="294dp">
+
+            <TextView
+                android:id="@+id/car_detail_model_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/whitney_bold"
+                android:text="Mazda Z"
+                android:textColor="@color/colorText"
+                android:textSize="15dp"
+                tools:layout_editor_absoluteX="18dp"
+                tools:layout_editor_absoluteY="254dp" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <Button
+                android:id="@+id/car_detail_review_button"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:background="@color/colorAccent"
+                android:fontFamily="@font/whitney_bold"
+                android:text="Show Reviews"
+                android:textSize="15dp" />
+
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/car_detail_title_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Description:"
+                    android:textColor="@color/colorTint" />
+
+                <TextView
+                    android:id="@+id/car_detail_description_txt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                    android:textColor="@color/colorText" />
+
+                <TextView
+                    android:id="@+id/car_detail_title_brand"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Brand:"
+                    android:textColor="@color/colorTint" />
+
+                <TextView
+                    android:id="@+id/car_detail_brand_txt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:text="Mazda Z"
+                    android:textColor="@color/colorText" />
+
+                <TextView
+                    android:id="@+id/car_detail_title_year"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Year:"
+                    android:textColor="@color/colorTint" />
+
+                <TextView
+                    android:id="@+id/car_detail_year_txt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:text="2019"
+                    android:textColor="@color/colorText" />
+
+                <TextView
+                    android:id="@+id/car_detail_title_color"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Color:"
+                    android:textColor="@color/colorTint" />
+
+                <TextView
+                    android:id="@+id/car_detail_color_txt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:text="White and Gray"
+                    android:textColor="@color/colorText" />
+
+                <TextView
+                    android:id="@+id/car_detail_title_passengers"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Passengers:"
+                    android:textColor="@color/colorTint" />
+
+                <TextView
+                    android:id="@+id/car_detail_passengers_txt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:text="4"
+                    android:textColor="@color/colorText" />
+
+                <TextView
+                    android:id="@+id/car_detail_title_condition"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Condition:"
+                    android:textColor="@color/colorTint" />
+
+                <TextView
+                    android:id="@+id/car_detail_condition_txt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:text="Good"
+                    android:textColor="@color/colorText" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/car_detail_save_button"
+                        style="@style/Widget.AppCompat.Button.Colored"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawableLeft="@drawable/ic_action_save"
+                        android:text="@string/save_button" />
+
+                    <Button
+                        android:id="@+id/car_detail_share_button"
+                        style="@style/Widget.AppCompat.Button.Colored"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawableLeft="@drawable/ic_action_share"
+                        android:text="@string/share_button" />
+
+                    <Button
+                        android:id="@+id/car_detail_set_button"
+                        style="@style/Widget.AppCompat.Button.Colored"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawableLeft="@drawable/ic_action_set"
+                        android:text="@string/set_button" />
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:clickable="true"
+        app:srcCompat="@drawable/ic_done_all_black_24dp"
+        tools:ignore="MissingConstraints,VectorDrawableCompat" />
+</RelativeLayout>

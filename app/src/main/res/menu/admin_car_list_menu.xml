@@ -8,9 +8,16 @@
         android:title="Search"
         app:actionViewClass="androidx.appcompat.widget.SearchView"
         app:showAsAction="always" />
+
     <item
-        android:id="@+id/action_settings"
-        android:title="Settings" />
+        android:id="@+id/action_add"
+        android:title="Add car"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_action_add"/>
+    <item
+        android:id="@+id/action_sort"
+        android:title="Sort"
+        app:showAsAction="never"/>
 
 
 </menu>
