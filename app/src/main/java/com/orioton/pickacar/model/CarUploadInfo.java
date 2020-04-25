@@ -1,34 +1,31 @@
 package com.orioton.pickacar.model;
 
-public class CarModel {
-
+public class CarUploadInfo {
     // variables
 
     private String brand;
-    private String model;
     private String color;
-    private String releasedYear;
-    private String passengers;
+    private String condition;
     private String description;
     private String image;
-    private String condition;
+    private String model;
+    private String passengers;
+    private String releasedYear;
+    private String search;
 
-
-
-    // constructor
-    public CarModel() {
-
+    public CarUploadInfo() {
     }
 
-    public CarModel(String brand, String model, String color, String releasedYear, String passengers, String description, String image, String condition) {
+    public CarUploadInfo(String brand, String color, String condition, String description, String image, String model, String passengers, String releasedYear, String search) {
         this.brand = brand;
-        this.model = model;
         this.color = color;
-        this.releasedYear = releasedYear;
-        this.passengers = passengers;
+        this.condition = condition;
         this.description = description;
         this.image = image;
-        this.condition = condition;
+        this.model = model;
+        this.passengers = passengers;
+        this.releasedYear = releasedYear;
+        this.search = search;
     }
 
     public String getBrand() {
@@ -93,5 +90,13 @@ public class CarModel {
 
     public void setCondition(String condition) {
         this.condition = condition;
+    }
+
+    public String getSearch() {
+        return search;
+    }
+
+    public void setSearch(String search) {
+        this.search = search;
     }
 }

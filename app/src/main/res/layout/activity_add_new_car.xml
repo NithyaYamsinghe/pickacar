@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".admin.AddNewCarActivity"
+    android:background="@color/colorPrimary">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:gravity="center">
+
+        <EditText
+            android:id="@+id/add_car_brand"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Brand of the car"
+            android:inputType="textPersonName"
+            android:textColorHint="@color/colorTint"
+            android:padding="10dp"
+            android:textColor="@color/white"
+            />
+
+        <EditText
+            android:id="@+id/add_car_model"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Model of the car"
+            android:inputType="textPersonName"
+            android:textColorHint="@color/colorTint"
+            android:padding="10dp"
+            android:textColor="@color/white"
+            />
+
+        <EditText
+            android:id="@+id/add_car_color"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Color of the car"
+            android:inputType="textPersonName"
+            android:textColorHint="@color/colorTint"
+            android:padding="10dp"
+            android:textColor="@color/white"
+            />
+
+        <EditText
+            android:id="@+id/add_car_released_year"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:hint="Released year of the car"
+            android:textColorHint="@color/colorTint"
+            android:padding="10dp"
+            android:textColor="@color/white"
+            />
+
+        <EditText
+            android:id="@+id/add_car_passengers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Number of passengers"
+            android:inputType="textPersonName"
+            android:textColorHint="@color/colorTint"
+            android:padding="10dp"
+            android:textColor="@color/white"
+            />
+        <EditText
+            android:id="@+id/add_car_condition"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Condition"
+            android:inputType="textPersonName"
+            android:textColorHint="@color/colorTint"
+            android:padding="10dp"
+            android:textColor="@color/white"
+            />
+
+        <EditText
+            android:id="@+id/add_car_description"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:hint="Description of the car"
+            android:inputType="textMultiLine"
+            android:textColorHint="@color/colorTint"
+            android:padding="10dp"
+            android:gravity="top"
+            android:textColor="@color/white"
+
+            />
+        <ImageView
+            android:id="@+id/add_car_image"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:src="@drawable/add_photo"/>
+
+        <Button
+            android:id="@+id/add_car_button"
+            android:layout_marginTop="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Car"
+            android:layout_gravity="center"
+            android:background="@color/colorAccent"
+            />
+
+
+    </LinearLayout>
+
+</ScrollView>
