@@ -88,7 +88,6 @@ public class CarListActivity extends AppCompatActivity {
 
     }
 
-
     // delete data
     private void showDeleteDataDialog(final String currentModel, final String currentImage) {
 
@@ -217,19 +216,55 @@ public class CarListActivity extends AppCompatActivity {
 
                     @Override
                     public void onItemLongClick(View view, int position) {
+                        // get data
+                        final String currentModel = getItem(position).getModel();
+                        final String currentImage = getItem(position).getImage();
+                        final String currentColor = getItem(position).getColor();
+                        final String currentBrand = getItem(position).getBrand();
+                        final String currentReleasedYear = getItem(position).getReleasedYear();
+                        final String currentPassengers = getItem(position).getPassengers();
+                        final String currentCondition = getItem(position).getCondition();
+                        final String currentDescription = getItem(position).getDescription();
+
+                        // show dialog on long click
+                        AlertDialog.Builder builder = new AlertDialog.Builder(CarListActivity.this);
+
+                        // options to display in dialog
+                        String[] options = {"Update", "Delete"};
+
+                        // set to dialog
+                        builder.setItems(options, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                                // handle dialog items clicks
+                                if (which == 0) {
+                                    // update clicked
+
+                                    Intent intent = new Intent(CarListActivity.this, AddNewCarActivity.class);
+                                    intent.putExtra("model", currentModel);
+                                    intent.putExtra("brand", currentBrand);
+                                    intent.putExtra("color", currentColor);
+                                    intent.putExtra("releasedYear", currentReleasedYear);
+                                    intent.putExtra("passengers", currentPassengers);
+                                    intent.putExtra("description", currentDescription);
+                                    intent.putExtra("condition", currentCondition);
+                                    intent.putExtra("image", currentImage);
+                                    startActivity(intent);
+                                }
+                                if (which == 1) {
+                                    // delete clicked
 
 
-                        // get current title to delete data
-                        String currentModel = getItem(position).getModel();
-                        String currentImage = getItem(position).getImage();
+                                    // method call
+                                    showDeleteDataDialog(currentModel, currentImage);
+                                }
+                            }
+                        });
 
-                        // method call
-                        showDeleteDataDialog(currentModel, currentImage);
-
-
+                        builder.create().show();
                     }
                 });
-
                 return carListViewHolder;
             }
         };
@@ -245,7 +280,6 @@ public class CarListActivity extends AppCompatActivity {
 
 
     }
-
 
     // search data
     private void firebaseSearch(String searchText) {
@@ -307,13 +341,53 @@ public class CarListActivity extends AppCompatActivity {
                     @Override
                     public void onItemLongClick(View view, int position) {
 
+                        // get data
+                        final String currentModel = getItem(position).getModel();
+                        final String currentImage = getItem(position).getImage();
+                        final String currentColor = getItem(position).getColor();
+                        final String currentBrand = getItem(position).getBrand();
+                        final String currentReleasedYear = getItem(position).getReleasedYear();
+                        final String currentPassengers = getItem(position).getPassengers();
+                        final String currentCondition = getItem(position).getCondition();
+                        final String currentDescription = getItem(position).getDescription();
 
-                        // get current title to delete data
-                        String currentModel = getItem(position).getModel();
-                        String currentImage = getItem(position).getImage();
+                        // show dialog on long click
+                        AlertDialog.Builder builder = new AlertDialog.Builder(CarListActivity.this);
 
-                        // method call
-                        showDeleteDataDialog(currentModel, currentImage);
+                        // options to display in dialog
+                        String[] options = {"Update", "Delete"};
+
+                        // set to dialog
+                        builder.setItems(options, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                                // handle dialog items clicks
+                                if (which == 0) {
+                                    // update clicked
+
+                                    Intent intent = new Intent(CarListActivity.this, AddNewCarActivity.class);
+                                    intent.putExtra("model", currentModel);
+                                    intent.putExtra("brand", currentBrand);
+                                    intent.putExtra("color", currentColor);
+                                    intent.putExtra("releasedYear", currentReleasedYear);
+                                    intent.putExtra("passengers", currentPassengers);
+                                    intent.putExtra("description", currentDescription);
+                                    intent.putExtra("condition", currentCondition);
+                                    intent.putExtra("image", currentImage);
+                                    startActivity(intent);
+                                }
+                                if (which == 1) {
+                                    // delete clicked
+
+
+                                    // method call
+                                    showDeleteDataDialog(currentModel, currentImage);
+                                }
+                            }
+                        });
+
+                        builder.create().show();
 
                     }
                 });
@@ -343,7 +417,6 @@ public class CarListActivity extends AppCompatActivity {
         super.onStart();
 
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
