@@ -12,6 +12,7 @@ import com.orioton.pickacar.admin.CarListActivity;
 import com.orioton.pickacar.client.ActivityLogIn;
 import com.orioton.pickacar.client.ActivitySignUp;
 import com.orioton.pickacar.driver.DriverLogin;
+import com.orioton.pickacar.driver.DriverSignUp;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void changeDriver(View view) {
-        Intent intent = new Intent(this, DriverLogin.class);
+        Intent intent = new Intent(this, DriverSignUp.class);
         startActivity(intent);
     }
 }
