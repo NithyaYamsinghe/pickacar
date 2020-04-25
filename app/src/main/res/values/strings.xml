@@ -34,11 +34,12 @@
     <!--    Driver-->
     <string name="driver_btn">Driver</string>
     <string name="log_in_driver_activity_text">Log in to your PickACar Driver Account</string>
-    <string name="login_driver_activity_signup">Don\'t have an account? Sign up now</string>
+    <string name="sign_up_driver_activity_text">Sign Up for A PickACar Driver Account</string>
     <string name="driver_email">Email</string>
     <string name="driver_password">Password</string>
     <string name="driver_confirm_password">Confirm Password</string>
     <string name="driver_sign_in">Sign In</string>
+    <string name="driver_sign_up">Sign Up</string>
     <string name="share_button">Share</string>
     <string name="save_button">Save</string>
     <string name="send_button">Send</string>
