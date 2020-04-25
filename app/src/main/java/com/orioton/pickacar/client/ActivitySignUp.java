@@ -26,7 +26,13 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.orioton.pickacar.R;
+import com.orioton.pickacar.client.model.User;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class ActivitySignUp extends AppCompatActivity implements View.OnClickListener {
 
@@ -34,6 +40,7 @@ public class ActivitySignUp extends AppCompatActivity implements View.OnClickLis
     EditText etEmail;
     EditText etPassword;
     EditText etConfirmPassword;
+    EditText etPhone;
 
     TextView tvLoginText;
 
@@ -43,6 +50,10 @@ public class ActivitySignUp extends AppCompatActivity implements View.OnClickLis
     AwesomeValidation awesomeValidation;
 
     private FirebaseAuth mAuth;
+    DatabaseReference databaseReference;
+    private String databasePath = "users";
+
+    SimpleDateFormat ISO_8601_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:sss'Z'");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,9 +64,12 @@ public class ActivitySignUp extends AppCompatActivity implements View.OnClickLis
         etEmail = findViewById(R.id.et_user_email);
         etPassword = findViewById(R.id.et_user_password);
         etConfirmPassword = findViewById(R.id.et_user_ps_confirm);
+        etPhone = findViewById(R.id.et_user_phone);
 
         btnSignUp = findViewById(R.id.btn_sign_up);
         progressBar = findViewById(R.id.progressbar);
+
+        databaseReference = FirebaseDatabase.getInstance().getReference(databasePath);
 
         // initializing validation style
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
@@ -70,6 +84,9 @@ public class ActivitySignUp extends AppCompatActivity implements View.OnClickLis
 
         awesomeValidation.addValidation(this, R.id.et_user_ps_confirm,
                 R.id.et_user_password, R.string.invalid_password_confirm);
+
+        awesomeValidation.addValidation(this, R.id.et_user_phone,
+                ".{10,}", R.string.invalid_phone);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -89,13 +106,24 @@ public class ActivitySignUp extends AppCompatActivity implements View.OnClickLis
                     progressBar.setVisibility(View.VISIBLE);
                     btnSignUp.setVisibility(View.GONE);
                     // sign the user up if the validation passed
-                    String userEmail = etEmail.getText().toString().trim();
+                    final String userEmail = etEmail.getText().toString().trim();
+                    final String userPhone = etPhone.getText().toString().trim();
                     String userPass = etPassword.getText().toString().trim();
 
                     mAuth.createUserWithEmailAndPassword(userEmail, userPass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
+
+                                // add user to the database
+                                String id = databaseReference.push().getKey();
+                                String defaultProfileUrl = "https://clikiads.com/static/images/blank_profile.png";
+                                String dateNow = ISO_8601_FORMAT.format(new Date());
+
+                                String userId = mAuth.getCurrentUser().getUid();
+                                User user = new User(userId, "none", userEmail, userPhone, defaultProfileUrl, dateNow);
+                                databaseReference.child(id).setValue(user);
+
                                 progressBar.setVisibility(View.GONE);
                                 btnSignUp.setVisibility(View.VISIBLE);
                                 Toast.makeText(getApplicationContext(), "User has been registered!", Toast.LENGTH_SHORT).show();

@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "770587485770-c0dlfqsree2722m31hc52gr2ep0tckj7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.orioton.pickacar",
+            "certificate_hash": "0dd303ed0ed225f6d2d87b75cb7b8088669d5286"
+          }
+        },
+        {
           "client_id": "770587485770-vvd0mj9rb48mo41tsa8k24t931vhf9ff.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

@@ -21,6 +21,7 @@
         <activity android:name=".driver.DriverLogin" />
         <activity android:name=".admin.CarDetailsActivity" />
         <activity android:name=".admin.CarListActivity" />
+        <activity android:label="User Profile" android:name=".client.ActivityUserProfile"></activity>
         <activity
             android:name=".admin.AdminHomeActivity"
             android:label="@string/title_activity_admin_home"
