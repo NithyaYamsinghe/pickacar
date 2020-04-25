@@ -44,4 +44,5 @@
     <string name="send_button">Send</string>
     <string name="set_button">Set</string>
     <string name="invalid_phone">Enter a valid phone number</string>
+    <string name="invalid_name">Enter a valid name</string>
 </resources>

@@ -13,6 +13,15 @@ public class User {
 
     }
 
+    public User(String userId, String userName, String userEmail, String userPhone, String userProfilePhotoUrl) {
+        this.userId = userId;
+        this.userName = userName;
+        this.userEmail = userEmail;
+        this.userPhone = userPhone;
+        this.userProfilePhotoUrl = userProfilePhotoUrl;
+    }
+
+
     public User(String userId, String userName, String userEmail, String userPhone, String userProfilePhotoUrl, String joinedDate) {
         this.userId = userId;
         this.userName = userName;
@@ -21,6 +30,7 @@ public class User {
         this.userProfilePhotoUrl = userProfilePhotoUrl;
         this.joinedDate = joinedDate;
     }
+
 
     public String getUserId() {
         return userId;
