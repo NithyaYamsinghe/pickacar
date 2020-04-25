@@ -23,13 +23,13 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
-                android:src="@drawable/man"/>
+                android:src="@drawable/default_user"/>
             <TextView
+                android:id="@+id/tv_profile_name"
                 android:layout_marginTop="10dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Wiliam Snoe"
                 android:textColor="#fff"
                 android:textStyle="bold"
                 android:textSize="21sp"/>
@@ -52,13 +52,13 @@
                 android:layout_height="36dp"
                 android:src="@drawable/ic_email_black_24dp"/>
             <EditText
+                android:id="@+id/tv_email"
                 android:layout_gravity="center_vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
                 android:paddingLeft="20dp"
                 android:textColor="@color/white"
-                android:text="Wiliam@gmail.com"
                 />
         </LinearLayout>
 
@@ -73,13 +73,13 @@
                 android:layout_height="36dp"
                 android:src="@drawable/ic_person_black_24dp"/>
             <EditText
+                android:id="@+id/tv_name"
                 android:layout_gravity="center_vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="20dp"
                 android:inputType="textPersonName"
                 android:textColor="@color/white"
-                android:text="Yasmika Saubhagya"
                 />
         </LinearLayout>
         <LinearLayout
@@ -93,13 +93,13 @@
                 android:layout_height="36dp"
                 android:src="@drawable/ic_phone_android_black_24dp"/>
             <EditText
+                android:id="@+id/tv_phone"
                 android:layout_gravity="center_vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="phone"
                 android:paddingLeft="20dp"
                 android:textColor="@color/white"
-                android:text="0766664935"
                 />
         </LinearLayout>
     </LinearLayout>

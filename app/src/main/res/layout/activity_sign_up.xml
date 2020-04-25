@@ -56,6 +56,17 @@
         android:textColor="@color/white"
         />
 
+    <EditText
+        android:id="@+id/et_user_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Phone"
+        android:inputType="phone"
+        android:textColorHint="@color/colorTint"
+        android:padding="10dp"
+        android:textColor="@color/white"
+        />
+
     <Space
         android:layout_width="match_parent"
         android:layout_height="30dp" />
