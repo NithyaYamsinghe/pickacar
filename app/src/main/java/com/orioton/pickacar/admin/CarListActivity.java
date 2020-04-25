@@ -18,11 +18,20 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.orioton.pickacar.R;
 import com.orioton.pickacar.model.CarModel;
 
@@ -80,6 +89,82 @@ public class CarListActivity extends AppCompatActivity {
     }
 
 
+
+    // delete data
+    private void showDeleteDataDialog(final String currentModel, final String currentImage) {
+
+        // alert dialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(CarListActivity.this);
+        builder.setTitle("Delete");
+        builder.setMessage("Are you sure ?");
+
+        // set positive button
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                Query query = adminRef.orderByChild("model").equalTo(currentModel);
+                query.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for (DataSnapshot ds: dataSnapshot.getChildren()){
+                            ds.getRef().removeValue(); // delete details from firebase
+                        }
+
+                        // confirm deletion
+                        Toast.makeText(CarListActivity.this, "car deleted successfully", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        // if anything went wrong
+                        Toast.makeText(CarListActivity.this, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+
+
+                // delete image from firebase storage using reference url
+                StorageReference storageReference = FirebaseStorage.getInstance().getReferenceFromUrl(currentImage);
+                storageReference.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+
+                        // delete successful
+                        Toast.makeText(CarListActivity.this, "image deleted successfully", Toast.LENGTH_SHORT).show();
+
+
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+                        // something went wrong
+                        Toast.makeText(CarListActivity.this, e.getMessage() , Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+
+            }
+        });
+
+        // negative button
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                dialog.dismiss();
+            }
+        });
+
+        // show dialog
+        builder.create().show();
+
+
+
+    }
+
     // show data
     private void showData(){
 
@@ -136,6 +221,8 @@ public class CarListActivity extends AppCompatActivity {
                     @Override
                     public void onItemLongClick(View view, int position) {
 
+                        Toast.makeText(CarListActivity.this, "Hello", Toast.LENGTH_SHORT).show();
+
                         // get current title to delete data
                         String currentModel = getItem(position).getModel();
                         String currentImage = getItem(position).getImage();
@@ -160,21 +247,6 @@ public class CarListActivity extends AppCompatActivity {
 
         // set adapter to firebase recycler view
         recyclerViewCarList.setAdapter(firebaseRecyclerAdapter);
-
-
-
-    }
-
-    private void showDeleteDataDialog(String currentModel, String currentImage) {
-
-        // alert dialog
-        AlertDialog.Builder builder = new AlertDialog.Builder(CarListActivity.this);
-        builder.setTitle("Delete");
-        builder.setMessage("Are you sure ?");
-
-        // set positive
-
-
 
 
 
@@ -241,6 +313,9 @@ public class CarListActivity extends AppCompatActivity {
 
                     @Override
                     public void onItemLongClick(View view, int position) {
+
+                        Toast.makeText(CarListActivity.this, "Hello", Toast.LENGTH_SHORT).show();
+
 
                         // get current title to delete data
                         String currentModel = getItem(position).getModel();
