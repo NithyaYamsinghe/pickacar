@@ -2,20 +2,6 @@ package com.orioton.pickacar.admin;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
-
-import com.basgeekball.awesomevalidation.AwesomeValidation;
-import com.basgeekball.awesomevalidation.ValidationStyle;
-import com.basgeekball.awesomevalidation.utility.RegexTemplate;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.orioton.pickacar.R;
-import com.orioton.pickacar.model.CarModel;
-
 public class AddCarActivity extends AppCompatActivity {
 
 //    // initializing variables

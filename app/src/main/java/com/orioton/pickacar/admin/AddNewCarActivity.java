@@ -34,7 +34,7 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.orioton.pickacar.R;
-import com.orioton.pickacar.model.CarUploadInfo;
+import com.orioton.pickacar.admin.model.CarUploadInfo;
 import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;

@@ -3,16 +3,13 @@ package com.orioton.pickacar.admin;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.swiperefreshlayout.widget.CircularProgressDrawable;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,9 +20,11 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.orioton.pickacar.R;
 
-import java.util.regex.Pattern;
+import java.util.HashMap;
 
 public class AdminRegisterActivity extends AppCompatActivity {
 
@@ -124,8 +123,37 @@ public class AdminRegisterActivity extends AppCompatActivity {
                             // Sign in success
                             progressDialog.dismiss();
                             FirebaseUser user = firebaseAuth.getCurrentUser();
+
+                            // get user email and the uid from auth
+
+                            String email = user.getEmail();
+                            String uid = user.getUid();
+
+
+                            // store user data
+
+                            HashMap<Object, String> hashMap = new HashMap<>();
+                            hashMap.put("email", email);
+                            hashMap.put("uid", uid);
+                            hashMap.put("name", "");
+                            hashMap.put("phone", "");
+                            hashMap.put("image", "");
+
+                            // firebase database
+
+                            FirebaseDatabase database = FirebaseDatabase.getInstance();
+                            DatabaseReference reference = database.getReference("adminUsers");
+
+                            // put data with in hash map
+                            reference.child(uid).setValue(hashMap);
+
+
+
+
+
+
                             Toast.makeText(AdminRegisterActivity.this, "Registered...\n " + user.getEmail(), Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(AdminRegisterActivity.this, AdminProfileActivity.class));
+                            startActivity(new Intent(AdminRegisterActivity.this, AdminDashboardActivity.class));
                             finish();
                         } else {
                             // If sign in fails, display a message to the user
