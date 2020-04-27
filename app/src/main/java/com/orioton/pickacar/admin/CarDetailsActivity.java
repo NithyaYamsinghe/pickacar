@@ -22,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.orioton.pickacar.R;
+import com.squareup.picasso.Picasso;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -66,8 +67,6 @@ public class CarDetailsActivity extends AppCompatActivity {
         setButton = findViewById(R.id.car_detail_set_button);
 
 
-        // get image from image view as bitmap
-        bitmap = ((BitmapDrawable)image.getDrawable()).getBitmap();
 
 
         // save button click handler
@@ -121,7 +120,7 @@ public class CarDetailsActivity extends AppCompatActivity {
 
         // get data from intent
 
-        byte[] bytes = getIntent().getByteArrayExtra("image");
+        String images = getIntent().getStringExtra("image");
         String models = getIntent().getStringExtra("model");
         String brands = getIntent().getStringExtra("brand");
         String colors = getIntent().getStringExtra("color");
@@ -129,7 +128,7 @@ public class CarDetailsActivity extends AppCompatActivity {
         String passengers = getIntent().getStringExtra("passengers");
         String descriptions = getIntent().getStringExtra("description");
         String conditions = getIntent().getStringExtra("condition");
-        Bitmap bitmaps = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+
 
         // set data to views
         brand.setText(brands);
@@ -139,7 +138,8 @@ public class CarDetailsActivity extends AppCompatActivity {
         passenger.setText(passengers);
         description.setText(descriptions);
         condition.setText(conditions);
-        image.setImageBitmap(bitmaps);
+        Picasso.get().load(images).into(image);
+
 
 
     }
@@ -148,6 +148,8 @@ public class CarDetailsActivity extends AppCompatActivity {
     private void setImageWallpaper() {
 
 
+        // get image from image view as bitmap
+        bitmap = ((BitmapDrawable)image.getDrawable()).getBitmap();
         WallpaperManager wallpaperManager = WallpaperManager.getInstance(getApplicationContext());
         try{
 
@@ -164,6 +166,10 @@ public class CarDetailsActivity extends AppCompatActivity {
     private void shareImage() {
 
         try {
+
+
+            // get image from image view as bitmap
+            bitmap = ((BitmapDrawable)image.getDrawable()).getBitmap();
             String s = brand.getText().toString() + "\n" + description.getText().toString();
             File file = new File(getExternalCacheDir(),"sample.png");
             FileOutputStream fileOutputStream = new FileOutputStream(file);
@@ -190,6 +196,10 @@ public class CarDetailsActivity extends AppCompatActivity {
     }
 
     private void saveImage() {
+
+
+        // get image from image view as bitmap
+        bitmap = ((BitmapDrawable)image.getDrawable()).getBitmap();
 
         // time stamp for image name
         String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(System.currentTimeMillis());
