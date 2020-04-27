@@ -50,4 +50,9 @@
     <string name="admin_password_hint">Password</string>
     <string name="admin_email_hint">Email</string>
     <string name="admin_register_text">Register</string>
+    <string name="admin_check_have_account">Already have a account? Sign up</string>
+    <string name="admin_register_button_text">Register</string>
+    <string name="admin_sign_in_text">Sign In</string>
+    <string name="admin_sign_in_button_text">Sign In</string>
+    <string name="admin_check_please_sign_up">Haven\'t account? Sign Up</string>
 </resources>

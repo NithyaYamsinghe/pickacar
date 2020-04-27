@@ -3,16 +3,13 @@ package com.orioton.pickacar.admin;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.swiperefreshlayout.widget.CircularProgressDrawable;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,97 +22,90 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.orioton.pickacar.R;
 
-import java.util.regex.Pattern;
-
-public class AdminRegisterActivity extends AppCompatActivity {
+public class AdminLoginActivity extends AppCompatActivity {
 
     // views
-    TextInputEditText admin_edit_email, admin_edit_password;
-    Button admin_register_button;
-    TextView admin_check_account;
-
-
-    // progress bar to display while registering user
-    ProgressDialog progressDialog;
+    TextInputEditText admin_edit_email_login, admin_edit_password_login;
+    Button admin_login_button;
+    TextView admin_check_account_register;
 
     // declare an instance of firebaseAuth
     private FirebaseAuth firebaseAuth;
 
+    // progress bar to display while registering user
+    ProgressDialog progressDialog;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_register);
+        setContentView(R.layout.activity_admin_login);
 
 
         // action bar and title
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("Sign up");
+        actionBar.setTitle("Sign in");
 
 
         // set up back button
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
 
-
         // init views
-
-        admin_edit_email = findViewById(R.id.admin_edit_email);
-        admin_edit_password = findViewById(R.id.admin_edit_Password);
-        admin_register_button = findViewById(R.id.admin_register_action_button);
-        admin_check_account = findViewById(R.id.admin_have_account_check_text);
+        admin_edit_email_login = findViewById(R.id.admin_login_edit_email);
+        admin_edit_password_login = findViewById(R.id.admin_login_edit_Password);
+        admin_login_button = findViewById(R.id.admin_login_action_button);
+        admin_check_account_register = findViewById(R.id.admin_check_please_sign_up);
 
         progressDialog = new ProgressDialog(this);
-        progressDialog.setTitle("Registering user...");
+        progressDialog.setTitle("Logging user...");
+
 
         // In the onCreate() method, initialize the FirebaseAuth instance.
         firebaseAuth = FirebaseAuth.getInstance();
 
-
-        // handle register button clicks
-        admin_register_button.setOnClickListener(new View.OnClickListener() {
+        // login button clicked
+        admin_login_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                // input email, password
-                String email = admin_edit_email.getText().toString().trim();
-                String password = admin_edit_password.getText().toString().trim();
+                // input data
+                String email = admin_edit_email_login.getText().toString().trim();
+                String password = admin_edit_password_login.getText().toString().trim();
 
                 // validate
                 if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
 
                     //set error and focus to email edit text
-                    admin_edit_email.setError("Invalid Email");
-                    admin_edit_email.setFocusable(true);
+                    admin_edit_email_login.setError("Invalid Email");
+                    admin_edit_email_login.setFocusable(true);
                 } else if (password.length() < 6) {
 
                     //set error and focus to password edit text
-                    admin_edit_password.setError("Password length at least 6 characters");
-                    admin_edit_password.setFocusable(true);
+                    admin_edit_password_login.setError("Password length at least 6 characters");
+                    admin_edit_password_login.setFocusable(true);
 
                 } else {
-                    registerUser(email, password);  // register the user
+                    loginUser(email, password);  // register the user
                 }
 
 
             }
         });
 
-        // handle text view  click listener
-        admin_check_account.setOnClickListener(new View.OnClickListener() {
+        // not have account clicked
+        admin_check_account_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(AdminRegisterActivity.this, AdminLoginActivity.class));
+                startActivity(new Intent(AdminLoginActivity.this, AdminRegisterActivity.class));
             }
         });
-
-
     }
 
-    private void registerUser(String email, String password) {
-        // email and password valid show progress dialog to the user
+    private void loginUser(String email, String password) {
         progressDialog.show();
-
-        firebaseAuth.createUserWithEmailAndPassword(email, password)
+        firebaseAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -123,13 +113,13 @@ public class AdminRegisterActivity extends AppCompatActivity {
                             // Sign in success
                             progressDialog.dismiss();
                             FirebaseUser user = firebaseAuth.getCurrentUser();
-                            Toast.makeText(AdminRegisterActivity.this, "Registered...\n " + user.getEmail(), Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(AdminRegisterActivity.this, AdminProfileActivity.class));
+                            startActivity(new Intent(AdminLoginActivity.this, AdminProfileActivity.class));
                             finish();
                         } else {
-                            // If sign in fails, display a message to the user
+                            // If sign in fails, display a message to the user.
                             progressDialog.dismiss();
-                            Toast.makeText(AdminRegisterActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AdminLoginActivity.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
                         }
                     }
                 }).addOnFailureListener(new OnFailureListener() {
@@ -138,10 +128,11 @@ public class AdminRegisterActivity extends AppCompatActivity {
 
                 // if something went wrong
                 progressDialog.dismiss();
-                Toast.makeText(AdminRegisterActivity.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(AdminLoginActivity.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
 
             }
         });
+
     }
 
 

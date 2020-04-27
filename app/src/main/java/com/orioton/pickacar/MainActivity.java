@@ -24,6 +24,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void changeAddCar(View view) {
+        Intent intent = new Intent(this, CarListActivity.class);
+        startActivity(intent);
+    }
+
+    public void AdminSignUp(View view) {
         Intent intent = new Intent(this, AdminMainActivity.class);
         startActivity(intent);
     }
