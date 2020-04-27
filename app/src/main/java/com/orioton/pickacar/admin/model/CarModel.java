@@ -1,4 +1,4 @@
-package com.orioton.pickacar.model;
+package com.orioton.pickacar.admin.model;
 
 public class CarModel {
 

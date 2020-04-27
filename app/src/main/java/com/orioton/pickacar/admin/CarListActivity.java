@@ -34,7 +34,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.orioton.pickacar.R;
-import com.orioton.pickacar.model.CarModel;
+import com.orioton.pickacar.admin.model.CarModel;
 
 
 public class CarListActivity extends AppCompatActivity {

@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".admin.AdminLoginActivity"></activity>
-        <activity android:name=".admin.AdminProfileActivity" />
+        <activity android:name=".admin.AdminDashboardActivity" />
         <activity android:name=".admin.AdminRegisterActivity" />
         <activity android:name=".admin.AdminMainActivity" />
         <activity android:name=".driver.DriverSignUp" />
