@@ -105,6 +105,7 @@ public class AdminRegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(AdminRegisterActivity.this, AdminLoginActivity.class));
+                finish();
             }
         });
 

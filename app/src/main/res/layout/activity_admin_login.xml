@@ -66,11 +66,31 @@
         android:text="@string/admin_sign_in_button_text" />
 
     <TextView
-        android:id="@+id/admin_check_please_sign_up"
+        android:id="@+id/admin_reset_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/admin_login_google"
+        android:text="@string/admin_forgot_password_reset_text"
+        android:textAlignment="center"
+        android:textColor="@color/colorTint"
+        android:layout_marginTop="10dp"/>
+
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/admin_login_google"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/admin_login_action_button"
+        android:layout_centerHorizontal="true">
+
+    </com.google.android.gms.common.SignInButton>
+
+    <TextView
+        android:id="@+id/admin_check_please_sign_up"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_marginTop="30dp"
+        android:layout_marginBottom="10dp"
         android:text="@string/admin_check_please_sign_up"
         android:textAlignment="center"
         android:textColor="@color/colorTint" />
