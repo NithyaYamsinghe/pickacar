@@ -8,6 +8,7 @@ import android.view.View;
 
 
 import com.orioton.pickacar.admin.AdminHomeActivity;
+import com.orioton.pickacar.admin.AdminMainActivity;
 import com.orioton.pickacar.admin.CarListActivity;
 import com.orioton.pickacar.client.ActivityLogIn;
 import com.orioton.pickacar.client.ActivitySignUp;
@@ -23,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void changeAddCar(View view) {
-        Intent intent = new Intent(this, CarListActivity.class);
+        Intent intent = new Intent(this, AdminMainActivity.class);
         startActivity(intent);
     }
 

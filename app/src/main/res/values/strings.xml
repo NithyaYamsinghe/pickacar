@@ -47,4 +47,7 @@
     <string name="set_button">Set</string>
     <string name="invalid_phone">Enter a valid phone number</string>
     <string name="invalid_name">Enter a valid name</string>
+    <string name="admin_password_hint">Password</string>
+    <string name="admin_email_hint">Email</string>
+    <string name="admin_register_text">Register</string>
 </resources>
