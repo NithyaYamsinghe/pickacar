@@ -1,6 +1,6 @@
 package com.orioton.pickacar.admin.model;
 
-public class CarUploadInfo {
+public class CarUploadInfoModel {
     // variables
 
     private String brand;
@@ -13,10 +13,10 @@ public class CarUploadInfo {
     private String releasedYear;
     private String search;
 
-    public CarUploadInfo() {
+    public CarUploadInfoModel() {
     }
 
-    public CarUploadInfo(String brand, String color, String condition, String description, String image, String model, String passengers, String releasedYear, String search) {
+    public CarUploadInfoModel(String brand, String color, String condition, String description, String image, String model, String passengers, String releasedYear, String search) {
         this.brand = brand;
         this.color = color;
         this.condition = condition;
