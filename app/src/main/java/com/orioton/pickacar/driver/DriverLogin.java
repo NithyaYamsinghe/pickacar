@@ -125,6 +125,11 @@ public class DriverLogin extends AppCompatActivity {
                     }
                     else{
                         Toast.makeText(getApplicationContext(), "Logged in successfully!",Toast.LENGTH_LONG).show();
+
+                        finish();
+
+                        Intent intent = new Intent(getApplicationContext(), JourneyList.class);
+                        startActivity(intent);
                     }
                 }
             });

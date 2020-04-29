@@ -19,7 +19,9 @@
         <activity android:name=".admin.AdminPackageListActivity" />
         <activity android:name=".admin.AddNewPackageActivity" />
         <activity android:name=".client.ActivityPackages" />
-
+        <activity android:name=".driver.JourneyList"></activity>
+        <activity android:name=".driver.AddReview" />
+        <activity android:name=".driver.UserReviewsList" />
         <activity android:name=".client.ActivityUserDashboard" android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".client.ActivityPayment" />
 
