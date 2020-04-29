@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    tools:context=".driver.AddReview">-->
+
+<!--</androidx.constraintlayout.widget.ConstraintLayout>-->
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".driver.AddReview"
+android:background="@color/colorPrimary"
+    >
+
+
+<LinearLayout
+    android:id="@+id/add_review_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="20dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/title_short_review"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorTint"
+        android:layout_marginBottom="20dp"
+        android:text="Add short title:" />
+
+    <EditText
+        android:id="@+id/short_review_input"
+        android:inputType="textPersonName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:textColor="@color/colorText"
+        android:padding="10dp"
+        android:textSize="14dp"
+        android:maxLength="20"
+        android:textColorHint="@color/colorTint"
+        android:hint="Write your short review here..."
+        android:background="@drawable/edit_text_border"
+        android:layout_marginBottom="20dp"
+        />
+
+    <TextView
+        android:id="@+id/title_add_review"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorTint"
+        android:layout_marginBottom="20dp"
+        android:text="Add your review:" />
+
+    <EditText
+        android:id="@+id/review_input"
+        android:inputType="textMultiLine"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:ems="10"
+        android:textColor="@color/colorText"
+        android:padding="10dp"
+        android:textSize="14dp"
+        android:gravity="start"
+        android:maxLength="100"
+        android:maxLines="10"
+        android:textColorHint="@color/colorTint"
+        android:hint="Write your review here..."
+        android:background="@drawable/edit_text_border"
+        android:layout_marginBottom="20dp"
+        />
+
+    <Button
+        android:id="@+id/add_review_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
+
+        android:text="Add Review" />
+
+
+</LinearLayout>
+</RelativeLayout>
