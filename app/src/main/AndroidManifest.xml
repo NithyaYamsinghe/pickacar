@@ -19,6 +19,12 @@
         <activity android:name=".admin.AdminPackageListActivity" />
         <activity android:name=".admin.AddNewPackageActivity" />
         <activity android:name=".client.ActivityPackages" />
+
+        <activity android:name=".client.ActivityUserDashboard" android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".client.ActivityPayment" />
+        <activity
+            android:name=".client.ActivityPackages"
+            android:label="Select A Package" />
         <activity android:name=".admin.AdminLoginActivity" />
         <activity android:name=".admin.AdminDashboardActivity" />
         <activity android:name=".admin.AdminRegisterActivity" />

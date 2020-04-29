@@ -62,7 +62,8 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="admin_profile_name">Name</string>
+
+  <string name="admin_profile_name">Name</string>
     <string name="admin_profile_email">Email</string>
     <string name="admin_profile_phone">phone</string>
     <string name="admin_package_price_per_1km">Price per 1Km</string>
@@ -86,4 +87,7 @@
     <string name="menu_car_list">Cars</string>
     <string name="bottom_nav_cars">Cars</string>
     <string name="bottom_nav_packages">Packages</string>
+
+    <string name="payment_text">Please fill in the fields to continue your payment</string>
+
 </resources>
