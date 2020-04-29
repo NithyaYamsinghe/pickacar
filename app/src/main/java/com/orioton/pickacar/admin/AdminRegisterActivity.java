@@ -138,6 +138,7 @@ public class AdminRegisterActivity extends AppCompatActivity {
                             hashMap.put("name", "");
                             hashMap.put("phone", "");
                             hashMap.put("image", "");
+                            hashMap.put("cover", "");
 
                             // firebase database
 
