@@ -94,6 +94,10 @@ public class ActivityLogIn extends AppCompatActivity implements View.OnClickList
                                 progressBar.setVisibility(View.GONE);
                                 btnLogIn.setVisibility(View.VISIBLE);
                                 Toast.makeText(getApplicationContext(), "Logged in successfully!", Toast.LENGTH_SHORT).show();
+
+                                // finishing the login activity
+                                finish();
+
                                 Intent intent = new Intent(getApplicationContext(), ActivityUserProfile.class);
                                 // clearing all the top activities
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -125,6 +129,8 @@ public class ActivityLogIn extends AppCompatActivity implements View.OnClickList
         ClickableSpan clickableSpan = new ClickableSpan() {
             @Override
             public void onClick(@NonNull View widget) {
+                // finishing the login activity
+                finish();
                 Intent intent = new Intent(getApplicationContext(), ActivitySignUp.class);
                 startActivity(intent);
             }
@@ -138,4 +144,16 @@ public class ActivityLogIn extends AppCompatActivity implements View.OnClickList
 
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        // check if user is already logged in
+
+        if (mAuth != null) {
+            // finishing the activity
+            finish();
+        }
+
+    }
 }

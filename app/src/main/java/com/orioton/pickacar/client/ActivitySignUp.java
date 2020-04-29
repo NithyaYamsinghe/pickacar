@@ -97,7 +97,6 @@ public class ActivitySignUp extends AppCompatActivity implements View.OnClickLis
 
     }
 
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -127,7 +126,11 @@ public class ActivitySignUp extends AppCompatActivity implements View.OnClickLis
                                 progressBar.setVisibility(View.GONE);
                                 btnSignUp.setVisibility(View.VISIBLE);
                                 Toast.makeText(getApplicationContext(), "User has been registered!", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(getApplicationContext(), ActivityLogIn.class);
+
+                                // finishing the activity
+                                finish();
+
+                                Intent intent = new Intent(getApplicationContext(), ActivityUserProfile.class);
                                 startActivity(intent);
                             } else {
                                 progressBar.setVisibility(View.GONE);
@@ -156,6 +159,9 @@ public class ActivitySignUp extends AppCompatActivity implements View.OnClickLis
         ClickableSpan clickableSpan = new ClickableSpan() {
             @Override
             public void onClick(@NonNull View widget) {
+                // finishing the activity
+                finish();
+
                 Intent intent = new Intent(getApplicationContext(), ActivityLogIn.class);
                 startActivity(intent);
             }
