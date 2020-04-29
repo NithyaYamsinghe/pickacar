@@ -10,8 +10,10 @@ import android.view.View;
 import com.orioton.pickacar.admin.AdminHomeActivity;
 import com.orioton.pickacar.admin.AdminMainActivity;
 import com.orioton.pickacar.admin.CarListActivity;
+import com.orioton.pickacar.client.ActivityDashboard;
 import com.orioton.pickacar.client.ActivityLogIn;
 import com.orioton.pickacar.client.ActivitySignUp;
+import com.orioton.pickacar.client.ActivityUserDashboard;
 import com.orioton.pickacar.driver.DriverLogin;
 import com.orioton.pickacar.driver.DriverSignUp;
 
@@ -45,6 +47,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void changeDriver(View view) {
         Intent intent = new Intent(this, DriverLogin.class);
+        startActivity(intent);
+    }
+
+    public void changeDash(View view) {
+        Intent intent = new Intent(this, ActivityUserDashboard.class);
         startActivity(intent);
     }
 }

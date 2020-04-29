@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".client.ActivityPayment"></activity>
+        <activity android:name=".client.ActivityUserDashboard" android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".client.ActivityPayment" />
         <activity
             android:name=".client.ActivityPackages"
             android:label="Select A Package" />
