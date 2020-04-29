@@ -1,4 +1,4 @@
-package com.orioton.pickacar.admin;
+package com.orioton.pickacar.admin.views;
 
 import android.content.Context;
 import android.view.View;
@@ -11,11 +11,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.orioton.pickacar.R;
 import com.squareup.picasso.Picasso;
 
-public class CarListViewHolder extends RecyclerView.ViewHolder {
+public class AdminCarListViewHolder extends RecyclerView.ViewHolder {
 
     View carItemView;
 
-    public CarListViewHolder(@NonNull View itemView) {
+    public AdminCarListViewHolder(@NonNull View itemView) {
         super(itemView);
 
         carItemView = itemView;
@@ -70,7 +70,7 @@ public class CarListViewHolder extends RecyclerView.ViewHolder {
 
     }
 
-    private  CarListViewHolder.ClickListener carItemClickListener;
+    private  AdminCarListViewHolder.ClickListener carItemClickListener;
 
     // interface to click
     public interface ClickListener {
@@ -78,7 +78,7 @@ public class CarListViewHolder extends RecyclerView.ViewHolder {
         void onItemLongClick(View view, int position);
     }
 
-    public void setOnClickListener(CarListViewHolder.ClickListener clickListener){
+    public void setOnClickListener(AdminCarListViewHolder.ClickListener clickListener){
 
       carItemClickListener = clickListener;
 

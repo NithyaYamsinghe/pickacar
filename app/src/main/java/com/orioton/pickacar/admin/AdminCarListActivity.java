@@ -35,22 +35,23 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.orioton.pickacar.R;
 import com.orioton.pickacar.admin.model.CarModel;
+import com.orioton.pickacar.admin.views.AdminCarListViewHolder;
 
 
-public class CarListActivity extends AppCompatActivity {
+public class AdminCarListActivity extends AppCompatActivity {
 
     LinearLayoutManager linearLayoutManager; // for sorting
     SharedPreferences sharedPreferences; // for saving sort settings
     RecyclerView recyclerViewCarList;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference adminRef;
-    FirebaseRecyclerAdapter<CarModel, CarListViewHolder> firebaseRecyclerAdapter;
+    FirebaseRecyclerAdapter<CarModel, AdminCarListViewHolder> firebaseRecyclerAdapter;
     FirebaseRecyclerOptions<CarModel> options;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_car_list);
+        setContentView(R.layout.activity_admin_car_list);
 
 
         // action bar
@@ -92,7 +93,7 @@ public class CarListActivity extends AppCompatActivity {
     private void showDeleteDataDialog(final String currentModel, final String currentImage) {
 
         // alert dialog
-        AlertDialog.Builder builder = new AlertDialog.Builder(CarListActivity.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(AdminCarListActivity.this);
         builder.setTitle("Delete");
         builder.setMessage("Are you sure ?");
 
@@ -110,14 +111,14 @@ public class CarListActivity extends AppCompatActivity {
                         }
 
                         // confirm deletion
-                        Toast.makeText(CarListActivity.this, "car deleted successfully", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AdminCarListActivity.this, "car deleted successfully", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
 
                         // if anything went wrong
-                        Toast.makeText(CarListActivity.this, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AdminCarListActivity.this, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
 
                     }
                 });
@@ -130,7 +131,7 @@ public class CarListActivity extends AppCompatActivity {
                     public void onSuccess(Void aVoid) {
 
                         // delete successful
-                        Toast.makeText(CarListActivity.this, "image deleted successfully", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AdminCarListActivity.this, "image deleted successfully", Toast.LENGTH_SHORT).show();
 
 
                     }
@@ -139,7 +140,7 @@ public class CarListActivity extends AppCompatActivity {
                     public void onFailure(@NonNull Exception e) {
 
                         // something went wrong
-                        Toast.makeText(CarListActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AdminCarListActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
 
                     }
                 });
@@ -166,9 +167,9 @@ public class CarListActivity extends AppCompatActivity {
     private void showData() {
 
         options = new FirebaseRecyclerOptions.Builder<CarModel>().setQuery(adminRef, CarModel.class).build();
-        firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<CarModel, CarListViewHolder>(options) {
+        firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<CarModel, AdminCarListViewHolder>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull CarListViewHolder carListViewHolder, int i, @NonNull CarModel carModel) {
+            protected void onBindViewHolder(@NonNull AdminCarListViewHolder carListViewHolder, int i, @NonNull CarModel carModel) {
 
                 carListViewHolder.setDetails(getApplicationContext(), carModel.getModel(), carModel.getBrand(), carModel.getColor(), carModel.getReleasedYear(),
                         carModel.getPassengers(), carModel.getDescription(), carModel.getImage(), carModel.getCondition());
@@ -177,14 +178,14 @@ public class CarListActivity extends AppCompatActivity {
 
             @NonNull
             @Override
-            public CarListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            public AdminCarListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
                 // inflating layout car item
-                View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_car_item, parent, false);
-                CarListViewHolder carListViewHolder = new CarListViewHolder(itemView);
+                View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_admin_car_item, parent, false);
+                AdminCarListViewHolder carListViewHolder = new AdminCarListViewHolder(itemView);
 
                 // item click listener
-                carListViewHolder.setOnClickListener(new CarListViewHolder.ClickListener() {
+                carListViewHolder.setOnClickListener(new AdminCarListViewHolder.ClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
 
@@ -200,7 +201,7 @@ public class CarListActivity extends AppCompatActivity {
 
 
                         // pass this data to the new activity
-                        Intent intent = new Intent(view.getContext(), CarDetailsActivity.class);
+                        Intent intent = new Intent(view.getContext(), AdminCarDetailsActivity.class);
                         intent.putExtra("brand", brandText);
                         intent.putExtra("model", modelText);
                         intent.putExtra("color", colorText);
@@ -227,7 +228,7 @@ public class CarListActivity extends AppCompatActivity {
                         final String currentDescription = getItem(position).getDescription();
 
                         // show dialog on long click
-                        AlertDialog.Builder builder = new AlertDialog.Builder(CarListActivity.this);
+                        AlertDialog.Builder builder = new AlertDialog.Builder(AdminCarListActivity.this);
 
                         // options to display in dialog
                         String[] options = {"Update", "Delete"};
@@ -241,7 +242,7 @@ public class CarListActivity extends AppCompatActivity {
                                 if (which == 0) {
                                     // update clicked
 
-                                    Intent intent = new Intent(CarListActivity.this, AddNewCarActivity.class);
+                                    Intent intent = new Intent(AdminCarListActivity.this, AddNewCarActivity.class);
                                     intent.putExtra("model", currentModel);
                                     intent.putExtra("brand", currentBrand);
                                     intent.putExtra("color", currentColor);
@@ -290,9 +291,9 @@ public class CarListActivity extends AppCompatActivity {
         Query firebaseSearchQuery = adminRef.orderByChild("search").startAt(query).endAt(query + "\uf8ff");
 
         options = new FirebaseRecyclerOptions.Builder<CarModel>().setQuery(firebaseSearchQuery, CarModel.class).build();
-        firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<CarModel, CarListViewHolder>(options) {
+        firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<CarModel, AdminCarListViewHolder>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull CarListViewHolder carListViewHolder, int i, @NonNull CarModel carModel) {
+            protected void onBindViewHolder(@NonNull AdminCarListViewHolder carListViewHolder, int i, @NonNull CarModel carModel) {
 
                 carListViewHolder.setDetails(getApplicationContext(), carModel.getModel(), carModel.getBrand(), carModel.getColor(), carModel.getReleasedYear(),
                         carModel.getPassengers(), carModel.getDescription(), carModel.getImage(), carModel.getCondition());
@@ -301,14 +302,14 @@ public class CarListActivity extends AppCompatActivity {
 
             @NonNull
             @Override
-            public CarListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            public AdminCarListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
                 // inflating layout car item
-                View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_car_item, parent, false);
-                CarListViewHolder carListViewHolder = new CarListViewHolder(itemView);
+                View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_admin_car_item, parent, false);
+                AdminCarListViewHolder carListViewHolder = new AdminCarListViewHolder(itemView);
 
                 // item click listener
-                carListViewHolder.setOnClickListener(new CarListViewHolder.ClickListener() {
+                carListViewHolder.setOnClickListener(new AdminCarListViewHolder.ClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
 
@@ -324,7 +325,7 @@ public class CarListActivity extends AppCompatActivity {
 
 
                         // pass this data to the new activity
-                        Intent intent = new Intent(view.getContext(), CarDetailsActivity.class);
+                        Intent intent = new Intent(view.getContext(), AdminCarDetailsActivity.class);
                         intent.putExtra("brand", brandText);
                         intent.putExtra("model", modelText);
                         intent.putExtra("color", colorText);
@@ -352,7 +353,7 @@ public class CarListActivity extends AppCompatActivity {
                         final String currentDescription = getItem(position).getDescription();
 
                         // show dialog on long click
-                        AlertDialog.Builder builder = new AlertDialog.Builder(CarListActivity.this);
+                        AlertDialog.Builder builder = new AlertDialog.Builder(AdminCarListActivity.this);
 
                         // options to display in dialog
                         String[] options = {"Update", "Delete"};
@@ -366,7 +367,7 @@ public class CarListActivity extends AppCompatActivity {
                                 if (which == 0) {
                                     // update clicked
 
-                                    Intent intent = new Intent(CarListActivity.this, AddNewCarActivity.class);
+                                    Intent intent = new Intent(AdminCarListActivity.this, AddNewCarActivity.class);
                                     intent.putExtra("model", currentModel);
                                     intent.putExtra("brand", currentBrand);
                                     intent.putExtra("color", currentColor);
@@ -458,7 +459,7 @@ public class CarListActivity extends AppCompatActivity {
         if (id == R.id.action_add) {
 
             // start activity
-            startActivity(new Intent(CarListActivity.this, AddNewCarActivity.class));
+            startActivity(new Intent(AdminCarListActivity.this, AddNewCarActivity.class));
             return true;
         }
         return super.onOptionsItemSelected(item);

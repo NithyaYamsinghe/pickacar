@@ -65,4 +65,11 @@
     <string name="admin_profile_name">Name</string>
     <string name="admin_profile_email">Email</string>
     <string name="admin_profile_phone">phone</string>
+    <string name="admin_package_price_per_1km">Price per 1Km</string>
+    <string name="admin_package_price">Price</string>
+    <string name="admin_package_name">Package Name</string>
+    <string name="admin_add_package_button">Add package</string>
+    <string name="invalid_package_price">Enter a valid price</string>
+    <string name="invalid_package_name">Enter a valid name</string>
+    <string name="invalid_package_price_per_km">Enter a valid price</string>
 </resources>

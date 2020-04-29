@@ -83,7 +83,7 @@ public class AdminHomeActivity extends AppCompatActivity implements NavigationVi
                 navController.navigate(R.id.nav_gallery);
                 break;
             case R.id.nav_slideshow:
-                Intent intent = new Intent(this, CarListActivity.class);
+                Intent intent = new Intent(this, AdminCarListActivity.class);
                 startActivity(intent);
 
                 break;

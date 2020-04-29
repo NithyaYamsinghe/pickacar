@@ -5,8 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" /> <!-- external storage permission -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- set wall paper permission -->
     <uses-permission android:name="android.permission.SET_WALLPAPER" />
-    <uses-permission android:name="android.permission.CAMERA" /> <!-- camera permission-->
-
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:name=".driver.FirebaseCon"
@@ -16,7 +15,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".client.ActivityPackages"></activity>
+        <activity android:name=".admin.AdminPackageListActivity"></activity>
+        <activity android:name=".admin.AddNewPackageActivity" />
+        <activity android:name=".client.ActivityPackages" />
         <activity android:name=".admin.AdminLoginActivity" />
         <activity android:name=".admin.AdminDashboardActivity" />
         <activity android:name=".admin.AdminRegisterActivity" />
@@ -24,10 +25,10 @@
         <activity android:name=".driver.DriverSignUp" />
         <activity
             android:name=".admin.AddNewCarActivity"
-            android:parentActivityName=".admin.CarListActivity" />
+            android:parentActivityName=".admin.AdminCarListActivity" />
         <activity android:name=".driver.DriverLogin" />
-        <activity android:name=".admin.CarDetailsActivity" />
-        <activity android:name=".admin.CarListActivity" />
+        <activity android:name=".admin.AdminCarDetailsActivity" />
+        <activity android:name=".admin.AdminCarListActivity" />
         <activity
             android:name=".client.ActivityUserProfile"
             android:label="User Profile" />
