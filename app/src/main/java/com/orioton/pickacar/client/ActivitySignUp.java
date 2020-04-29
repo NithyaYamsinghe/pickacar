@@ -130,7 +130,7 @@ public class ActivitySignUp extends AppCompatActivity implements View.OnClickLis
                                 // finishing the activity
                                 finish();
 
-                                Intent intent = new Intent(getApplicationContext(), ActivityUserProfile.class);
+                                Intent intent = new Intent(getApplicationContext(), ActivityPackages.class);
                                 startActivity(intent);
                             } else {
                                 progressBar.setVisibility(View.GONE);

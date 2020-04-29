@@ -14,7 +14,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".client.ActivityPackages"></activity>
+        <activity android:name=".client.ActivityPayment"></activity>
+        <activity
+            android:name=".client.ActivityPackages"
+            android:label="Select A Package" />
         <activity android:name=".admin.AdminLoginActivity" />
         <activity android:name=".admin.AdminDashboardActivity" />
         <activity android:name=".admin.AdminRegisterActivity" />

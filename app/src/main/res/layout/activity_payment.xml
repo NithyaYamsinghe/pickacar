@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@color/colorPrimary"
+    android:padding="16dp"
+    tools:context="com.orioton.pickacar.client.ActivityPayment">
+
+    <TextView
+        android:id="@+id/textView"
+        android:textSize="15sp"
+        android:textAlignment="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorTint"
+        android:text="@string/payment_text" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="30dp" />
+
+    <EditText
+        android:id="@+id/et_card_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Card name"
+        android:inputType="textPersonName"
+        android:textColorHint="@color/colorTint"
+        android:padding="10dp"
+        android:textColor="@color/white"
+        />
+
+    <EditText
+        android:id="@+id/et_card_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Card number"
+        android:inputType="number"
+        android:textColorHint="@color/colorTint"
+        android:padding="10dp"
+        android:textColor="@color/white"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/et_card_exp_date"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:hint="Expire date"
+            android:inputType="textPersonName"
+            android:textColorHint="@color/colorTint"
+            android:padding="10dp"
+            android:textColor="@color/white"
+            />
+
+
+
+        <EditText
+            android:id="@+id/et_card_cvv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="cvv"
+            android:inputType="number"
+            android:textColorHint="@color/colorTint"
+            android:padding="10dp"
+            android:textColor="@color/white"
+            />
+
+    </LinearLayout>
+
+
+
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="30dp" />
+    <Button
+        android:id="@+id/btn_pay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pay"
+        android:layout_gravity="center"
+        android:background="@color/colorAccent"
+        />
+
+    <ProgressBar
+        android:id="@+id/progressbar"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+
+
+</LinearLayout>
