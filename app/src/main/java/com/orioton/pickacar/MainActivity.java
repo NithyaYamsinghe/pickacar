@@ -21,10 +21,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void changeAddCar(View view) {
-        Intent intent = new Intent(this, AddNewPackageActivity.class);
-        startActivity(intent);
-    }
+//    public void changeAddCar(View view) {
+//        Intent intent = new Intent(this, AddNewPackageActivity.class);
+//        startActivity(intent);
+//    }
 
     public void AdminSignUp(View view) {
         Intent intent = new Intent(this, AdminMainActivity.class);

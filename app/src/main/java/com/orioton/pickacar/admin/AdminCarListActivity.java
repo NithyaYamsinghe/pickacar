@@ -60,6 +60,9 @@ public class AdminCarListActivity extends AppCompatActivity {
         // set title
         actionBar.setTitle("Cars");
 
+        // set back button in action bar
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
         sharedPreferences = getSharedPreferences("SortSettings", MODE_PRIVATE);
         String sorting = sharedPreferences.getString("Sort", "newest"); // default will be newest
 
@@ -499,6 +502,13 @@ public class AdminCarListActivity extends AppCompatActivity {
                 });
 
         builder.show();
+    }
+
+    // handle on back pressed
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }
 

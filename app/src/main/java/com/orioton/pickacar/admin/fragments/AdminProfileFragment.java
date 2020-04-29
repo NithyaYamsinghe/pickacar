@@ -47,6 +47,9 @@ public class AdminProfileFragment extends Fragment {
     // progress dialog
     ProgressDialog progressDialog;
 
+    // permissions
+    private static final int CAMERA_REQUEST_CODE = 100;
+
 
 
 
@@ -98,6 +101,7 @@ public class AdminProfileFragment extends Fragment {
                     String email = ""+ ds.child("email").getValue();
                     String phone = ""+ ds.child("phone").getValue();
                     String image = ""+ ds.child("image").getValue();
+                    String cover = ""+ ds.child("cover").getValue();
 
                     // set data
 
@@ -113,6 +117,16 @@ public class AdminProfileFragment extends Fragment {
                     catch (Exception e){
                         // if something went wrong use thr default image
                         Picasso.get().load(R.drawable.ic_action_face).into(admin_profile_image);
+                    }
+
+
+                    try {
+                        // if the image is available
+                        Picasso.get().load(cover).into(admin_profile_cover_image);
+
+                    }
+                    catch (Exception e){
+
                     }
 
                 }
@@ -134,11 +148,6 @@ public class AdminProfileFragment extends Fragment {
             showEditProfileDialog();
         }
     });
-
-
-
-
-
 
         return view;
     }
@@ -162,18 +171,21 @@ public class AdminProfileFragment extends Fragment {
                 // handle dialog items clicked
                 if (which == 0){
                 //Edit profile picture clicked
+
+                    progressDialog.setMessage("updating profile picture");
+                    showImagePicDialog();
                 }
                 else if (which == 1){
                     // Edit cover photo clicked
-
+                    progressDialog.setMessage("updating cover picture");
                 }
                 else  if (which == 2){
                     // Edit name clicked
-
+                    progressDialog.setMessage("updating name");
                 }
                 else if (which == 3){
                     // Edit phone clicked
-
+                    progressDialog.setMessage("updating phone number");
                 }
 
             }
@@ -182,9 +194,40 @@ public class AdminProfileFragment extends Fragment {
         // create and show dialog
         builder.create().show();
 
+    }
+
+    private void showImagePicDialog() {
+
+     // show dialog options with camera and gallery
+
+        // options to show in dialog
+        String options [] = {"Camera", "Gallery"};
+
+        // alert dialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        // set title
+        builder.setTitle("Pick image from");
+        // set items to dialog
+
+        builder.setItems(options, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                // handle dialog items clicked
+                if (which == 0){
+                    // camera clicked
 
 
+                }
+                else if (which == 1) {
+                    // gallery clicked
+                }
 
+            }
+        });
+
+        // create and show dialog
+        builder.create().show();
 
 
     }

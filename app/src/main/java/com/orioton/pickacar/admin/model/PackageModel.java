@@ -5,18 +5,19 @@ public class PackageModel {
     private String packageName;
     private Double packagePrice;
     private Double packagePricePerKm;
+    private Double kilometers;
     private String adminId;
 
     public PackageModel() {
     }
 
-    public PackageModel(String packageName, Double packagePrice, Double packagePricePerKm, String adminId) {
+    public PackageModel(String packageName, Double packagePrice, Double packagePricePerKm, Double kilometers, String adminId) {
         this.packageName = packageName;
         this.packagePrice = packagePrice;
         this.packagePricePerKm = packagePricePerKm;
+        this.kilometers = kilometers;
         this.adminId = adminId;
     }
-
 
     public String getPackageName() {
         return packageName;
@@ -40,6 +41,14 @@ public class PackageModel {
 
     public void setPackagePricePerKm(Double packagePricePerKm) {
         this.packagePricePerKm = packagePricePerKm;
+    }
+
+    public Double getKilometers() {
+        return kilometers;
+    }
+
+    public void setKilometers(Double kilometers) {
+        this.kilometers = kilometers;
     }
 
     public String getAdminId() {

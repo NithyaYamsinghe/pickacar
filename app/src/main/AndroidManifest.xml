@@ -15,7 +15,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".admin.AdminPackageListActivity"></activity>
+        <activity android:name=".admin.AdminPackageDetailsActivity"></activity>
+        <activity android:name=".admin.AdminPackageListActivity" />
         <activity android:name=".admin.AddNewPackageActivity" />
         <activity android:name=".client.ActivityPackages" />
         <activity android:name=".admin.AdminLoginActivity" />
@@ -32,10 +33,6 @@
         <activity
             android:name=".client.ActivityUserProfile"
             android:label="User Profile" />
-        <activity
-            android:name=".admin.AdminHomeActivity"
-            android:label="@string/title_activity_admin_home"
-            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".client.ActivityDashboard" />
         <activity
             android:name=".client.ActivityLogIn"
