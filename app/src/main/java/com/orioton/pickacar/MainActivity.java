@@ -5,14 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-
-
-import com.orioton.pickacar.admin.AddNewPackageActivity;
 import com.orioton.pickacar.admin.AdminMainActivity;
-
-import com.orioton.pickacar.admin.CarListActivity;
-import com.orioton.pickacar.client.ActivityDashboard;
-
 import com.orioton.pickacar.client.ActivityLogIn;
 import com.orioton.pickacar.client.ActivitySignUp;
 import com.orioton.pickacar.client.ActivityUserDashboard;
