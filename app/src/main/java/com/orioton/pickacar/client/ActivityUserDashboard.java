@@ -29,4 +29,9 @@ public class ActivityUserDashboard extends AppCompatActivity {
         Intent intent = new Intent(this, ActivityPackages.class);
         startActivity(intent);
     }
+
+    public void toCarsList(View view) {
+        Intent intent = new Intent(this, ActivityCarList.class);
+        startActivity(intent);
+    }
 }

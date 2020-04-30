@@ -8,7 +8,7 @@
     android:gravity="center"
     android:background="@color/colorPrimary"
     android:padding="16dp"
-    tools:context="com.orioton.pickacar.client.ActivityPayment">
+    tools:context="com.orioton.pickacar.client.ActivityAddJourney">
 
     <TextView
         android:id="@+id/textView"

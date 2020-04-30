@@ -106,6 +106,7 @@
             app:cardElevation="3dp">
 
             <RelativeLayout
+                android:onClick="toCarsList"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 

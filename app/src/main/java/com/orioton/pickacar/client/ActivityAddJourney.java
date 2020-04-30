@@ -6,11 +6,11 @@ import android.os.Bundle;
 
 import com.orioton.pickacar.R;
 
-public class ActivityPayment extends AppCompatActivity {
+public class ActivityAddJourney extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_payment);
+        setContentView(R.layout.activity_add_journey);
     }
 }
