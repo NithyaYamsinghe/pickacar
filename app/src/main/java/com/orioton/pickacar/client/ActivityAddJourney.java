@@ -7,6 +7,7 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -32,6 +33,7 @@ public class ActivityAddJourney extends AppCompatActivity {
     ProgressDialog progressDialog;
 
     private String currentUserId;
+    private String subscriptionKey;
 
     Subscription subscriptionPlan;
 
@@ -95,15 +97,15 @@ public class ActivityAddJourney extends AppCompatActivity {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot usersSnapshot: dataSnapshot.getChildren()) {
-                    subscriptionPlan = usersSnapshot.getValue(Subscription.class);
+                for (DataSnapshot journeysSnapshot: dataSnapshot.getChildren()) {
+                    subscriptionPlan = journeysSnapshot.getValue(Subscription.class);
 
                     // charge the customer from the subscription
-                    charge()
+                    charge();
+
                 }
 
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
@@ -115,7 +117,29 @@ public class ActivityAddJourney extends AppCompatActivity {
     }
 
     private void charge() {
-        
+        Integer amount = 100;
+        Integer journeyKilometers = 10;
+
+        String packageName = subscriptionPlan.getPackageName();
+        Integer kilometers = subscriptionPlan.getKilometers();
+        Integer priceKilo = subscriptionPlan.getPricePerKilo();
+
+
+        Integer currentSubscriptionAmount = subscriptionPlan.getPackagePrice();
+
+
+        Integer payment = currentSubscriptionAmount - amount;
+        Integer leftMiles = kilometers - journeyKilometers;
+
+        Subscription updatedSubscription = new Subscription(currentUserId, packageName, leftMiles, priceKilo, payment);
+
+        databaseReference = FirebaseDatabase.getInstance().getReference(databasePathSub).child(subscriptionKey);
+        databaseReference.setValue(updatedSubscription);
+
+        progressDialog.dismiss();
+
+        Toast.makeText(getApplicationContext(), "Journey added!", Toast.LENGTH_SHORT).show();
+
     }
 
 

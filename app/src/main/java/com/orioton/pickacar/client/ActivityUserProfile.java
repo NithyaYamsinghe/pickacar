@@ -125,10 +125,8 @@ public class ActivityUserProfile extends AppCompatActivity implements View.OnCli
             }
         });
 
-
         imgPofilePhoto.setOnClickListener(this);
         btnProfileUpdate.setOnClickListener(this);
-
 
     }
 
