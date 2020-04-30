@@ -1,13 +1,16 @@
 package com.orioton.pickacar.driver;
 
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,8 +18,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.client.Firebase;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.orioton.pickacar.R;
 import com.orioton.pickacar.driver.model.JourneyModel;
 
@@ -30,11 +41,6 @@ public class JourneyList extends AppCompatActivity {
 
     FirebaseRecyclerAdapter<JourneyModel, JourneyLisitViewHolder> firebaseRecyclerAdapter;
     FirebaseRecyclerOptions<JourneyModel> options;
-
-    private Firebase root;
-
-//    FirebaseRecyclerAdapter<JourneyModel, JourneyLisitViewHolder> firebaseRecyclerAdapter;
-//    FirebaseRecyclerOptions<JourneyModel> options;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +67,56 @@ public class JourneyList extends AppCompatActivity {
         showData();
     }
 
+    private void showDeleteDataDialog(final String currentUserId) {
+
+        // alert dialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(JourneyList.this);
+        builder.setTitle("Delete");
+        builder.setMessage("Are you sure ?");
+
+        // set positive button
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                Query query = driverRef.orderByChild("userId").equalTo(currentUserId);
+                query.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                            ds.getRef().removeValue(); // delete details from firebase
+                        }
+
+                        // confirm deletion
+                        Toast.makeText(JourneyList.this, "car deleted successfully", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        // if anything went wrong
+                        Toast.makeText(JourneyList.this, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+
+            }
+        });
+
+        // negative button
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                dialog.dismiss();
+            }
+        });
+
+        // show dialog
+        builder.create().show();
+
+
+    }
 
         // show data
         private void showData() {
@@ -69,7 +125,9 @@ public class JourneyList extends AppCompatActivity {
             firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<JourneyModel, JourneyLisitViewHolder>(options) {
                 @Override
                 protected void onBindViewHolder(@NonNull JourneyLisitViewHolder journeyLisitViewHolder, int i, @NonNull JourneyModel journeyModel) {
-                    journeyLisitViewHolder.setDetails(getApplicationContext(),journeyModel.getUserId(),journeyModel.getUsername(),journeyModel.getPhone(),journeyModel.getDate(),journeyModel.getLocation(),journeyModel.getDestination(),journeyModel.getPassengers(),journeyModel.getStatus(),journeyModel.getPrice());
+                    journeyLisitViewHolder.setDetails(getApplicationContext(),journeyModel.getUserId(),journeyModel.getUsername(),journeyModel.getPhone(),
+                            journeyModel.getDate(),journeyModel.getLocation(),journeyModel.getDestination(),journeyModel.getPassengers(),
+                            journeyModel.getStatus(),journeyModel.getPrice());
                 }
 
 
@@ -77,27 +135,28 @@ public class JourneyList extends AppCompatActivity {
                 @Override
                 public JourneyLisitViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-                    // inflating layout car item
+                    // inflating layout journey item
                     View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.journey_item, parent, false);
                     JourneyLisitViewHolder journeyListViewHolder = new JourneyLisitViewHolder(itemView);
 
-                    // item click listener
-//                    journeyListViewHolder.setOnClickListener(new JourneyLisitViewHolder().ClickListener() {
-//                        @Override
-//                        public void onItemClick(View view, int position) {
-//
-//                            // get data from firebase at the position clicked
-//                            String brandText = getItem(position).getBrand();
-//                            String modelText = getItem(position).getModel();
-//                            String colorText = getItem(position).getColor();
-//                            String releasedYearText = getItem(position).getReleasedYear();
-//                            String passengersText = getItem(position).getPassengers();
-//                            String descriptionText = getItem(position).getDescription();
-//                            String conditionText = getItem(position).getCondition();
-//                            String imageText = getItem(position).getImage();
-//
-//
-//                            // pass this data to the new activity
+                     //item click listener
+                    journeyListViewHolder.setOnClickListener(new JourneyLisitViewHolder.ClickListener() {
+                        @Override
+                        public void onItemClick(View view, int position) {
+
+                            // get data from firebase at the position clicked
+                            String userIdText = getItem(position).getUserId();
+                            String usernameText = getItem(position).getUsername();
+                            String phoneText = getItem(position).getPhone();
+                            String dataText = getItem(position).getDate();
+                            String locationText = getItem(position).getLocation();
+                            String destinationText = getItem(position).getDestination();
+                            String passengersText = getItem(position).getPassengers();
+                            String statusText = getItem(position).getStatus();
+                            String priceText = getItem(position).getPrice();
+
+
+                            // pass this data to the new activity
 //                            Intent intent = new Intent(view.getContext(), CarDetailsActivity.class);
 //                            intent.putExtra("brand", brandText);
 //                            intent.putExtra("model", modelText);
@@ -108,37 +167,38 @@ public class JourneyList extends AppCompatActivity {
 //                            intent.putExtra("condition", conditionText);
 //                            intent.putExtra("image", imageText);
 //                            startActivity(intent);
-//
-//
-//                        }
-//
-//                        @Override
-//                        public void onItemLongClick(View view, int position) {
-//                            // get data
-//                            final String currentModel = getItem(position).getModel();
-//                            final String currentImage = getItem(position).getImage();
-//                            final String currentColor = getItem(position).getColor();
-//                            final String currentBrand = getItem(position).getBrand();
-//                            final String currentReleasedYear = getItem(position).getReleasedYear();
-//                            final String currentPassengers = getItem(position).getPassengers();
-//                            final String currentCondition = getItem(position).getCondition();
-//                            final String currentDescription = getItem(position).getDescription();
-//
-//                            // show dialog on long click
-//                            AlertDialog.Builder builder = new AlertDialog.Builder(CarListActivity.this);
-//
-//                            // options to display in dialog
-//                            String[] options = {"Update", "Delete"};
-//
-//                            // set to dialog
-//                            builder.setItems(options, new DialogInterface.OnClickListener() {
-//                                @Override
-//                                public void onClick(DialogInterface dialog, int which) {
-//
-//                                    // handle dialog items clicks
-//                                    if (which == 0) {
-//                                        // update clicked
-//
+
+
+                        }
+
+                        @Override
+                        public void onItemLongClick(View view, int position) {
+                            // get data
+                            final String currentUserId = getItem(position).getUserId();
+                            final String currentUsername = getItem(position).getUsername();
+                            final String currentPhone = getItem(position).getPhone();
+                            final String currentDate = getItem(position).getDate();
+                            final String currentLocation = getItem(position).getLocation();
+                            final String currentDestination = getItem(position).getDestination();
+                            final String currentPassengers = getItem(position).getPassengers();
+                            final String currentStatus = getItem(position).getStatus();
+                            final String currentPrice = getItem(position).getPrice();
+
+                            // show dialog on long click
+                            AlertDialog.Builder builder = new AlertDialog.Builder(JourneyList.this);
+
+                            // options to display in dialog
+                            String[] options = {"Confirm", "Reject"};
+
+                            // set to dialog
+                            builder.setItems(options, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                    // handle dialog items clicks
+                                    if (which == 0) {
+                                        // update clicked
+
 //                                        Intent intent = new Intent(CarListActivity.this, AddNewCarActivity.class);
 //                                        intent.putExtra("model", currentModel);
 //                                        intent.putExtra("brand", currentBrand);
@@ -149,20 +209,25 @@ public class JourneyList extends AppCompatActivity {
 //                                        intent.putExtra("condition", currentCondition);
 //                                        intent.putExtra("image", currentImage);
 //                                        startActivity(intent);
-//                                    }
-//                                    if (which == 1) {
-//                                        // delete clicked
-//
-//
-//                                        // method call
-//                                        showDeleteDataDialog(currentModel, currentImage);
-//                                    }
-//                                }
-//                            });
-//
-//                            builder.create().show();
-//                        }
-//                    });
+
+                                        updateDatabase(currentUserId);
+
+
+
+                                    }
+                                    if (which == 1) {
+                                        // delete clicked
+
+
+                                        // method call
+                                        showDeleteDataDialog(currentUserId);
+                                    }
+                                }
+                            });
+
+                            builder.create().show();
+                        }
+                    });
                     return journeyListViewHolder;
                 }
             };
@@ -178,5 +243,36 @@ public class JourneyList extends AppCompatActivity {
 
 
         }
+
+    private void updateDatabase(String currentUserId) {
+
+            FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+            DatabaseReference databaseReferenceNew = firebaseDatabase.getReference("journeys");
+
+            Query query = databaseReferenceNew.orderByChild("userId").equalTo(currentUserId);
+
+            query.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
+
+                        ds.getRef().child("status").setValue("Confirm");
+
+                    }
+                   // progressDialog.dismiss();
+
+                    // start car list after update
+                    Toast.makeText(getApplicationContext(), "database updated successfully", Toast.LENGTH_SHORT).show();
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+
+        }
+
 
 }

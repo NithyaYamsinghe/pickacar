@@ -224,29 +224,29 @@
         android:textColor="@color/white"
         android:textColorHint="@color/colorTint" />
     </LinearLayout>
-    <LinearLayout android:layout_height="wrap_content"
-        android:layout_width="wrap_content">
+<!--    <LinearLayout android:layout_height="wrap_content"-->
+<!--        android:layout_width="wrap_content">-->
 
-        <Button
-            android:id="@+id/dj_btn_driver_update"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:background="@android:color/holo_green_dark"
-            android:text="Acsept"
-            android:textColor="@color/white" />
+<!--        <Button-->
+<!--            android:id="@+id/dj_btn_driver_update"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="20dp"-->
+<!--            android:background="@android:color/holo_green_dark"-->
+<!--            android:text="Acsept"-->
+<!--            android:textColor="@color/white" />-->
 
-        <Button
-            android:id="@+id/dj_btn_driver_delete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:background="@android:color/holo_red_dark"
-            android:text="Remove"
-            android:textColor="@color/white" />
+<!--        <Button-->
+<!--            android:id="@+id/dj_btn_driver_delete"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="20dp"-->
+<!--            android:background="@android:color/holo_red_dark"-->
+<!--            android:text="Remove"-->
+<!--            android:textColor="@color/white" />-->
 
 
-    </LinearLayout>
+<!--    </LinearLayout>-->
 </LinearLayout>
 
 <!--<Button-->
