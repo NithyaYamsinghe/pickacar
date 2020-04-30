@@ -3,81 +3,234 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardBackgroundColor="@color/white"
+    app:cardBackgroundColor="@color/colorPrimary"
     app:cardCornerRadius="3dp"
     app:cardElevation="3dp"
     app:cardUseCompatPadding="true"
     app:contentPadding="5dp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/car_list_model_txt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Model"
-            android:textColor="@color/colorPrimary"
-            android:textSize="22sp"
-            android:textStyle="bold" />
+    <LinearLayout
+        android:id="@+id/car_list"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/custom_border"
+        android:orientation="vertical"
+        android:padding="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.482"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.24">
 
         <ImageView
             android:id="@+id/car_list_image"
-            android:layout_width="match_parent"
-            android:layout_height="210dp"
+            android:layout_width="250dp"
+            android:layout_height="150dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="20dp"
             android:adjustViewBounds="true"
             android:background="@drawable/loading"
-            android:scaleType="centerCrop" />
-
-        <TextView
-            android:id="@+id/car_list_brand_txt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Brand"
-            android:textColor="@color/colorPrimary"/>
-
-
-        <TextView
-            android:id="@+id/car_list_color_txt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Model"
-            android:textColor="@color/colorPrimary"
-            android:textSize="22sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/car_list_released_year_txt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
             android:scaleType="centerCrop"
-            android:text="brand"/>
+            android:layout_marginBottom="5dp"/>
 
-        <TextView
-            android:id="@+id/car_list_passengers_txt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Brand"
-            android:textColor="@color/colorPrimary"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/car_list_description_txt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Brand"
-            android:ellipsize="end"
-            android:maxLines="2"
-            android:textColor="@color/colorPrimary"/>
+            <TextView
+                android:id="@+id/car_list_model"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorTint"
+                android:fontFamily="@font/whitney_bold"
+                android:text="Model:"
+                android:textColor="@android:color/white" />
 
-        <TextView
-            android:id="@+id/car_list_condition_txt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Brand"
-            android:textColor="@color/colorPrimary"/>
 
+            <TextView
+                android:id="@+id/car_list_model_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorTint"
+                android:ems="10"
+                android:fontFamily="@font/whitney_regular"
+                android:text="Toyota Max"
+                android:textColor="@color/white"
+                android:textColorHint="@color/colorTint" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/car_list_brand"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorTint"
+                android:fontFamily="@font/whitney_bold"
+                android:text="Brand:"
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/car_list_brand_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorTint"
+                android:ems="10"
+                android:fontFamily="@font/whitney_regular"
+                android:text="Toyota"
+                android:textColor="@color/white"
+                android:textColorHint="@color/colorTint" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/car_list_color"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorTint"
+                android:fontFamily="@font/whitney_bold"
+                android:text="Color : "
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/car_list_color_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorTint"
+                android:ems="10"
+                android:fontFamily="@font/whitney_regular"
+                android:text="Pure white"
+                android:textColor="@color/white"
+                android:textColorHint="@color/colorTint" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/car_list_year"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorTint"
+                android:fontFamily="@font/whitney_bold"
+                android:text="Year : "
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/car_list_released_year_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorTint"
+                android:ems="10"
+                android:fontFamily="@font/whitney_regular"
+                android:text="2020"
+                android:textColor="@color/white"
+                android:textColorHint="@color/colorTint" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/car_list_passengers"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorTint"
+                android:fontFamily="@font/whitney_bold"
+                android:text="Passengers : "
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/car_list_passengers_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorTint"
+                android:ems="10"
+                android:fontFamily="@font/whitney_regular"
+                android:text="6 passengers"
+                android:textColor="@color/white"
+                android:textColorHint="@color/colorTint" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/car_list_condition"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorTint"
+                android:fontFamily="@font/whitney_bold"
+                android:text="Condition :"
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/car_list_condition_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorTint"
+                android:ems="10"
+                android:fontFamily="@font/whitney_regular"
+                android:text="Full A/C"
+                android:textColor="@color/white"
+                android:textColorHint="@color/colorTint" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/car_list_description"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorTint"
+                android:fontFamily="@font/whitney_bold"
+                android:text="Description : "
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/car_list_description_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorTint"
+                android:ems="10"
+                android:fontFamily="@font/whitney_regular"
+                android:text="brand new best car"
+                android:textColor="@color/white"
+                android:textColorHint="@color/colorTint" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+
+        </LinearLayout>
     </LinearLayout>
+
+
 </androidx.cardview.widget.CardView>
