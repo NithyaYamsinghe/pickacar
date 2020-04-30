@@ -1,78 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@color/colorPrimary"
+    android:padding="20dp">
+
+
+    <TextView
+        android:layout_marginTop="50dp"
+        android:id="@+id/d_txt1"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:text="Pick A Car"
+        android:textAlignment="center"
+        android:textColor="@color/colorTint"
+        android:textSize="25sp" />
+
+
+    <LinearLayout
+        android:id="@+id/app_dashboard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints">
 
     <Button
         android:id="@+id/admin_sign_up_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginTop="16dp"
         android:onClick="AdminSignUp"
         android:text="Admin Sign Up"
+        android:layout_gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/colorAccent"/>
 
-    <Button
-        android:id="@+id/btn_add_car"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="96dp"
-        android:onClick="changeAddCar"
-        android:text="Add Car"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+<!--    <Button-->
+<!--        android:background="@color/colorAccent"-->
+<!--        android:id="@+id/btn_add_car"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="96dp"-->
+<!--        android:onClick="changeAddCar"-->
+<!--        android:text="Add Car"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.501"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
 
     <Button
         android:id="@+id/btn_signup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginTop="16dp"
         android:onClick="changeSignUp"
         android:text="User Sign Up"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_add_car" />
-
-    <Button
-        android:id="@+id/btn_login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:onClick="changeLogIn"
-        android:text="User Log In"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_signup" />
+        android:layout_gravity="center"
+        android:background="@color/colorAccent"
+      />
 
     <Button
         android:id="@+id/btn_driver"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="16dp"
         android:onClick="changeDriver"
-        android:text="@string/driver_btn"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_login"
-        app:layout_constraintVertical_bias="0.033" />
+        android:text="Driver Sign up"
+        android:layout_gravity="center"
+      />
 
-    <Button
-        android:id="@+id/btn_user_dash"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:onClick="changeDash"
-        android:text="User Dashboard"
-        app:layout_constraintTop_toBottomOf="@+id/btn_driver"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="133dp" />
+<!--    <Button-->
+<!--        android:background="@color/colorAccent"-->
+<!--        android:id="@+id/btn_driver"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:onClick="changeDriver"-->
+<!--        android:text="@string/driver_btn"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.498"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/btn_login"-->
+<!--        app:layout_constraintVertical_bias="0.033" />-->
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+<!--    <Button-->
+
+<!--        android:background="@color/colorAccent"-->
+<!--        android:id="@+id/btn_user_dash"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="24dp"-->
+<!--        android:onClick="changeDash"-->
+<!--        android:text="User Dashboard"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/btn_driver"-->
+<!--        tools:ignore="MissingConstraints"-->
+<!--        tools:layout_editor_absoluteX="133dp" />-->
+    </LinearLayout>
+
+</FrameLayout>

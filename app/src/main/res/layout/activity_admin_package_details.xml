@@ -4,5 +4,143 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".admin.AdminPackageDetailsActivity">
+    tools:context=".admin.AdminPackageDetailsActivity"
+    android:background="@color/colorPrimary">
+
+    <LinearLayout
+        android:id="@+id/single_package"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/custom_border"
+        android:orientation="vertical"
+        android:padding="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.482"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.24">
+
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/package_name"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorTint"
+                android:fontFamily="@font/whitney_bold"
+                android:text="Name"
+                android:textColor="@android:color/white" />
+
+
+            <TextView
+                android:id="@+id/package_name_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorTint"
+                android:ems="10"
+                android:fontFamily="@font/whitney_regular"
+                android:text="@string/admin_car_list_toyota_max"
+                android:textColor="@color/white"
+                android:textColorHint="@color/colorTint" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/package_price"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorTint"
+                android:fontFamily="@font/whitney_bold"
+                android:text="Price"
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/package_price_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorTint"
+                android:ems="10"
+                android:fontFamily="@font/whitney_regular"
+                android:text="@string/admin_car_list_toyota"
+                android:textColor="@color/white"
+                android:textColorHint="@color/colorTint" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/package_price_per_km"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorTint"
+                android:fontFamily="@font/whitney_bold"
+                android:text="Price per km"
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/package_price_per_km_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorTint"
+                android:ems="10"
+                android:fontFamily="@font/whitney_regular"
+                android:text="Pure white"
+                android:textColor="@color/white"
+                android:textColorHint="@color/colorTint" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/package_km"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorTint"
+                android:fontFamily="@font/whitney_bold"
+                android:text="Km"
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/package_km_texts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorTint"
+                android:ems="10"
+                android:fontFamily="@font/whitney_regular"
+                android:text="@string/admin_car__2020"
+                android:textColor="@color/white"
+                android:textColorHint="@color/colorTint" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

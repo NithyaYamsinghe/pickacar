@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">PickACar</string>
 
+    <!-- client-->
     <string name="sign_up_activity_text">Sign Up for A PickACarAccount</string>
     <string name="invalid_model_name">Enter a valid model name</string>
     <string name="invalid_brand_name">Enter a valid brand name</string>
@@ -8,14 +9,13 @@
     <string name="invalid_passengers">Enter valid passenger amount</string>
     <string name="invalid_released_year">Enter valid released year</string>
     <string name="invalid_description">Enter a valid description</string>
-
+    <string name="payment_text_add_journey">Please fill in the fields to continue your payment</string>
     <string name="invalid_username">Enter a valid username</string>
     <string name="invalid_email">Enter a valid email</string>
     <string name="too_short">Too Short</string>
     <string name="invalid_password_length">Password should have 8 max characters</string>
     <string name="invalid_password_confirm">Passwords do not match</string>
     <string name="sign_up_activity_login">Already have an account? Login now</string>
-
     <string name="log_in_activity_text">Log in to your PickACar Account</string>
     <string name="login_activity_signup">Don\'t have an account? Sign up now</string>
     <string name="title_activity_admin_home">AdminHomeActivity</string>
@@ -25,11 +25,9 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
-
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
-
     <string name="home_second">Home Second</string>
 
     <!--    Driver-->
@@ -48,6 +46,10 @@
     <string name="set_button">Set</string>
     <string name="invalid_phone">Enter a valid phone number</string>
     <string name="invalid_name">Enter a valid name</string>
+
+
+    <!-- Administrator-->
+
     <string name="admin_password_hint">Password</string>
     <string name="admin_email_hint">Email</string>
     <string name="admin_register_text">Register</string>
@@ -60,9 +62,6 @@
     <string name="nav_home">Home</string>
     <string name="nav_profile">Profile</string>
     <string name="nav_users">Users</string>
-
-
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="admin_profile_name">Name</string>
     <string name="admin_profile_email">Email</string>
     <string name="admin_profile_phone">phone</string>
@@ -87,9 +86,6 @@
     <string name="menu_car_list">Cars</string>
     <string name="bottom_nav_cars">Cars</string>
     <string name="bottom_nav_packages">Packages</string>
-
-
-    <string name="payment_text_add_journey">Please fill in the fields to continue your payment</string>
     <string name="admin_change_confirm_password">Confirm Password</string>
     <string name="admin_update_password_button">update password</string>
     <string name="admin_add_car_brand_of_the_car">Brand of the car</string>
@@ -145,8 +141,6 @@
     <string name="admin_car_full_a_c">Full A/C</string>
     <string name="admin_car_description">Description :</string>
     <string name="admin_car_desc_txt">brand new best car</string>
-
-    <!--    <string name="payment_text">Please fill in the fields to add your journey</string>-->
-
-
+    <string name="pick_a_car">Pick A Car</string>
+    <string name="nation_wide_car_app">Nation wide car rental app</string>
 </resources>
