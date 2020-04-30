@@ -7,6 +7,7 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -17,13 +18,15 @@ import com.google.firebase.database.ValueEventListener;
 import com.orioton.pickacar.R;
 import com.orioton.pickacar.client.model.Subscription;
 import com.orioton.pickacar.client.model.User;
+import com.orioton.pickacar.driver.model.JourneyModel;
 
 public class ActivityAddJourney extends AppCompatActivity {
 
     DatabaseReference databaseReference;
 
-    String databasePath = "journeys";
+    String databasePathUser = "users";
     String databasePathSub = "subscriptions";
+    String databasePathJourney = "journies";
 
     User currentUser;
 
@@ -32,6 +35,7 @@ public class ActivityAddJourney extends AppCompatActivity {
     ProgressDialog progressDialog;
 
     private String currentUserId;
+    private String subscriptionKey;
 
     Subscription subscriptionPlan;
 
@@ -43,6 +47,9 @@ public class ActivityAddJourney extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_journey);
+
+        mAuth = FirebaseAuth.getInstance();
+
 
         etLocation = findViewById(R.id.et_location);
         etDestination = findViewById(R.id.et_destination);
@@ -57,7 +64,7 @@ public class ActivityAddJourney extends AppCompatActivity {
         // getting the current userId
         currentUserId = mAuth.getCurrentUser().getUid();
 
-        databaseReference = FirebaseDatabase.getInstance().getReference(databasePath);
+        databaseReference = FirebaseDatabase.getInstance().getReference(databasePathUser);
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -95,15 +102,20 @@ public class ActivityAddJourney extends AppCompatActivity {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot usersSnapshot: dataSnapshot.getChildren()) {
-                    subscriptionPlan = usersSnapshot.getValue(Subscription.class);
+                for (DataSnapshot journeysSnapshot: dataSnapshot.getChildren()) {
+                    subscriptionPlan = journeysSnapshot.getValue(Subscription.class);
+
+                    subscriptionKey = journeysSnapshot.getKey();
+
 
                     // charge the customer from the subscription
                     charge();
+
                 }
 
+                // charge the customer from the subscription
+                charge();
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
@@ -111,11 +123,41 @@ public class ActivityAddJourney extends AppCompatActivity {
         });
 
 
-
     }
 
     private void charge() {
-        
+        Integer amount = 100;
+        Integer journeyKilometers = 10;
+
+        String packageName = subscriptionPlan.getPackageName();
+        Integer kilometers = subscriptionPlan.getKilometers();
+        Integer priceKilo = subscriptionPlan.getPricePerKilo();
+
+
+        Integer currentSubscriptionAmount = subscriptionPlan.getPackagePrice();
+
+
+        Integer payment = currentSubscriptionAmount - amount;
+        Integer leftMiles = kilometers - journeyKilometers;
+
+        Subscription updatedSubscription = new Subscription(currentUserId, packageName, leftMiles, priceKilo, payment);
+
+        databaseReference = FirebaseDatabase.getInstance().getReference(databasePathSub).child(subscriptionKey);
+        databaseReference.setValue(updatedSubscription);
+
+
+        // adding journey
+        JourneyModel journey = new JourneyModel(currentUserId, currentUser.getUserName(), "0712238883", "2", etLocation.getText().toString(), etDestination.getText().toString(), etPassengers.getText().toString(), "pending", "100");
+
+        databaseReference = FirebaseDatabase.getInstance().getReference(databasePathJourney);
+        String id = databaseReference.push().getKey();
+        databaseReference.child(id).setValue(journey);
+
+
+        progressDialog.dismiss();
+
+        Toast.makeText(getApplicationContext(), "Journey added!", Toast.LENGTH_SHORT).show();
+
     }
 
 

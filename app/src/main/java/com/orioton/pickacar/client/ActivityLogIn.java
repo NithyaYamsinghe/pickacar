@@ -95,10 +95,7 @@ public class ActivityLogIn extends AppCompatActivity implements View.OnClickList
                                 btnLogIn.setVisibility(View.VISIBLE);
                                 Toast.makeText(getApplicationContext(), "Logged in successfully!", Toast.LENGTH_SHORT).show();
 
-                                // finishing the login activity
-                                finish();
-
-                                Intent intent = new Intent(getApplicationContext(), ActivityUserProfile.class);
+                                Intent intent = new Intent(getApplicationContext(), ActivityUserDashboard.class);
                                 // clearing all the top activities
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 startActivity(intent);

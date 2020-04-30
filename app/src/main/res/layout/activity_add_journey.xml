@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/colorTint"
-        android:text="@string/payment_text" />
+        android:text="@string/payment_text_add_journey" />
 
     <Space
         android:layout_width="match_parent"
@@ -61,7 +61,7 @@
         android:layout_height="30dp" />
     <Button
         android:onClick="addJourney"
-        android:id="@+id/btn_add_joueny"
+        android:id="@+id/btn_add_journey"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Add Journey"
