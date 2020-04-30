@@ -6,7 +6,7 @@
     app:cardUseCompatPadding="true"
     app:cardCornerRadius="2dp"
     app:cardElevation="2dp"
-    app:cardBackgroundColor="@color/colorPrimary"
+    app:cardBackgroundColor="@color/colorPrimaryDark"
     app:contentPadding="3dp">
     
     <LinearLayout
@@ -31,8 +31,10 @@
                 android:text="person name"
                 android:textColor="@color/white"
                 android:fontFamily="@font/whitney_regular"
-                android:textSize="18sp"/>
+                android:textSize="18sp"
+                android:layout_marginLeft="10dp"/>
             <TextView
+                android:layout_marginLeft="10dp"
                 android:id="@+id/user_list_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

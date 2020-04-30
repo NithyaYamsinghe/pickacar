@@ -139,25 +139,25 @@ public class AdminDashboardActivity extends AppCompatActivity {
     // inflate options menu
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.admin_car_list_menu, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_logout) {
-            firebaseAuth.signOut();
-            checkUserStatus();
-
-        } else if (id == R.id.action_add) {
-            startActivity(new Intent(AdminDashboardActivity.this, AddNewCarActivity.class));
-
-        }
-        return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.admin_car_list_menu, menu);
+//        return super.onCreateOptionsMenu(menu);
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+//        int id = item.getItemId();
+//        if (id == R.id.action_logout) {
+//            firebaseAuth.signOut();
+//            checkUserStatus();
+//
+//        } else if (id == R.id.action_add) {
+//            startActivity(new Intent(AdminDashboardActivity.this, AddNewCarActivity.class));
+//
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
 
     @Override
     protected void onStart() {

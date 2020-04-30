@@ -25,6 +25,8 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -33,9 +35,10 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.orioton.pickacar.MainActivity;
 import com.orioton.pickacar.R;
 import com.orioton.pickacar.admin.model.CarModel;
-import com.orioton.pickacar.admin.views.AdminCarListViewHolder;
+import com.orioton.pickacar.admin.adapters.AdminCarListViewHolder;
 
 
 public class AdminCarListActivity extends AppCompatActivity {
@@ -48,11 +51,18 @@ public class AdminCarListActivity extends AppCompatActivity {
     FirebaseRecyclerAdapter<CarModel, AdminCarListViewHolder> firebaseRecyclerAdapter;
     FirebaseRecyclerOptions<CarModel> options;
 
+    // firebase auth
+    FirebaseAuth firebaseAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_car_list);
 
+
+
+        // init
+        firebaseAuth = FirebaseAuth.getInstance();
 
         // action bar
         ActionBar actionBar = getSupportActionBar();
@@ -465,9 +475,27 @@ public class AdminCarListActivity extends AppCompatActivity {
             startActivity(new Intent(AdminCarListActivity.this, AddNewCarActivity.class));
             return true;
         }
+        if (id == R.id.action_logout) {
+            firebaseAuth.signOut();
+            checkUserStatus();
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 
+    private void checkUserStatus() {
+
+        // get current user
+
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        if (user != null) {
+
+        } else {
+            startActivity(new Intent(AdminCarListActivity.this, MainActivity.class));
+        }
+
+
+    }
     private void showSortDialog() {
 
         // options to display in dialog

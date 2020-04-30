@@ -19,8 +19,12 @@ import androidx.fragment.app.Fragment;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -28,10 +32,13 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -42,7 +49,9 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.orioton.pickacar.MainActivity;
 import com.orioton.pickacar.R;
+import com.orioton.pickacar.admin.AddNewCarActivity;
 import com.squareup.picasso.Picasso;
 
 import java.security.Key;
@@ -74,6 +83,7 @@ public class AdminProfileFragment extends Fragment {
     ImageView admin_profile_image, admin_profile_cover_image;
     TextView admin_profile_name, admin_profile_email, admin_profile_phone;
     FloatingActionButton edit_profile_button;
+    Button admin_delete_profile;
 
 
     // progress dialog
@@ -124,6 +134,7 @@ public class AdminProfileFragment extends Fragment {
         admin_profile_phone = view.findViewById(R.id.admin_profile_phone);
         admin_profile_cover_image = view.findViewById(R.id.admin_profile_cover_photo);
         edit_profile_button = view.findViewById(R.id.profile_edit_fab_button);
+        admin_delete_profile = view.findViewById(R.id.delete_profile);
 
         // init arrays of permissions
         cameraPermissions = new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
@@ -193,6 +204,43 @@ public class AdminProfileFragment extends Fragment {
             }
         });
 
+        admin_delete_profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                FirebaseAuth.getInstance().getCurrentUser().delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+
+                        Toast.makeText(getActivity(), "successfully deleted user", Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+
+                Query query = databaseReference.orderByChild("uid").equalTo(user.getUid());
+
+                query.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                            ds.getRef().removeValue();
+                            firebaseAuth.signOut();
+                            checkUserStatus();
+
+
+                        }
+                    }
+
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
+            }
+        });
+
         return view;
     }
 
@@ -235,7 +283,7 @@ public class AdminProfileFragment extends Fragment {
 
 
         // options to show in dialog
-        String options[] = {"Edit profile picture", "Edit cover photo", "Edit name", "Edit phone"};
+        String options[] = {"Edit profile picture", "Edit cover photo", "Edit name", "Edit phone", "Change password"};
 
         // alert dialog
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -268,12 +316,106 @@ public class AdminProfileFragment extends Fragment {
                     progressDialog.setMessage("updating phone number");
                     showNamePhoneUpdateDialog("phone");
                 }
+             else if (which == 4) {
+                // Change phone clicked
+                progressDialog.setMessage("updating password");
+               showChangePasswordDialog();
+            }
 
             }
         });
 
         // create and show dialog
         builder.create().show();
+
+    }
+
+    private void showChangePasswordDialog() {
+
+
+        View view = LayoutInflater.from(getActivity()).inflate(R.layout.admin_update_password_dialog, null);
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setView(view);
+
+        final AlertDialog dialog = builder.create();
+        dialog.show();
+
+        final EditText password = view.findViewById(R.id.admin_change_edit_Password);
+        final EditText confirmPassword = view.findViewById(R.id.admin_change_edit_cPassword);
+        final Button changePasswordButton = view.findViewById(R.id.admin_update_password);
+
+
+        changePasswordButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // validate data
+
+                String oldPassword = password.getText().toString().trim();
+                String newPassword = confirmPassword.getText().toString().trim();
+
+                if (TextUtils.isEmpty(oldPassword)){
+
+                    Toast.makeText(getActivity(), "Enter you current password", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (newPassword.length() < 6){
+
+                    Toast.makeText(getActivity(), "Password length mut  be at least 7 characters", Toast.LENGTH_SHORT).show();
+
+
+                    return;
+                }
+
+
+                dialog.dismiss();
+                updatePassword(oldPassword, newPassword);
+            }
+        });
+
+
+
+    }
+
+    private void updatePassword(String oldPassword, final String newPassword) {
+
+        progressDialog.show();
+
+        // get current user
+        final FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+
+        AuthCredential authCredential = EmailAuthProvider.getCredential(user.getEmail(), oldPassword);
+        user.reauthenticate(authCredential).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                currentUser.updatePassword(newPassword).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+
+                        progressDialog.dismiss();
+                        Toast.makeText(getActivity(), "Password updated successfully", Toast.LENGTH_SHORT).show();
+
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        progressDialog.dismiss();
+                        Toast.makeText(getActivity(), ""+ e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                progressDialog.dismiss();
+
+                Toast.makeText(getActivity(), ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+
 
     }
 
@@ -576,5 +718,48 @@ public class AdminProfileFragment extends Fragment {
 
             }
         });
+    }
+
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        setHasOptionsMenu(true); // show menu
+
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.admin_car_list_menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_logout) {
+            firebaseAuth.signOut();
+            checkUserStatus();
+
+        } else if (id == R.id.action_add) {
+            startActivity(new Intent(getActivity(), AddNewCarActivity.class));
+
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void checkUserStatus() {
+
+        // get current user
+
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        if (user != null) {
+
+        } else {
+            startActivity(new Intent(getActivity(), MainActivity.class));
+        }
+
+
     }
 }

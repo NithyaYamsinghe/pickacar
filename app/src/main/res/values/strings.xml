@@ -11,6 +11,7 @@
 
     <string name="invalid_username">Enter a valid username</string>
     <string name="invalid_email">Enter a valid email</string>
+    <string name="too_short">Too Short</string>
     <string name="invalid_password_length">Password should have 8 max characters</string>
     <string name="invalid_password_confirm">Passwords do not match</string>
     <string name="sign_up_activity_login">Already have an account? Login now</string>
@@ -88,6 +89,12 @@
     <string name="bottom_nav_cars">Cars</string>
     <string name="bottom_nav_packages">Packages</string>
 
+
+    <string name="payment_text">Please fill in the fields to continue your payment</string>
+    <string name="admin_change_confirm_password">Confirm Password</string>
+    <string name="admin_update_password_button">update password</string>
+
     <string name="payment_text">Please fill in the fields to add your journey</string>
+
 
 </resources>
