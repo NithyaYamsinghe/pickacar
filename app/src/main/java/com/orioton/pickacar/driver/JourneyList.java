@@ -1,6 +1,7 @@
 package com.orioton.pickacar.driver;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -157,8 +158,8 @@ public class JourneyList extends AppCompatActivity {
 
 
                             // pass this data to the new activity
-//                            Intent intent = new Intent(view.getContext(), CarDetailsActivity.class);
-//                            intent.putExtra("brand", brandText);
+                            Intent intent = new Intent(view.getContext(), AddReview.class);
+                            intent.putExtra("Name", usernameText);
 //                            intent.putExtra("model", modelText);
 //                            intent.putExtra("color", colorText);
 //                            intent.putExtra("releasedYear", releasedYearText);
@@ -166,7 +167,7 @@ public class JourneyList extends AppCompatActivity {
 //                            intent.putExtra("description", descriptionText);
 //                            intent.putExtra("condition", conditionText);
 //                            intent.putExtra("image", imageText);
-//                            startActivity(intent);
+                            startActivity(intent);
 
 
                         }
