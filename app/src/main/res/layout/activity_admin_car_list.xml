@@ -6,14 +6,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".admin.AdminCarListActivity">
-
-
     <!-- recyclerView car list-->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_car_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimary"/>
-
-
+        android:background="@color/colorPrimary" />
 </LinearLayout>

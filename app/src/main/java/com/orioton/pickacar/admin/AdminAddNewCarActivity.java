@@ -39,7 +39,7 @@ import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
 
-public class AddNewCarActivity extends AppCompatActivity {
+public class AdminAddNewCarActivity extends AppCompatActivity {
 
     EditText brand, model, color, releasedYear, passengers, description, condition;
     ImageView image;
@@ -75,7 +75,7 @@ public class AddNewCarActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_new_car);
+        setContentView(R.layout.activity_admin_add_new_car);
 
         // action bar
 
@@ -173,7 +173,7 @@ public class AddNewCarActivity extends AppCompatActivity {
         databaseReference = FirebaseDatabase.getInstance().getReference(databasePath);
 
         // progress dialog
-        progressDialog = new ProgressDialog(AddNewCarActivity.this);
+        progressDialog = new ProgressDialog(AdminAddNewCarActivity.this);
 
 
     }
@@ -198,7 +198,7 @@ public class AddNewCarActivity extends AppCompatActivity {
             public void onSuccess(Void aVoid) {
                 // deleted
 
-                Toast.makeText(AddNewCarActivity.this, "previous image is deleted", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AdminAddNewCarActivity.this, "previous image is deleted", Toast.LENGTH_SHORT).show();
 
                 // upload new image
                 uploadNewImage();
@@ -210,7 +210,7 @@ public class AddNewCarActivity extends AppCompatActivity {
             public void onFailure(@NonNull Exception e) {
 
                 // failed
-                Toast.makeText(AddNewCarActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(AdminAddNewCarActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                 progressDialog.dismiss();
 
 
@@ -236,7 +236,7 @@ public class AddNewCarActivity extends AppCompatActivity {
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
                 // uploaded
-                Toast.makeText(AddNewCarActivity.this, "new image uploaded", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AdminAddNewCarActivity.this, "new image uploaded", Toast.LENGTH_SHORT).show();
 
                 // get url of newly uploaded image
                 Task<Uri> urlTask = taskSnapshot.getStorage().getDownloadUrl();
@@ -253,7 +253,7 @@ public class AddNewCarActivity extends AppCompatActivity {
             public void onFailure(@NonNull Exception e) {
 
                 // error
-                Toast.makeText(AddNewCarActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(AdminAddNewCarActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                 progressDialog.dismiss();
 
             }
@@ -299,8 +299,8 @@ public class AddNewCarActivity extends AppCompatActivity {
                 progressDialog.dismiss();
 
                 // start car list after update
-                Toast.makeText(AddNewCarActivity.this, "database uploaded successfully", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(AddNewCarActivity.this, AdminCarListActivity.class));
+                Toast.makeText(AdminAddNewCarActivity.this, "database uploaded successfully", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(AdminAddNewCarActivity.this, AdminCarListActivity.class));
                 finish();
             }
 
@@ -346,14 +346,14 @@ public class AddNewCarActivity extends AppCompatActivity {
                     progressDialog.dismiss();
 
                     // show the toast that image is uploaded 
-                    Toast.makeText(AddNewCarActivity.this, "uploaded successfully", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AdminAddNewCarActivity.this, "uploaded successfully", Toast.LENGTH_SHORT).show();
                     CarUploadInfoModel carUploadInfo = new CarUploadInfoModel(addBrand, addColor, addCondition, addDescription, downloadUrl.toString(),
                             addModel, addPassengers, addReleasedYear, addModel.toLowerCase());
 
                     // getting image upload id
                     String uploadId = databaseReference.push().getKey();
                     databaseReference.child(uploadId).setValue(carUploadInfo);
-                    Intent intent = new Intent(AddNewCarActivity.this, AdminCarListActivity.class);
+                    Intent intent = new Intent(AdminAddNewCarActivity.this, AdminCarListActivity.class);
                     startActivity(intent);
 
 
@@ -368,7 +368,7 @@ public class AddNewCarActivity extends AppCompatActivity {
                             progressDialog.dismiss();
 
                             // show error toast
-                            Toast.makeText(AddNewCarActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AdminAddNewCarActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
 
 
                         }

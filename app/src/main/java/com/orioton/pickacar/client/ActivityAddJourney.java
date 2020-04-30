@@ -107,6 +107,10 @@ public class ActivityAddJourney extends AppCompatActivity {
 
                     subscriptionKey = journeysSnapshot.getKey();
 
+
+                    // charge the customer from the subscription
+                    charge();
+
                 }
 
                 // charge the customer from the subscription

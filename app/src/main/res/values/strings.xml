@@ -5,7 +5,7 @@
     <string name="invalid_model_name">Enter a valid model name</string>
     <string name="invalid_brand_name">Enter a valid brand name</string>
     <string name="invalid_color_name">Enter a valid color name</string>
-    <string name="invalid_passangers">Enter valid passenger amount</string>
+    <string name="invalid_passengers">Enter valid passenger amount</string>
     <string name="invalid_released_year">Enter valid released year</string>
     <string name="invalid_description">Enter a valid description</string>
 
@@ -61,9 +61,8 @@
     <string name="nav_profile">Profile</string>
     <string name="nav_users">Users</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="admin_profile_name">Name</string>
     <string name="admin_profile_email">Email</string>
     <string name="admin_profile_phone">phone</string>
@@ -93,8 +92,61 @@
     <string name="payment_text_add_journey">Please fill in the fields to continue your payment</string>
     <string name="admin_change_confirm_password">Confirm Password</string>
     <string name="admin_update_password_button">update password</string>
+    <string name="admin_add_car_brand_of_the_car">Brand of the car</string>
+    <string name="admin_add_car_model_of_the_car">Model of the car</string>
+    <string name="admin_add_car_color_of_the_car">Color of the car</string>
+    <string name="admin_add_car_released_year_of_the_car">Released year of the car</string>
+    <string name="admin_add_car_number_of_passengers">Number of passengers</string>
+    <string name="admin_add_car_condition">Condition</string>
+    <string name="admin_add_car_description_of_the_car">Description of the car</string>
+    <string name="admin_add_button_add_car">Add Car</string>
+    <string name="admin_car_info_mazda_z">Mazda Z</string>
+    <string name="admin_car_info_show_reviews">Show Reviews</string>
+    <string name="admin_car_info_description">Description:</string>
+    <string name="admin_car_info">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
+    <string name="admin_car_info_brand">Brand:</string>
+    <string name="admin_car_info_year">Year:</string>
+    <string name="admin_car_info_2019">2019</string>
+    <string name="admin_car_info_color">Color:</string>
+    <string name="admin_car_info_white_and_gray">White and Gray</string>
+    <string name="admin_car_info_info">Passengers:</string>
+    <string name="admin_car_info_4">4</string>
+    <string name="admin_car_info_condition">Condition:</string>
+    <string name="admin_car_info_good">Good</string>
+    <string name="admin_login_heading">Login to pick a car admin</string>
+    <string name="admin_create_new_account">Create new account</string>
+    <string name="admin_register_sign_in">Sign in</string>
+    <string name="admin_delete_profile_button">Delete Profile</string>
+    <string name="admin_email_admin">Email</string>
+    <string name="admin_profile_hint_name">Name</string>
+    <string name="admin_profile_hint_phone">Phone</string>
+    <string name="admin_profile_hint_password">Password</string>
+    <string name="admin_profile_password">********</string>
+    <string name="admin_user_list_person_name">person name</string>
+    <string name="admin_user_list_person_email">person email</string>
+    <string name="admin_package_silver_plan">SILVER PLAN</string>
+    <string name="admin_package_sub_header_best_for_short_journey">Best for short journyes</string>
+    <string name="todo">TODO</string>
+    <string name="admin_rs_txt">Rs.</string>
+    <string name="admin_12_1km_txt">12/1km</string>
+    <string name="admin_rs_per_km">Rs.</string>
+    <string name="admin_25_txt">25</string>
+    <string name="admin_km_txt">km</string>
+    <string name="admin_car_list_model">Model:</string>
+    <string name="admin_car_list_toyota_max">Toyota Max</string>
+    <string name="admin_car_list_brand">Brand:</string>
+    <string name="admin_car_list_toyota">Toyota</string>
+    <string name="admin_car_list_color">Color :</string>
+    <string name="admin_car_year">Year :</string>
+    <string name="admin_car__2020">2020</string>
+    <string name="admin_car_passengers">Passengers :</string>
+    <string name="admin_car_6_passengers">6 passengers</string>
+    <string name="admin_car_condition">Condition :</string>
+    <string name="admin_car_full_a_c">Full A/C</string>
+    <string name="admin_car_description">Description :</string>
+    <string name="admin_car_desc_txt">brand new best car</string>
 
-    <string name="payment_text">Please fill in the fields to add your journey</string>
+    <!--    <string name="payment_text">Please fill in the fields to add your journey</string>-->
 
 
 </resources>

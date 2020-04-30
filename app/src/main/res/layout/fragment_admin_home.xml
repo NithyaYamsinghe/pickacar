@@ -3,15 +3,83 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".admin.fragments.AdminHomeFragment">
+    tools:context=".admin.fragments.AdminHomeFragment"
+    android:background="@color/colorPrimary"
+    android:padding="20dp">
+
 
     <TextView
+        android:layout_marginTop="50dp"
+        android:id="@+id/d_txt1"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:text="Admin Dashboard"
+        android:textAlignment="center"
+        android:textColor="@color/colorTint"
+        android:textSize="20sp" />
+
+    <LinearLayout
+        android:id="@+id/admin_dashboard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+
+    <Button
+        android:id="@+id/add_car_button_dashboard"
+        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Home"
-        android:textAlignment="center"
-        android:textSize="30dp"
-        android:gravity="center"/>
+        android:text="Add Car"
+        android:textColor="@color/white"
+        android:layout_gravity="center"
+        android:background="@color/colorAccent"
+        android:layout_marginBottom="10dp"
 
+        />
+        <Button
+            android:id="@+id/add_packages_button_dashboard"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Add Packages"
+            android:textColor="@color/white"
+            android:layout_gravity="center"
+            android:background="@color/colorAccent"
+            android:layout_marginBottom="10dp"
+
+            />
+
+
+        <Button
+            android:id="@+id/view_cars_button_dashboard"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="View Cars"
+            android:textColor="@color/white"
+            android:layout_gravity="center"
+            android:background="@color/colorAccent"
+            android:layout_marginBottom="10dp"
+
+            />
+
+        <Button
+            android:id="@+id/view_packages_button_dashboard"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="View Packages"
+            android:textColor="@color/white"
+            android:layout_gravity="center"
+            android:background="@color/colorAccent"
+            android:layout_marginBottom="10dp"
+
+
+            />
+
+    </LinearLayout>
 
 </FrameLayout>

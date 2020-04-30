@@ -28,7 +28,7 @@
                 android:id="@+id/user_list_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="person name"
+                android:text="@string/admin_user_list_person_name"
                 android:textColor="@color/white"
                 android:fontFamily="@font/whitney_regular"
                 android:textSize="18sp"
@@ -38,7 +38,7 @@
                 android:id="@+id/user_list_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="person email"
+                android:text="@string/admin_user_list_person_email"
                 android:textColor="@color/white"
                 android:fontFamily="@font/whitney_regular"/>
         </LinearLayout>

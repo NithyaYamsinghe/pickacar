@@ -8,19 +8,12 @@
     android:padding="20dp"
     tools:context=".admin.AdminLoginActivity">
 
-<!--    <TextView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="@string/admin_sign_in_text"-->
-<!--        android:textAlignment="center"-->
-<!--        android:textColor="@color/colorTint"-->
-<!--        android:textSize="25sp" />-->
 
     <TextView
         android:id="@+id/d_txt1"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:text="Login to pick a car admin "
+        android:text="@string/admin_login_heading"
         android:textAlignment="center"
         android:textColor="@color/colorTint"
         android:textSize="20sp" />

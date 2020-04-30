@@ -12,7 +12,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
@@ -28,7 +27,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -51,10 +49,9 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.orioton.pickacar.MainActivity;
 import com.orioton.pickacar.R;
-import com.orioton.pickacar.admin.AddNewCarActivity;
+import com.orioton.pickacar.admin.AdminAddNewCarActivity;
 import com.squareup.picasso.Picasso;
 
-import java.security.Key;
 import java.util.HashMap;
 
 import static android.app.Activity.RESULT_OK;
@@ -548,7 +545,7 @@ public class AdminProfileFragment extends Fragment {
 
                 if (grantResults.length > 0) {
                     boolean cameraAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
-                    boolean writeStorageAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
+                    boolean writeStorageAccepted = grantResults[1] == PackageManager.PERMISSION_GRANTED;
 
                     if (cameraAccepted && writeStorageAccepted) {
                         // permissions enabled
@@ -567,7 +564,7 @@ public class AdminProfileFragment extends Fragment {
 
                 if (grantResults.length > 0) {
 
-                    boolean writeStorageAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
+                    boolean writeStorageAccepted = grantResults[1] == PackageManager.PERMISSION_GRANTED;
 
                     if (writeStorageAccepted) {
                         // permissions enabled
@@ -742,7 +739,7 @@ public class AdminProfileFragment extends Fragment {
             checkUserStatus();
 
         } else if (id == R.id.action_add) {
-            startActivity(new Intent(getActivity(), AddNewCarActivity.class));
+            startActivity(new Intent(getActivity(), AdminAddNewCarActivity.class));
 
 
         }

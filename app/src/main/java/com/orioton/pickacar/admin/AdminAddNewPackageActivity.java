@@ -23,12 +23,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.StorageReference;
 import com.orioton.pickacar.R;
 import com.orioton.pickacar.admin.model.PackageModel;
-import com.squareup.picasso.Picasso;
 
-public class AddNewPackageActivity extends AppCompatActivity {
+public class AdminAddNewPackageActivity extends AppCompatActivity {
 
     TextInputEditText admin_package_name, admin_package_price, admin_package_price_per_km, admin_package_kilometers;
     Button add_package;
@@ -56,13 +54,17 @@ public class AddNewPackageActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_new_package);
+        setContentView(R.layout.activity_admin_add_new_package);
 
 
         // action bar
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("Add Package");
+
+        // set back button in action bar
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
 
         // initializing
         admin_package_name = findViewById(R.id.admin_add_package_name);
@@ -85,7 +87,7 @@ public class AddNewPackageActivity extends AppCompatActivity {
         databaseReference = FirebaseDatabase.getInstance().getReference(databasePath);
 
         // progress dialog
-        progressDialog = new ProgressDialog(AddNewPackageActivity.this);
+        progressDialog = new ProgressDialog(AdminAddNewPackageActivity.this);
         // In the onCreate() method, initialize the FirebaseAuth instance.
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -176,8 +178,8 @@ public class AddNewPackageActivity extends AppCompatActivity {
                 progressDialog.dismiss();
 
                 // start car list after update
-                Toast.makeText(AddNewPackageActivity.this, "database updated successfully", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(AddNewPackageActivity.this, AdminPackageListActivity.class));
+                Toast.makeText(AdminAddNewPackageActivity.this, "database updated successfully", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(AdminAddNewPackageActivity.this, AdminPackageListActivity.class));
                 finish();
             }
 
@@ -210,11 +212,19 @@ public class AddNewPackageActivity extends AppCompatActivity {
             String uploadId = databaseReference.push().getKey();
             databaseReference.child(uploadId).setValue(packageModel);
 
-            startActivity(new Intent(AddNewPackageActivity.this, AdminPackageListActivity.class));
+            startActivity(new Intent(AdminAddNewPackageActivity.this, AdminPackageListActivity.class));
 
 
         }
 
 
+    }
+
+
+    // handle on back pressed
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }
