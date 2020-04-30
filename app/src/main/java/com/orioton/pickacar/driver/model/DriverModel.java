@@ -11,11 +11,15 @@ public class DriverModel {
 
     }
 
-    public DriverModel(String email, String phone, String password) {
+    public DriverModel(String value1, String email, String phone, String password) {
         this.email = email;
         this.phone = phone;
         this.password = password;
     }
+
+    public DriverModel(String value1, String value2, String value3) {
+    }
+
 
     public String getEmail() {
         return email;
