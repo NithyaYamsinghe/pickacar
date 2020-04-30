@@ -99,7 +99,7 @@ public class ActivityAddJourney extends AppCompatActivity {
                     subscriptionPlan = usersSnapshot.getValue(Subscription.class);
 
                     // charge the customer from the subscription
-                    charge()
+                    charge();
                 }
 
             }

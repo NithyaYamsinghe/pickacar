@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginLeft="30dp"
     android:layout_marginTop="30dp"
-    android:layout_marginRight="30dp"
-  >
+    android:layout_marginRight="30dp">
 
 
     <LinearLayout
@@ -32,7 +32,7 @@
                     android:id="@+id/admin_plan1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="SILVER PLAN"
+                    android:text="@string/admin_package_silver_plan"
                     android:textColor="@color/white"
                     android:textSize="24sp" />
 
@@ -40,9 +40,10 @@
                     android:id="@+id/admin_plan1_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Best for short journyes"
+                    android:text="@string/admin_package_sub_header_best_for_short_journey"
                     android:textColor="#C6C6C6"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    tools:ignore="SmallSp" />
 
 
             </LinearLayout>
@@ -54,7 +55,8 @@
                 <ImageView
                     android:layout_width="75dp"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:contentDescription="@string/todo"
                     android:src="@drawable/blue_car" />
 
             </RelativeLayout>
@@ -84,7 +86,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom"
-                        android:text="Rs."
+                        android:text="@string/admin_rs_txt"
                         android:textColor="@color/white" />
 
                     <TextView
@@ -114,7 +116,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom"
-                        android:text="Rs."
+                        android:text="@string/admin_rs_per_km"
                         android:textColor="@color/white" />
 
                     <TextView
@@ -122,8 +124,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginLeft="2dp"
-                        android:text="12/1km"
+                        android:layout_marginStart="2dp"
+                        android:text="@string/admin_12_1km_txt"
                         android:textColor="@color/white"
                         android:textSize="20sp" />
 
@@ -144,7 +146,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom"
-                        android:text="25"
+                        android:text="@string/admin_25_txt"
                         android:textColor="@color/white"
                         android:textSize="30sp" />
 
@@ -152,8 +154,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom"
-                        android:layout_marginLeft="2dp"
-                        android:text="km"
+                        android:layout_marginStart="2dp"
+                        android:text="@string/admin_km_txt"
                         android:textColor="@color/white" />
 
                 </LinearLayout>

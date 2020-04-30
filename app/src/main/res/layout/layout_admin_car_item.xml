@@ -36,10 +36,10 @@
             android:layout_height="150dp"
             android:layout_marginStart="0dp"
             android:layout_marginTop="20dp"
+            android:layout_marginBottom="5dp"
             android:adjustViewBounds="true"
             android:background="@drawable/loading"
-            android:scaleType="centerCrop"
-            android:layout_marginBottom="5dp"/>
+            android:scaleType="centerCrop" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -51,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/colorTint"
                 android:fontFamily="@font/whitney_bold"
-                android:text="Model:"
+                android:text="@string/admin_car_list_model"
                 android:textColor="@android:color/white" />
 
 
@@ -62,7 +62,7 @@
                 android:backgroundTint="@color/colorTint"
                 android:ems="10"
                 android:fontFamily="@font/whitney_regular"
-                android:text="Toyota Max"
+                android:text="@string/admin_car_list_toyota_max"
                 android:textColor="@color/white"
                 android:textColorHint="@color/colorTint" />
 
@@ -78,7 +78,7 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/colorTint"
                 android:fontFamily="@font/whitney_bold"
-                android:text="Brand:"
+                android:text="@string/admin_car_list_brand"
                 android:textColor="@android:color/white" />
 
             <TextView
@@ -88,7 +88,7 @@
                 android:backgroundTint="@color/colorTint"
                 android:ems="10"
                 android:fontFamily="@font/whitney_regular"
-                android:text="Toyota"
+                android:text="@string/admin_car_list_toyota"
                 android:textColor="@color/white"
                 android:textColorHint="@color/colorTint" />
         </LinearLayout>
@@ -103,7 +103,7 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/colorTint"
                 android:fontFamily="@font/whitney_bold"
-                android:text="Color : "
+                android:text="@string/admin_car_list_color"
                 android:textColor="@android:color/white" />
 
             <TextView
@@ -129,7 +129,7 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/colorTint"
                 android:fontFamily="@font/whitney_bold"
-                android:text="Year : "
+                android:text="@string/admin_car_year"
                 android:textColor="@android:color/white" />
 
             <TextView
@@ -139,7 +139,7 @@
                 android:backgroundTint="@color/colorTint"
                 android:ems="10"
                 android:fontFamily="@font/whitney_regular"
-                android:text="2020"
+                android:text="@string/admin_car__2020"
                 android:textColor="@color/white"
                 android:textColorHint="@color/colorTint" />
 
@@ -155,7 +155,7 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/colorTint"
                 android:fontFamily="@font/whitney_bold"
-                android:text="Passengers : "
+                android:text="@string/admin_car_passengers"
                 android:textColor="@android:color/white" />
 
             <TextView
@@ -165,7 +165,7 @@
                 android:backgroundTint="@color/colorTint"
                 android:ems="10"
                 android:fontFamily="@font/whitney_regular"
-                android:text="6 passengers"
+                android:text="@string/admin_car_6_passengers"
                 android:textColor="@color/white"
                 android:textColorHint="@color/colorTint" />
 
@@ -181,7 +181,7 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/colorTint"
                 android:fontFamily="@font/whitney_bold"
-                android:text="Condition :"
+                android:text="@string/admin_car_condition"
                 android:textColor="@android:color/white" />
 
             <TextView
@@ -191,7 +191,7 @@
                 android:backgroundTint="@color/colorTint"
                 android:ems="10"
                 android:fontFamily="@font/whitney_regular"
-                android:text="Full A/C"
+                android:text="@string/admin_car_full_a_c"
                 android:textColor="@color/white"
                 android:textColorHint="@color/colorTint" />
 
@@ -208,7 +208,7 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/colorTint"
                 android:fontFamily="@font/whitney_bold"
-                android:text="Description : "
+                android:text="@string/admin_car_description"
                 android:textColor="@android:color/white" />
 
             <TextView
@@ -218,7 +218,7 @@
                 android:backgroundTint="@color/colorTint"
                 android:ems="10"
                 android:fontFamily="@font/whitney_regular"
-                android:text="brand new best car"
+                android:text="@string/admin_car_desc_txt"
                 android:textColor="@color/white"
                 android:textColorHint="@color/colorTint" />
 

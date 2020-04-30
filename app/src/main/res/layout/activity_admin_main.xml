@@ -7,27 +7,22 @@
     android:background="@color/colorPrimary"
     android:padding="20dp"
     tools:context=".admin.AdminMainActivity">
-
-<!--    <ImageView-->
-<!--        android:layout_width="250dp"-->
-<!--        android:layout_height="250dp"-->
-<!--        android:layout_centerHorizontal="true"-->
-<!--        android:layout_marginTop="20dp"-->
-<!--        android:src="@drawable/logo"/>-->
+    >
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp"
-        android:src="@drawable/logo"
-        android:layout_centerHorizontal="true"/>
+        android:src="@drawable/logo" />
+
     <Button
         android:id="@+id/admin_register_button"
         style="@style/Base.Widget.AppCompat.Button.Colored"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/admin_sign_in_button"
-        android:text="Create new account" />
+        android:text="@string/admin_create_new_account" />
 
 
     <Button
@@ -37,7 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="100dp"
-        android:text="Sign in" />
+        android:text="@string/admin_register_sign_in" />
 
 
 </RelativeLayout>

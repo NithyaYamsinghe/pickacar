@@ -18,7 +18,7 @@
         <activity android:name=".client.ActivityCarList"></activity>
         <activity android:name=".admin.AdminPackageDetailsActivity" />
         <activity android:name=".admin.AdminPackageListActivity" />
-        <activity android:name=".admin.AddNewPackageActivity" />
+        <activity android:name=".admin.AdminAddNewPackageActivity" />
         <activity android:name=".client.ActivityPackages" />
         <activity android:name=".driver.JourneyList" />
         <activity android:name=".driver.AddReview" />
@@ -33,7 +33,7 @@
         <activity android:name=".admin.AdminMainActivity" />
         <activity android:name=".driver.DriverSignUp" />
         <activity
-            android:name=".admin.AddNewCarActivity"
+            android:name=".admin.AdminAddNewCarActivity"
             android:parentActivityName=".admin.AdminCarListActivity" />
         <activity android:name=".driver.DriverLogin" />
         <activity android:name=".admin.AdminCarDetailsActivity" />
@@ -52,7 +52,6 @@
         <activity
             android:name=".client.ActivitySignUp"
             android:label="Sign Up" />
-        <activity android:name=".admin.AddCarActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

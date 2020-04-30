@@ -28,7 +28,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.orioton.pickacar.MainActivity;
 import com.orioton.pickacar.R;
-import com.orioton.pickacar.admin.AddNewCarActivity;
+import com.orioton.pickacar.admin.AdminAddNewCarActivity;
 import com.orioton.pickacar.admin.model.AdminUserModel;
 import com.orioton.pickacar.admin.adapters.AdminUsersViewHolder;
 
@@ -240,7 +240,7 @@ public class AdminUsersFragment extends Fragment {
             checkUserStatus();
 
         } else if (id == R.id.action_add) {
-            startActivity(new Intent(getActivity(), AddNewCarActivity.class));
+            startActivity(new Intent(getActivity(), AdminAddNewCarActivity.class));
 
 
         }

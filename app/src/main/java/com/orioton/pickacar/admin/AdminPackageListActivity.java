@@ -164,7 +164,7 @@ public class AdminPackageListActivity extends AppCompatActivity {
                                 if (which == 0) {
                                     // update clicked
 
-                                    Intent intent = new Intent(AdminPackageListActivity.this, AddNewPackageActivity.class);
+                                    Intent intent = new Intent(AdminPackageListActivity.this, AdminAddNewPackageActivity.class);
                                     intent.putExtra("name", currentName);
                                     intent.putExtra("price", currentPrice);
                                     intent.putExtra("pricePerKm", currentPricePerKm);
@@ -331,7 +331,7 @@ public class AdminPackageListActivity extends AppCompatActivity {
                                 if (which == 0) {
                                     // update clicked
 
-                                    Intent intent = new Intent(AdminPackageListActivity.this, AddNewPackageActivity.class);
+                                    Intent intent = new Intent(AdminPackageListActivity.this, AdminAddNewPackageActivity.class);
                                     intent.putExtra("name", currentName);
                                     intent.putExtra("price", currentPrice);
                                     intent.putExtra("pricePerKm", currentPricePerKm);
@@ -455,7 +455,7 @@ public class AdminPackageListActivity extends AppCompatActivity {
         if (id == R.id.action_add) {
 
             // start activity
-            startActivity(new Intent(AdminPackageListActivity.this, AddNewPackageActivity.class));
+            startActivity(new Intent(AdminPackageListActivity.this, AdminAddNewPackageActivity.class));
             return true;
         }
         if (id == R.id.action_logout) {

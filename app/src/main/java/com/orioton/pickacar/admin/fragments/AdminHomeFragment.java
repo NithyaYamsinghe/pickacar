@@ -13,12 +13,16 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.orioton.pickacar.MainActivity;
 import com.orioton.pickacar.R;
-import com.orioton.pickacar.admin.AddNewCarActivity;
+import com.orioton.pickacar.admin.AdminAddNewCarActivity;
+import com.orioton.pickacar.admin.AdminAddNewPackageActivity;
+import com.orioton.pickacar.admin.AdminCarListActivity;
+import com.orioton.pickacar.admin.AdminPackageListActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,6 +30,7 @@ import com.orioton.pickacar.admin.AddNewCarActivity;
 public class AdminHomeFragment extends Fragment {
     // firebase auth
     FirebaseAuth firebaseAuth;
+    Button  viewCars, viewPackages, addCar, addPackage;
 
     public AdminHomeFragment() {
         // Required empty public constructor
@@ -38,7 +43,49 @@ public class AdminHomeFragment extends Fragment {
         firebaseAuth = FirebaseAuth.getInstance();
 
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_admin_home, container, false);
+        View view = inflater.inflate(R.layout.fragment_admin_home, container, false);
+
+
+        viewCars = view.findViewById(R.id.view_cars_button_dashboard);
+        viewPackages = view.findViewById(R.id.view_packages_button_dashboard);
+        addPackage =  view.findViewById(R.id.add_packages_button_dashboard);
+        addCar = view.findViewById(R.id.add_car_button_dashboard);
+
+
+
+
+
+        viewCars.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), AdminCarListActivity.class));
+            }
+        });
+
+
+        viewPackages.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), AdminPackageListActivity.class));
+            }
+        });
+
+        addCar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), AdminAddNewCarActivity.class));
+            }
+        });
+
+        addPackage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), AdminAddNewPackageActivity.class));
+            }
+        });
+
+        return view;
+
     }
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -61,7 +108,7 @@ public class AdminHomeFragment extends Fragment {
             checkUserStatus();
 
         } else if (id == R.id.action_add) {
-            startActivity(new Intent(getActivity(), AddNewCarActivity.class));
+            startActivity(new Intent(getActivity(), AdminAddNewCarActivity.class));
 
 
         }

@@ -255,7 +255,7 @@ public class AdminCarListActivity extends AppCompatActivity {
                                 if (which == 0) {
                                     // update clicked
 
-                                    Intent intent = new Intent(AdminCarListActivity.this, AddNewCarActivity.class);
+                                    Intent intent = new Intent(AdminCarListActivity.this, AdminAddNewCarActivity.class);
                                     intent.putExtra("model", currentModel);
                                     intent.putExtra("brand", currentBrand);
                                     intent.putExtra("color", currentColor);
@@ -380,7 +380,7 @@ public class AdminCarListActivity extends AppCompatActivity {
                                 if (which == 0) {
                                     // update clicked
 
-                                    Intent intent = new Intent(AdminCarListActivity.this, AddNewCarActivity.class);
+                                    Intent intent = new Intent(AdminCarListActivity.this, AdminAddNewCarActivity.class);
                                     intent.putExtra("model", currentModel);
                                     intent.putExtra("brand", currentBrand);
                                     intent.putExtra("color", currentColor);
@@ -472,7 +472,7 @@ public class AdminCarListActivity extends AppCompatActivity {
         if (id == R.id.action_add) {
 
             // start activity
-            startActivity(new Intent(AdminCarListActivity.this, AddNewCarActivity.class));
+            startActivity(new Intent(AdminCarListActivity.this, AdminAddNewCarActivity.class));
             return true;
         }
         if (id == R.id.action_logout) {

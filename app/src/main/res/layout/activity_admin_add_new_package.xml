@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
     android:padding="20dp"
-    tools:context=".admin.AddNewPackageActivity">
+    tools:context=".admin.AdminAddNewPackageActivity">
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/admin_add_package_name_title"
         android:layout_width="match_parent"
@@ -64,6 +65,7 @@
             android:textColor="@color/white"
             android:textColorHint="@color/colorTint" />
     </com.google.android.material.textfield.TextInputLayout>
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/admin_add_package_km_title"
         android:layout_width="match_parent"
