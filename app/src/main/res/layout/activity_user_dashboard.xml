@@ -7,10 +7,6 @@
     android:background="#3D4453"
     tools:context=".client.ActivityUserDashboard">
 
-    <include
-        android:id="@+id/tb_dashboard"
-        layout="@layout/toolbar_dash" />
-
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
@@ -211,6 +207,5 @@
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
     </LinearLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

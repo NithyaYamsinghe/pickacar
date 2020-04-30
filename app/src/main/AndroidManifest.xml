@@ -37,7 +37,6 @@
             android:name=".admin.AdminHomeActivity"
             android:label="@string/title_activity_admin_home"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".client.ActivityDashboard" />
         <activity
             android:name=".client.ActivityLogIn"
             android:label="Sign In" />

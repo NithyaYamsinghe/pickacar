@@ -1,24 +1,22 @@
 package com.orioton.pickacar.client;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.orioton.pickacar.R;
 
-public class ActivityUserDashboard extends AppCompatActivity {
+public class ActivityUserDashboard extends Fragment {
 
-    Toolbar toolbar;
-
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_dashboard);
-
-
-        toolbar =  findViewById(R.id.tb_dashboard);
-        setSupportActionBar(toolbar);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.activity_user_dashboard, container, false);
     }
-
 }
