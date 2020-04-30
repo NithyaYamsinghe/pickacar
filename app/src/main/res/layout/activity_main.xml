@@ -68,10 +68,11 @@
         android:id="@+id/btn_user_dash"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:layout_marginTop="24dp"
         android:onClick="changeDash"
-        tools:layout_editor_absoluteX="162dp"
-        tools:layout_editor_absoluteY="353dp"
-        tools:ignore="MissingConstraints" />
+        android:text="User Dashboard"
+        app:layout_constraintTop_toBottomOf="@+id/btn_driver"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="133dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
