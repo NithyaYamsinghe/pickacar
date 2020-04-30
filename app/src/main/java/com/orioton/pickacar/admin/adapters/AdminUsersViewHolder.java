@@ -1,4 +1,4 @@
-package com.orioton.pickacar.admin.views;
+package com.orioton.pickacar.admin.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,7 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.orioton.pickacar.R;
-import com.orioton.pickacar.admin.fragments.AdminUsersFragment;
 import com.orioton.pickacar.admin.model.AdminUserModel;
 import com.squareup.picasso.Picasso;
 

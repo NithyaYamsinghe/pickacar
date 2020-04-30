@@ -1,4 +1,4 @@
-package com.orioton.pickacar.admin.views;
+package com.orioton.pickacar.admin.adapters;
 
 import android.content.Context;
 import android.view.View;
