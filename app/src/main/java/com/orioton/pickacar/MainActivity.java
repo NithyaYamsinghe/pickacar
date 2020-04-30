@@ -51,9 +51,4 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, DriverLogin.class);
         startActivity(intent);
     }
-
-    public void changeDash(View view) {
-        Intent intent = new Intent(this, ActivityUserDashboard.class);
-        startActivity(intent);
-    }
 }

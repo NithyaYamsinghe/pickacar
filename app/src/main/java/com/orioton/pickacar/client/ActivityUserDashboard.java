@@ -4,7 +4,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 
 import com.orioton.pickacar.R;
@@ -20,5 +22,16 @@ public class ActivityUserDashboard extends AppCompatActivity {
 
         toolbar = findViewById(R.id.toolbar_dash);
         setSupportActionBar(toolbar);
+
+    }
+
+    public void toPackages(View view) {
+        Intent intent = new Intent(this, ActivityPackages.class);
+        startActivity(intent);
+    }
+
+    public void toCarsList(View view) {
+        Intent intent = new Intent(this, ActivityCarList.class);
+        startActivity(intent);
     }
 }
