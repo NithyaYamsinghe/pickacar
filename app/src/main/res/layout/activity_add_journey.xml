@@ -24,10 +24,10 @@
         android:layout_height="30dp" />
 
     <EditText
-        android:id="@+id/et_card_name"
+        android:id="@+id/et_location"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Card name"
+        android:hint="Location"
         android:inputType="textPersonName"
         android:textColorHint="@color/colorTint"
         android:padding="10dp"
@@ -35,49 +35,26 @@
         />
 
     <EditText
-        android:id="@+id/et_card_number"
+        android:id="@+id/et_destination"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Card number"
-        android:inputType="number"
+        android:hint="Destination"
+        android:inputType="textPersonName"
         android:textColorHint="@color/colorTint"
         android:padding="10dp"
         android:textColor="@color/white"
         />
 
-    <LinearLayout
+    <EditText
+        android:id="@+id/et_passengers"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <EditText
-            android:id="@+id/et_card_exp_date"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:hint="Expire date"
-            android:inputType="textPersonName"
-            android:textColorHint="@color/colorTint"
-            android:padding="10dp"
-            android:textColor="@color/white"
-            />
-
-
-
-        <EditText
-            android:id="@+id/et_card_cvv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="cvv"
-            android:inputType="number"
-            android:textColorHint="@color/colorTint"
-            android:padding="10dp"
-            android:textColor="@color/white"
-            />
-
-    </LinearLayout>
-
-
-
+        android:hint="Passengers"
+        android:inputType="number"
+        android:textColorHint="@color/colorTint"
+        android:padding="10dp"
+        android:textColor="@color/white"
+        />
 
     <Space
         android:layout_width="match_parent"
@@ -86,7 +63,7 @@
         android:id="@+id/btn_pay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Pay"
+        android:text="Add Journey"
         android:layout_gravity="center"
         android:background="@color/colorAccent"
         />

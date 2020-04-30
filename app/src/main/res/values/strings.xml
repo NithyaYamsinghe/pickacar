@@ -88,6 +88,6 @@
     <string name="bottom_nav_cars">Cars</string>
     <string name="bottom_nav_packages">Packages</string>
 
-    <string name="payment_text">Please fill in the fields to continue your payment</string>
+    <string name="payment_text">Please fill in the fields to add your journey</string>
 
 </resources>

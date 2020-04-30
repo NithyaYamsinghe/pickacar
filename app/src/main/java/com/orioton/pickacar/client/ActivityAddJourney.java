@@ -4,9 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
 import com.orioton.pickacar.R;
 
 public class ActivityAddJourney extends AppCompatActivity {
+
+    DatabaseReference databaseReference;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -14,4 +19,3 @@ public class ActivityAddJourney extends AppCompatActivity {
         setContentView(R.layout.activity_add_journey);
     }
 }
- 
