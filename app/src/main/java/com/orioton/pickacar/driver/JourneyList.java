@@ -31,13 +31,6 @@ import com.google.firebase.storage.StorageReference;
 import com.orioton.pickacar.R;
 import com.orioton.pickacar.driver.model.JourneyModel;
 
-
-
-
-
-
-
-
 public class JourneyList extends AppCompatActivity {
 
     RecyclerView recyclerViewJourneyList;
@@ -48,10 +41,6 @@ public class JourneyList extends AppCompatActivity {
 
     FirebaseRecyclerAdapter<JourneyModel, JourneyLisitViewHolder> firebaseRecyclerAdapter;
     FirebaseRecyclerOptions<JourneyModel> options;
-
-
-//    FirebaseRecyclerAdapter<JourneyModel, JourneyLisitViewHolder> firebaseRecyclerAdapter;
-//    FirebaseRecyclerOptions<JourneyModel> options;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -199,7 +188,7 @@ public class JourneyList extends AppCompatActivity {
                             AlertDialog.Builder builder = new AlertDialog.Builder(JourneyList.this);
 
                             // options to display in dialog
-                            String[] options = {"Update", "Delete"};
+                            String[] options = {"Confirm", "Reject"};
 
                             // set to dialog
                             builder.setItems(options, new DialogInterface.OnClickListener() {
@@ -220,6 +209,11 @@ public class JourneyList extends AppCompatActivity {
 //                                        intent.putExtra("condition", currentCondition);
 //                                        intent.putExtra("image", currentImage);
 //                                        startActivity(intent);
+
+                                        updateDatabase(currentUserId);
+
+
+
                                     }
                                     if (which == 1) {
                                         // delete clicked
@@ -249,5 +243,36 @@ public class JourneyList extends AppCompatActivity {
 
 
         }
+
+    private void updateDatabase(String currentUserId) {
+
+            FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+            DatabaseReference databaseReferenceNew = firebaseDatabase.getReference("journeys");
+
+            Query query = databaseReferenceNew.orderByChild("userId").equalTo(currentUserId);
+
+            query.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
+
+                        ds.getRef().child("status").setValue("Confirm");
+
+                    }
+                   // progressDialog.dismiss();
+
+                    // start car list after update
+                    Toast.makeText(getApplicationContext(), "database updated successfully", Toast.LENGTH_SHORT).show();
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+
+        }
+
 
 }
