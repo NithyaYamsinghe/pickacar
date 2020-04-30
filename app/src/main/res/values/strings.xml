@@ -89,6 +89,12 @@
     <string name="bottom_nav_cars">Cars</string>
     <string name="bottom_nav_packages">Packages</string>
 
+
+    <string name="payment_text">Please fill in the fields to continue your payment</string>
+    <string name="admin_change_confirm_password">Confirm Password</string>
+    <string name="admin_update_password_button">update password</string>
+
     <string name="payment_text">Please fill in the fields to add your journey</string>
+
 
 </resources>
