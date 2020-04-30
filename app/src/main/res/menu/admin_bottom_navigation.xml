@@ -18,4 +18,18 @@
         android:title="@string/nav_users"
         android:icon="@drawable/ic_action_users_light"
         />
+
+
+    <item
+        android:id="@+id/bottom_nav_cars"
+        android:title="@string/bottom_nav_cars"
+        android:icon="@drawable/ic_action_car"
+        />
+
+
+    <item
+        android:id="@+id/bottom_nav_packages"
+        android:title="@string/bottom_nav_packages"
+        android:icon="@drawable/ic_action_packages"
+        />
 </menu>

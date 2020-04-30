@@ -9,7 +9,6 @@ import android.app.WallpaperManager;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Build;
@@ -30,7 +29,7 @@ import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
-public class CarDetailsActivity extends AppCompatActivity {
+public class AdminCarDetailsActivity extends AppCompatActivity {
 
     TextView brand, model, color, releasedYear, passenger, description, condition;
     ImageView image;
@@ -41,7 +40,7 @@ public class CarDetailsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_car_details);
+        setContentView(R.layout.activity_admin_car_details);
         // action bar
         ActionBar actionBar = getSupportActionBar();
 

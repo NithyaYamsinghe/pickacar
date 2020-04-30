@@ -34,7 +34,7 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.orioton.pickacar.R;
-import com.orioton.pickacar.admin.model.CarUploadInfo;
+import com.orioton.pickacar.admin.model.CarUploadInfoModel;
 import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
@@ -300,7 +300,7 @@ public class AddNewCarActivity extends AppCompatActivity {
 
                 // start car list after update
                 Toast.makeText(AddNewCarActivity.this, "database uploaded successfully", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(AddNewCarActivity.this, CarListActivity.class));
+                startActivity(new Intent(AddNewCarActivity.this, AdminCarListActivity.class));
                 finish();
             }
 
@@ -347,13 +347,13 @@ public class AddNewCarActivity extends AppCompatActivity {
 
                     // show the toast that image is uploaded 
                     Toast.makeText(AddNewCarActivity.this, "uploaded successfully", Toast.LENGTH_SHORT).show();
-                    CarUploadInfo carUploadInfo = new CarUploadInfo(addBrand, addColor, addCondition, addDescription, downloadUrl.toString(),
+                    CarUploadInfoModel carUploadInfo = new CarUploadInfoModel(addBrand, addColor, addCondition, addDescription, downloadUrl.toString(),
                             addModel, addPassengers, addReleasedYear, addModel.toLowerCase());
 
                     // getting image upload id
                     String uploadId = databaseReference.push().getKey();
                     databaseReference.child(uploadId).setValue(carUploadInfo);
-                    Intent intent = new Intent(AddNewCarActivity.this, CarListActivity.class);
+                    Intent intent = new Intent(AddNewCarActivity.this, AdminCarListActivity.class);
                     startActivity(intent);
 
 

@@ -313,28 +313,40 @@ public class AdminLoginActivity extends AppCompatActivity {
                             FirebaseUser user = firebaseAuth.getCurrentUser();
 
 
-                            // get user email and the uid from auth
+                            // if user sign in first time then get user information from google account  and show
 
-                            String email = user.getEmail();
-                            String uid = user.getUid();
+                            if (task.getResult().getAdditionalUserInfo().isNewUser()){
 
 
-                            // store user data
 
-                            HashMap<Object, String> hashMap = new HashMap<>();
-                            hashMap.put("email", email);
-                            hashMap.put("uid", uid);
-                            hashMap.put("name", "");
-                            hashMap.put("phone", "");
-                            hashMap.put("image", "");
+                                // get user email and the uid from auth
 
-                            // firebase database
+                                String email = user.getEmail();
+                                String uid = user.getUid();
 
-                            FirebaseDatabase database = FirebaseDatabase.getInstance();
-                            DatabaseReference reference = database.getReference("adminUsers");
 
-                            // put data with in hash map
-                            reference.child(uid).setValue(hashMap);
+                                // store user data
+
+                                HashMap<Object, String> hashMap = new HashMap<>();
+                                hashMap.put("email", email);
+                                hashMap.put("uid", uid);
+                                hashMap.put("name", "");
+                                hashMap.put("phone", "");
+                                hashMap.put("image", "");
+                                hashMap.put("cover", "");
+
+                                // firebase database
+
+                                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                                DatabaseReference reference = database.getReference("adminUsers");
+
+                                // put data with in hash map
+                                reference.child(uid).setValue(hashMap);
+
+                            }
+
+
+
 
 
 
