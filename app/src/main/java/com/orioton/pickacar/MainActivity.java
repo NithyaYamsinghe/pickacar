@@ -11,6 +11,7 @@ import com.orioton.pickacar.admin.AdminMainActivity;
 import com.orioton.pickacar.admin.CarListActivity;
 import com.orioton.pickacar.client.ActivityLogIn;
 import com.orioton.pickacar.client.ActivitySignUp;
+import com.orioton.pickacar.client.ActivityUserDashboard;
 import com.orioton.pickacar.driver.DriverLogin;
 
 public class MainActivity extends AppCompatActivity {
@@ -47,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void changeDash(View view) {
-        Intent intent = new Intent(this, ActivityUserMain.class);
+        Intent intent = new Intent(this, ActivityUserDashboard.class);
         startActivity(intent);
     }
 }
