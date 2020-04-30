@@ -18,13 +18,15 @@ import com.google.firebase.database.ValueEventListener;
 import com.orioton.pickacar.R;
 import com.orioton.pickacar.client.model.Subscription;
 import com.orioton.pickacar.client.model.User;
+import com.orioton.pickacar.driver.model.JourneyModel;
 
 public class ActivityAddJourney extends AppCompatActivity {
 
     DatabaseReference databaseReference;
 
-    String databasePath = "journeys";
+    String databasePathUser = "users";
     String databasePathSub = "subscriptions";
+    String databasePathJourney = "journies";
 
     User currentUser;
 
@@ -46,6 +48,9 @@ public class ActivityAddJourney extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_journey);
 
+        mAuth = FirebaseAuth.getInstance();
+
+
         etLocation = findViewById(R.id.et_location);
         etDestination = findViewById(R.id.et_destination);
         etPassengers = findViewById(R.id.et_passengers);
@@ -59,7 +64,7 @@ public class ActivityAddJourney extends AppCompatActivity {
         // getting the current userId
         currentUserId = mAuth.getCurrentUser().getUid();
 
-        databaseReference = FirebaseDatabase.getInstance().getReference(databasePath);
+        databaseReference = FirebaseDatabase.getInstance().getReference(databasePathUser);
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -100,18 +105,18 @@ public class ActivityAddJourney extends AppCompatActivity {
                 for (DataSnapshot journeysSnapshot: dataSnapshot.getChildren()) {
                     subscriptionPlan = journeysSnapshot.getValue(Subscription.class);
 
-                    // charge the customer from the subscription
-                    charge();
+                    subscriptionKey = journeysSnapshot.getKey();
 
                 }
 
+                // charge the customer from the subscription
+                charge();
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
-
 
 
     }
@@ -135,6 +140,15 @@ public class ActivityAddJourney extends AppCompatActivity {
 
         databaseReference = FirebaseDatabase.getInstance().getReference(databasePathSub).child(subscriptionKey);
         databaseReference.setValue(updatedSubscription);
+
+
+        // adding journey
+        JourneyModel journey = new JourneyModel(currentUserId, currentUser.getUserName(), "0712238883", "2", etLocation.getText().toString(), etDestination.getText().toString(), etPassengers.getText().toString(), "pending", "100");
+
+        databaseReference = FirebaseDatabase.getInstance().getReference(databasePathJourney);
+        String id = databaseReference.push().getKey();
+        databaseReference.child(id).setValue(journey);
+
 
         progressDialog.dismiss();
 

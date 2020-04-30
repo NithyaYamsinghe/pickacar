@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.orioton.pickacar.R;
@@ -27,6 +29,7 @@ public class ActivityCarList extends AppCompatActivity {
 
     DatabaseReference databaseReference;
     String databasePath = "cars";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +56,14 @@ public class ActivityCarList extends AppCompatActivity {
             protected void onBindViewHolder(@NonNull CarViewHolder carViewHolder, int i, @NonNull CarModel carModel) {
                 carViewHolder.carName.setText(carModel.getModel());
                 Picasso.get().load(carModel.getImage()).into(carViewHolder.carImage);
+                carViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // on clicking each car
+                        Intent intent = new Intent(ActivityCarList.this, ActivityAddJourney.class);
+                        startActivity(intent);
+                    }
+                });
             }
 
             @NonNull
